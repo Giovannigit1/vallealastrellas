@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&h=630&q=85',
+        url: '/images/elqui_astroturismo.jpg',
         width: 1200,
         height: 630,
         alt: 'Atardecer dorado y cielo estrellado en el Valle del Elqui',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
-    images: ['https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&h=630&q=85'],
+    images: ['/images/elqui_astroturismo.jpg'],
   },
   robots: {
     index: true,

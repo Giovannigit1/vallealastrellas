@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { CHATBOT_FAQ } from '@/data/site';
+import { CHATBOT_FAQ, SITE_CONFIG } from '@/data/site';
 import { WeatherData } from '@/types';
-import { MessageSquare, X, Sparkles, CloudSun, Compass, ShieldCheck } from 'lucide-react';
+import { MessageSquare, X, Sparkles, CloudSun, Compass, ShieldCheck, MessageCircle } from 'lucide-react';
 
 interface ChatMessage {
   sender: 'bot' | 'user';
@@ -159,6 +159,16 @@ export function FloatingChatbot() {
                   <Compass className="w-3.5 h-3.5 text-[#D4AF37]" aria-hidden="true" />
                 </button>
               ))}
+
+              <a
+                href={`https://wa.me/${SITE_CONFIG.demo.whatsappNumber}?text=Hola%20Valle%20a%20las%20Estrellas,%20tengo%20una%20consulta%20especial%20sobre%20la%20experiencia`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full text-center px-3 py-2 mt-1 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-md"
+              >
+                <MessageCircle className="w-3.5 h-3.5" />
+                <span>Hablar por WhatsApp (+56 9 4044 3293)</span>
+              </a>
             </div>
           </div>
         </div>

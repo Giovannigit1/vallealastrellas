@@ -77,7 +77,7 @@ export function AboutSection() {
           <div className="relative">
             <div className="relative h-[480px] w-full rounded-3xl overflow-hidden border border-[#3D2B26] shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80"
+                src="/images/elqui_landscape.jpg"
                 alt="Paisaje crepuscular entre montañas y viñedos del Valle del Elqui"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"

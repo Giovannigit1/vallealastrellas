@@ -18,11 +18,11 @@ export const SITE_CONFIG = {
   },
   // DATOS CENTRALIZADOS DE DEMOSTRACIÓN (Modificar fácilmente para producción)
   demo: {
-    phone: "+56 9 8765 4321",
-    phoneDisplay: "+56 9 8765 4321",
+    phone: "+56 9 4044 3293",
+    phoneDisplay: "+56 9 4044 3293",
     email: "experiencia@vallealasestrellas.cl",
-    whatsappNumber: "56987654321",
-    disclaimer: "Nota: Teléfono, correo y nombres de alianzas son datos de demostración en vivo.",
+    whatsappNumber: "56940443293",
+    disclaimer: "Nota: Espacios aliados son colaboraciones territoriales de demostración.",
   },
   experience: {
     startTime: "17:00",
@@ -96,7 +96,7 @@ export const PRODUCTS_SHOWCASE = [
     sensoryNotes: "Dulzor cítrico punzante, notas de madera tostada y final aterciopelado con dejos de caramelo quemado.",
     producer: "Agricultores Tradicionales de Paihuano",
     pairing: "Mistela de uva Pedro Jiménez o helado artesanal de rica-rica.",
-    imageUrl: "https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/papaya_elquina.jpg",
     subtitlesText: "Resumen: Papaya confitada en pailas de cobre con miel de chañar cosechada a mano. Sabor cítrico dulce y tostado.",
   },
   {
@@ -108,7 +108,7 @@ export const PRODUCTS_SHOWCASE = [
     sensoryNotes: "Textura cremosa y quebradiza, acidez láctica equilibrada, retrogusto mineral y notas de hierba silvestre.",
     producer: "Familia Criancera de Quebrada de Paihuano",
     pairing: "Pisco transparente moscatel de 40° o vino Syrah elquino de ladera.",
-    imageUrl: "https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/queso_cabra.jpg",
     subtitlesText: "Resumen: Queso de cabra de pastoreo cordillerano, madurado 60 días con hierbas silvestres rica-rica y romero.",
   },
   {
@@ -120,7 +120,7 @@ export const PRODUCTS_SHOWCASE = [
     sensoryNotes: "Aroma exuberante a jazmín y cáscara de naranja confitada, paso redondo en boca y persistencia sedosa.",
     producer: "Destilería Boutique de Alcohuaz",
     pairing: "Cacao amargo chileno, higos secos al sol y postres de frutas andinas.",
-    imageUrl: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/pisco_artesanal.jpg",
     subtitlesText: "Resumen: Pisco artesanal destilado en alambiques de cobre con uvas moscatel de terrazas altas y botánicos cordilleranos.",
   },
 ];
@@ -189,7 +189,7 @@ export const RECIPES_DATA: Recipe[] = [
     ],
     pairing: "Copa de Pisco Sour de Chañar o Mistela elquina bien fría.",
     chefNote: "Para potenciar el perfume, calienta apenas la miel de chañar antes de glasear la tartaleta.",
-    imageUrl: "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/receta_tartaleta.jpg",
   },
   {
     id: "queso-cabra-plancha",
@@ -218,7 +218,7 @@ export const RECIPES_DATA: Recipe[] = [
     ],
     pairing: "Pisco transparente de 40° servido con cáscara de pomelo o vino blanco Pedro Jiménez.",
     chefNote: "El secreto es la temperatura máxima de la sartén: un golpe de calor rápido sella sin desarmar el queso.",
-    imageUrl: "https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/receta_queso_sellado.jpg",
   },
   {
     id: "asado-tira-pisco",
@@ -252,7 +252,7 @@ export const RECIPES_DATA: Recipe[] = [
     ],
     pairing: "Vino Syrah del Valle del Elqui o Pisco Sour tradicional con amargo de angostura.",
     chefNote: "El flambeado opcional del pisco al desglasar acentúa los tonos ahumados del corte.",
-    imageUrl: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/receta_asado_tira.jpg",
   },
 ];
 
