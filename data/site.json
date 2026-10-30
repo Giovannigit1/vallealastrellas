@@ -1,0 +1,313 @@
+{
+  "project": {
+    "name": "Del valle a la mesa, de la mesa a las estrellas",
+    "tagline": "Descubre el Valle del Elqui a través de sus sabores, paisajes y cielos. Una experiencia que une cocina, cultura, naturaleza y astronomía.",
+    "academicNotice": "Proyecto académico. Disponibilidad no habilitada.",
+    "institution": "INACAP — Administración Gastronómica",
+    "course": "Diseño de experiencias gastroturísticas",
+    "professor": "Rubén Tapia",
+    "date": "30 de octubre de 2026",
+    "team": [
+      { "name": "Antonia Huerta", "role": "Estudiante de Administración Gastronómica" },
+      { "name": "Caroline Prado", "role": "Estudiante de Administración Gastronómica" },
+      { "name": "Paz Bozo", "role": "Estudiante de Administración Gastronómica" }
+    ],
+    "mission": "Dar a conocer y valorar el patrimonio gastronómico, cultural y natural del Valle del Elqui mediante una experiencia educativa, participativa y respetuosa con su entorno.",
+    "vision": "Inspirar a más personas a descubrir los sabores y tradiciones del valle, promoviendo el turismo responsable y la conexión con su identidad.",
+    "closing": "Porque cada sabor tiene una historia y cada estrella, un recuerdo."
+  },
+  "canonical": {
+    "destination": "Valle del Elqui, Región de Coquimbo",
+    "sector": "Cochiguaz",
+    "location": "Valle Luz Camping, Río Cochiguaz km 3 (acceso por verificar)",
+    "mapUrl": "https://maps.app.goo.gl/xT1y8TbGECFkq86LA",
+    "hours": "10:00 a 21:30 (11 horas y 30 minutos)",
+    "totalMinutes": 690,
+    "season": "Temporada de verano (diciembre a marzo), sujeta a clima y habilitación del recinto",
+    "capacity": "Máximo propuesto de 15 participantes (capacidad de diseño por validar con el recinto)",
+    "targetAudience": "Adultos de 25 a 55 años, parejas y grupos pequeños interesados en cultura, gastronomía y astroturismo",
+    "price": "$125.000 CLP por persona (tarifa referencial, octubre 2026, no confirmada)",
+    "status": "Proyecto académico; reservas y disponibilidad no habilitadas; solo formulario de consulta de interés",
+    "discount": "10 % de descuento referencial hipotético (simulación académica no canjeable ni aplicable a una compra comercial)"
+  },
+  "summaryCards": [
+    { "id": "1", "time": "10:00 · Bienvenida", "title": "Llegada al valle", "text": "Llegamos al valle y comenzamos a descubrir su paisaje.", "image": "imagenes/foto_16.jpg" },
+    { "id": "2", "time": "Mañana · Productos locales", "title": "Tesoros de la tierra", "text": "Reconocemos aromas, colores y sabores de ingredientes regionales.", "image": "imagenes/foto_21.jpg" },
+    { "id": "3", "time": "Mañana · Cocina solar", "title": "Energía del sol", "text": "Participamos en una actividad culinaria inspirada en la energía del sol.", "image": "imagenes/foto_12.jpg" },
+    { "id": "4", "time": "Mediodía · Almuerzo", "title": "Almuerzo regional", "text": "Compartimos un almuerzo de inspiración regional.", "image": "imagenes/foto_18.jpg" },
+    { "id": "5", "time": "Tarde · Naturaleza", "title": "Entorno natural", "text": "Disfrutamos el entorno, con pausas y actividades sujetas a habilitación.", "image": "imagenes/foto_16.jpg" },
+    { "id": "6", "time": "Tarde · Degustaciones y bienestar", "title": "Sabores dulces y calma", "text": "Conocemos preparaciones dulces y espacios de descanso.", "image": "imagenes/foto_22.jpg" },
+    { "id": "7", "time": "Atardecer · Cultura pisquera", "title": "Tradición de la uva", "text": "Descubrimos el vínculo entre la uva, el territorio y la tradición pisquera.", "image": "imagenes/foto_17.jpg" },
+    { "id": "8", "time": "Noche · Astronomía", "title": "Mirada al firmamento", "text": "Cerramos el recorrido con interpretación del cielo nocturno.", "image": "imagenes/foto_05.jpg" }
+  ],
+  "technicalStations": [
+    { "number": 1, "time": "10:00–10:45", "duration": 45, "name": "Recepción y recorrido inicial", "hostAction": "Anfitrión presenta el paisaje, ofrece bebida de bienvenida e introduce la historia del valle", "emotionSenses": "Curiosidad; vista y gusto", "resources": "Bebida local, señalética educativa", "contingency": "Recepción en espacio techado ventilado si hay sol excesivo" },
+    { "number": 2, "time": "10:45–11:30", "duration": 45, "name": "Tesoros del valle", "hostAction": "Visitante explora aromas, texturas y fichas; el guía explica la procedencia y oficios locales", "emotionSenses": "Descubrimiento; olfato, gusto y tacto", "resources": "Mesa de productos frescos, fichas sensoriales", "contingency": "Muestra protegida en caso de ráfagas de viento" },
+    { "number": 3, "time": "11:30–12:30", "duration": 60, "name": "Cocina solar participativa", "hostAction": "Participantes colaboran en la preparación guiados por chef en técnica e inocuidad", "emotionSenses": "Logro y fascinación; tacto, vista y olfato", "resources": "Equipos de cocina solar, utensilios, insumos medidos", "contingency": "En caso de baja radiación: demostración interpretativa y cocción convencional autorizada" },
+    { "number": 4, "time": "12:30–13:30", "duration": 60, "name": "Almuerzo territorial", "hostAction": "Servicio guiado interpretando ingredientes, productores de origen y recetas locales", "emotionSenses": "Disfrute y convivencia; gusto y olfato", "resources": "Comedor sombreado, vajilla reutilizable", "contingency": "Menú alternativo adaptado para intolerancias informadas" },
+    { "number": 5, "time": "13:30–15:30", "duration": 120, "name": "Naturaleza y aguas", "hostAction": "Guía orienta caminata interpretativa con énfasis en el cuidado hídrico del río Cochiguaz", "emotionSenses": "Calma y conexión; vista y oído", "resources": "Ruta segura señalizada, puntos de hidratación", "contingency": "Senderos seguros sin acceso a pozones si no hay supervisión y autorización" },
+    { "number": 6, "time": "15:30–16:15", "duration": 45, "name": "Papaya y copao: degustación comparada", "hostAction": "Degustación guiada analizando texturas, acidez, métodos de conservación y relato botánico", "emotionSenses": "Sorpresa; gusto y olfato", "resources": "Muestras de fruta fresca, preparaciones y fichas", "contingency": "Alternativa de frutas estacionales si falta lote fresco" },
+    { "number": 7, "time": "16:15–17:00", "duration": 45, "name": "Bienestar y descanso sensorial", "hostAction": "Espacio de descanso guiado (masaje o relajación voluntaria sujeto a habilitación de personal)", "emotionSenses": "Relajación; tacto y oído", "resources": "Área de reposo, sombra y confort", "contingency": "Sesión de respiración guiada voluntaria si no hay personal acreditado" },
+    { "number": 8, "time": "17:00–18:00", "duration": 60, "name": "Descanso y preparación nocturna", "hostAction": "Pausa libre, hidratación y cambio de vestimenta para la caída de temperatura nocturna", "emotionSenses": "Confort y serenidad; descanso", "resources": "Servicios higiénicos, dispensadores de agua", "contingency": "Espacio de reposo cubierto" },
+    { "number": 9, "time": "18:00–18:45", "duration": 45, "name": "Cultura pisquera y patrimonio de la vid", "hostAction": "Interpretación histórica de la uva pisquera, destilación artesanal y degustación opcional", "emotionSenses": "Interés cultural; olfato y gusto", "resources": "Agua, uvas frescas, muestras y bebida sin alcohol equivalente", "contingency": "Alternativa sin alcohol garantizada para todos los asistentes" },
+    { "number": 10, "time": "18:45–19:15", "duration": 30, "name": "Traslado y fotografía del crepúsculo", "hostAction": "Desplazamiento acompañado hacia el mirador nocturno y registro del atardecer", "emotionSenses": "Expectativa y belleza; vista", "resources": "Iluminación tenue de senderos, recomendaciones fotográficas", "contingency": "Traslado asistido por ruta de mínima pendiente" },
+    { "number": 11, "time": "19:15–20:15", "duration": 60, "name": "Conexión y armonía crepuscular", "hostAction": "Sesión sonora y de silencio interpretativo (sujeta a habilitación y acústica del entorno)", "emotionSenses": "Tranquilidad y asombro; oído y tacto", "resources": "Espacio abierto con asientos aislados del suelo", "contingency": "Relato oral de historias y cosmovisión local" },
+    { "number": 12, "time": "20:15–21:15", "duration": 60, "name": "Observación e interpretación astronómica", "hostAction": "Divulgador astronómico interpreta constelaciones, planetas y cosmovisión andina", "emotionSenses": "Asombro; vista y oído", "resources": "Puntero láser astronómico, telescopio referencial, mantas", "contingency": "Si hay nubosidad: charla bajo techo con proyecciones y material visual sin garantizar estrellas" },
+    { "number": 13, "time": "21:15–21:30", "duration": 15, "name": "Despedida, memoria y recuerdo", "hostAction": "Círculo de cierre, reflexión comunitaria, entrega de recuerdo gastronómico y encuesta", "emotionSenses": "Gratitud; memoria afectiva", "resources": "Tarjeta de agradecimiento, recuerdo de semillas/receta", "contingency": "Despacho organizado de transporte seguro" }
+  ],
+  "blogPosts": [
+    {
+      "id": "sabores-del-valle",
+      "slug": "7-1-los-sabores-que-nacen-del-valle",
+      "sectionNumber": "7.1",
+      "title": "Los sabores que nacen del valle",
+      "author": "Equipo Del valle a la mesa",
+      "date": "30 de octubre de 2026",
+      "image": "imagenes/foto_21.jpg",
+      "imageAlt": "Papayas amarillas agrupadas representativas de los sabores del Valle del Elqui",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "content": "Entre montañas y paisajes de clima semiárido, el Valle del Elqui guarda productos que cuentan parte de su historia. La papaya, el copao y el queso de cabra nos permiten acercarnos a sabores y oficios asociados al territorio. En nuestra experiencia queremos que cada ingrediente sea una oportunidad para mirar, oler, aprender y degustar. No se trata solo de probar: se trata de comprender de dónde viene lo que llega a la mesa.",
+      "source": "Chile Travel (2026). Valle del Elqui. https://chile.travel/destinos/valle-del-elqui/",
+      "ctaText": "Descubre la experiencia gastronómica",
+      "ctaLink": "#experiencia"
+    },
+    {
+      "id": "papaya-y-copao",
+      "slug": "7-2-papaya-y-copao-dos-sabores-por-descubrir",
+      "sectionNumber": "7.2",
+      "title": "Papaya y copao: dos sabores por descubrir",
+      "author": "Equipo Del valle a la mesa",
+      "date": "30 de octubre de 2026",
+      "image": "imagenes/foto_23.jpg",
+      "imageAlt": "Fruto de copao cortado mostrando su pulpa húmeda y semillas oscuras",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "content": "La papaya es un ingrediente reconocido en preparaciones dulces y conservas de la región. El copao, fruto de una cactácea, invita a conocer otro sabor del paisaje semiárido. En el blog presentamos sus características y proponemos reconocer sus diferencias mediante imágenes y una actividad sensorial. La procedencia exacta de los ingredientes utilizados en la experiencia se verificará con proveedores.",
+      "source": "Investigación botánica y gastronómica regional, Evaluación INACAP 2026",
+      "ctaText": "Juega la trivia de los sabores",
+      "ctaLink": "#juegos"
+    },
+    {
+      "id": "cocina-solar",
+      "slug": "7-3-cocina-solar-aprender-con-el-sol",
+      "sectionNumber": "7.3",
+      "title": "Cocina solar: aprender con el sol",
+      "author": "Equipo Del valle a la mesa",
+      "date": "30 de octubre de 2026",
+      "image": "imagenes/foto_12.jpg",
+      "imageAlt": "Equipos parabólicos y hornos de cocina solar instalados en el exterior",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "content": "¿Se puede cocinar aprovechando la energía solar? La cocina solar permite explorar esta pregunta de manera práctica. Nuestra propuesta incorpora una demostración participativa en la que el visitante observa cómo se concentra el calor y descubre la relación entre gastronomía y uso responsable de recursos. La actividad requerirá equipos aptos, supervisión y control de temperaturas; si el clima no permite realizarla, se aplicará una alternativa de cocción segura.",
+      "source": "Protocolos de energía solar térmica y educación gastronómica sostenible, 2026",
+      "ctaText": "Conoce el recorrido",
+      "ctaLink": "#experiencia"
+    },
+    {
+      "id": "uva-y-pisco",
+      "slug": "7-4-la-uva-y-la-tradicion-pisquera",
+      "sectionNumber": "7.4",
+      "title": "La uva y la tradición pisquera",
+      "author": "Equipo Del valle a la mesa",
+      "date": "30 de octubre de 2026",
+      "image": "imagenes/foto_17.jpg",
+      "imageAlt": "Botella de destilado representativa de la tradición pisquera del Valle del Elqui",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar. Marca comercial visible en revisión.",
+      "content": "La uva pisquera forma parte de la identidad productiva del territorio. En esta entrada te invitamos a descubrir cómo se vinculan el cultivo de la vid, el trabajo de productores y la elaboración de destilados regionales. La experiencia propone una estación educativa con una alternativa sin alcohol, de modo que el aprendizaje no dependa de consumir bebidas alcohólicas.",
+      "source": "Patrimonio vitivinícola y pisquero de la Región de Coquimbo, 2026",
+      "ctaText": "Resuelve el desafío de la tradición pisquera",
+      "ctaLink": "#juegos"
+    },
+    {
+      "id": "cielo-del-elqui",
+      "slug": "7-5-bajo-el-cielo-del-elqui",
+      "sectionNumber": "7.5",
+      "title": "Bajo el cielo del Elqui",
+      "author": "Equipo Del valle a la mesa",
+      "date": "30 de octubre de 2026",
+      "image": "imagenes/foto_05.jpg",
+      "imageAlt": "Manto nocturno colmado de estrellas sobre el Valle del Elqui",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "content": "Cuando cae la noche, el valle invita a mirar hacia arriba. La actividad astronómica busca acercar a los visitantes a la observación y comprensión del cielo mediante una explicación accesible. La visibilidad de estrellas depende del clima; si las condiciones no son adecuadas, se ofrecerá una interpretación educativa alternativa sin prometer observación efectiva.",
+      "source": "Chile Travel (2026). Cultura y astronomía en Vicuña y el Valle del Elqui. https://chile.travel/blog/valle-del-elqui-un-observatorio-de-estrellas-por-naturaleza/",
+      "ctaText": "Juega la misión de las estrellas",
+      "ctaLink": "#juegos"
+    },
+    {
+      "id": "naturaleza-y-fauna",
+      "slug": "7-6-naturaleza-y-fauna-del-valle",
+      "sectionNumber": "7.6",
+      "title": "Naturaleza y fauna del valle",
+      "author": "Equipo Del valle a la mesa",
+      "date": "30 de octubre de 2026",
+      "image": "imagenes/foto_16.jpg",
+      "imageAlt": "Paisaje panorámico cordillerano del valle mostrando el hábitat natural",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "content": "El Valle del Elqui también es hogar de vida silvestre adaptada a distintos ambientes. Conocer su fauna ayuda a comprender que el paisaje no es solo un escenario turístico, sino un ecosistema que debemos cuidar. Algunas especies de la región, como el zorro culpeo, el cóndor y diversas lagartijas nativas, pueden presentarse en fichas educativas, sin afirmar que serán vistas durante el recorrido. La observación responsable implica mantener distancia, no alimentar animales y respetar su hábitat.",
+      "source": "Guía de observación responsable de fauna andina y semiárida, 2026",
+      "ctaText": "Descubre el juego de la naturaleza",
+      "ctaLink": "#fauna"
+    }
+  ],
+  "fauna": [
+    {
+      "id": "zorro-culpeo",
+      "name": "Zorro culpeo (Lycalopex culpaeus)",
+      "svgIcon": "imagenes/zorro-culpeo.svg",
+      "alt": "Ilustración referencial de un zorro culpeo en el entorno andino",
+      "description": "Cánido nativo de pelaje rojizo y cola espesa de punta negra. Habita laderas pedregosas y matorrales. Cumple un rol fundamental como dispersor de semillas de frutos nativos y controlador de poblaciones de roedores.",
+      "rules": "No intentar acercarse ni alimentar bajo ninguna circunstancia. La entrega de comida humana daña su digestión y altera sus patrones naturales de caza.",
+      "statusNotice": "Ilustración referencial. Su presencia forma parte del ecosistema; no se afirma su avistamiento durante el recorrido."
+    },
+    {
+      "id": "condor-andino",
+      "name": "Cóndor andino (Vultur gryphus)",
+      "svgIcon": "imagenes/condor-andino.svg",
+      "alt": "Ilustración referencial de un cóndor andino planeando sobre las cumbres",
+      "description": "Una de las aves voladoras más grandes del planeta. Aprovecha las corrientes térmicas ascendentes que se generan en las laderas cordilleranas del Elqui para sobrevolar grandes extensiones sin gastar energía.",
+      "rules": "Observar en silencio con binoculares. No usar drones ni generar ruidos molestos que interrumpan sus zonas de anidación en riscos altos.",
+      "statusNotice": "Ilustración referencial. Especie protegida; vuelo visible de forma ocasional y no garantizada."
+    },
+    {
+      "id": "lagartija-nativa",
+      "name": "Lagartijas nativas (Liolaemus spp.)",
+      "svgIcon": "imagenes/lagartija-nativo.svg",
+      "alt": "Ilustración referencial de una lagartija nativa tomando sol sobre una roca",
+      "description": "Pequeños reptiles ectotermos extraordinariamente adaptados a la radiación solar y la aridez. Se alimentan de insectos y buscan refugio en grietas de pircas y rocas calientes durante el día.",
+      "rules": "Caminar solo por senderos delimitados. No mover piedras ni pircas, ya que constituyen su refugio vital frente al frío nocturno.",
+      "statusNotice": "Ilustración referencial. Fauna endémica observable en senderos si se mantiene el silencio."
+    }
+  ],
+  "trivia": [
+    { "q": "¿Qué fruto regional aparece en nuestra propuesta?", "options": ["Papaya", "Piña", "Coco"], "correct": 0, "explanation": "La papaya forma parte de las degustaciones y preparaciones propuestas." },
+    { "q": "¿Qué otro fruto se asocia a una cactácea?", "options": ["Copao", "Manzana", "Pera"], "correct": 0, "explanation": "El copao se vincula con el paisaje semiárido de la región." },
+    { "q": "¿Qué producto se relaciona con oficios caprinos?", "options": ["Queso de cabra", "Chocolate", "Arroz"], "correct": 0, "explanation": "El queso de cabra permite hablar de producción y oficios rurales." },
+    { "q": "¿Qué energía aprovecha la cocina solar?", "options": ["La luz del sol", "El viento", "La marea"], "correct": 0, "explanation": "La actividad muestra el uso del calor solar en la cocina." },
+    { "q": "¿Qué cultivo se vincula a la tradición pisquera?", "options": ["La uva", "El café", "El cacao"], "correct": 0, "explanation": "La vid es parte del patrimonio productivo regional." },
+    { "q": "¿Cómo debe observarse la fauna?", "options": ["Sin alimentarla ni acercarse", "Persiguiéndola", "Dándole comida"], "correct": 0, "explanation": "La observación responsable protege a los animales." },
+    { "q": "¿Qué puede afectar la observación astronómica?", "options": ["La nubosidad", "El color de la ropa", "La hora del almuerzo"], "correct": 0, "explanation": "El cielo despejado es una condición importante." },
+    { "q": "¿Qué caracteriza la propuesta?", "options": ["Aprender y participar", "Solo mirar fotos", "Solo comprar productos"], "correct": 0, "explanation": "La gastronomía participativa es el eje del recorrido." }
+  ],
+  "recipes": [
+    {
+      "id": "dulce-papaya",
+      "title": "Dulce tradicional de papaya del Elqui",
+      "portions": "4 porciones (aprox. 120 g por porción)",
+      "prepTime": "45 minutos",
+      "image": "imagenes/foto_21.jpg",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "ingredients": [
+        "500 g de papaya chilena pelada, despepitada y precocida apta para almíbar",
+        "400 ml de agua purificada",
+        "180 g de azúcar granulada",
+        "1 ramita pequeña de canela entera (2 g)",
+        "3 gotas de jugo de limón natural"
+      ],
+      "procedure": [
+        "Cortar las papayas precocidas en tiras o trozos homogéneos de 3 cm.",
+        "En una cacerola, verter el agua, el azúcar y la rama de canela. Llevar a ebullición suave por 8 minutos hasta formar un almíbar ligero.",
+        "Incorporar los trozos de papaya y las gotas de limón. Cocinar a fuego bajo durante 20 minutos hasta que la fruta adquiera un tono traslúcido y absorba el almíbar.",
+        "Retirar del fuego, dejar enfriar a temperatura ambiente y conservar refrigerado entre 0 °C y 4 °C hasta el momento del servicio."
+      ],
+      "allergens": "Sin alérgenos comunes obligatorios (libre de gluten y lácteos).",
+      "territoryLink": "La papaya chilena (Vasconcellea pubescens) requiere procesos de cocción específicos para neutralizar sus enzimas astringentes y liberar su característico perfume."
+    },
+    {
+      "id": "postre-papaya-crema",
+      "title": "Postre de papaya al jugo con crema tibia artesanal",
+      "portions": "4 copas individuales",
+      "prepTime": "20 minutos",
+      "image": "imagenes/foto_22.jpg",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "ingredients": [
+        "300 g de dulce de papaya del Elqui con su almíbar ligero",
+        "150 ml de crema de leche fresca pasteurizada (35 % materia grasa)",
+        "1 pizca (0.5 g) de ralladura fina de cáscara de naranja",
+        "Hojas frescas de menta para aromatizar"
+      ],
+      "procedure": [
+        "Disponer 75 g de fruta con dos cucharadas de su jugo en la base de copas de vidrio.",
+        "Entibiar la crema a baño María a fuego muy bajo (máximo 60 °C) junto con la ralladura de naranja, evitando que hierva.",
+        "Verter suavemente la crema tibia sobre las papayas frías para crear el contraste térmico característico de la repostería elquina.",
+        "Decorar con hojas de menta fresca y servir de inmediato."
+      ],
+      "allergens": "Contiene leche (crema pasteurizada). Alternativa vegana/sin lactosa: sustituir por crema vegetal de coco o avena.",
+      "territoryLink": "El maridaje entre la acidez aromática de la papaya y la untuosidad láctea es un clásico de los salones de té tradicionales de Vicuña y Paihuano."
+    },
+    {
+      "id": "queso-cabra-salado",
+      "title": "Preparación salada con queso de cabra y hierbas del valle",
+      "portions": "4 porciones degustación",
+      "prepTime": "15 minutos",
+      "image": "imagenes/foto_18.jpg",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "ingredients": [
+        "200 g de queso de cabra artesanal semimaduro pasteurizado",
+        "20 ml de aceite de oliva extra virgen prensado en frío",
+        "1 g de orégano silvestre seco de la precordillera",
+        "1 g de tomillo fresco picado",
+        "4 rebanadas de pan campesino tostado (40 g cada una)"
+      ],
+      "procedure": [
+        "Cortar el queso de cabra en láminas de 0.5 cm o desmenuzar en dados medianos.",
+        "En un cuenco, emulsionar el aceite de oliva con el orégano deshidratado y el tomillo.",
+        "Tostar las rebanadas de pan campesino en plancha seca hasta que estén crujientes.",
+        "Montar el queso sobre el pan caliente y salsear con el aceite aromatizado. Servir tibio."
+      ],
+      "allergens": "Contiene leche de cabra y gluten (pan). Alternativa celíaca: tostas de maíz horneadas.",
+      "territoryLink": "La ganadería caprina de trashumancia define la identidad campesina del valle; las hierbas xerófitas aportan perfiles botánicos únicos a la leche."
+    },
+    {
+      "id": "bebida-uva-sin-alcohol",
+      "title": "Bebida refrescante de uva aromática sin alcohol",
+      "portions": "4 vasos de 250 ml",
+      "prepTime": "10 minutos",
+      "image": "imagenes/foto_15.jpg",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "ingredients": [
+        "400 g de uva rosada fresca (tipo moscatel de mesa, lavada y despalillada)",
+        "300 ml de agua mineral natural con gas fría",
+        "20 ml de jugo de limón de pica recién exprimido",
+        "4 cubos de hielo artesanal por vaso",
+        "Hojas de cedrón o poleo fresco"
+      ],
+      "procedure": [
+        "Triturar las uvas en mortero o licuadora en pulsos cortos para no romper las semillas.",
+        "Pasar por un colador fino de gasa presionando para extraer el néctar dulce y aromático.",
+        "En una jarra, combinar el néctar con el jugo de limón y el agua con gas bien fría.",
+        "Servir en vasos con hielo y decorar con hojas de hierba aromática local."
+      ],
+      "allergens": "Libre de alérgenos comunes. Bebida 100 % libre de alcohol, inclusiva para toda la familia y conductores.",
+      "territoryLink": "Permite disfrutar de las notas florales y terpénicas de la uva moscatel sin necesidad de destilación ni consumo de alcohol."
+    },
+    {
+      "id": "ficha-copao",
+      "title": "Ficha botánica y sensorial del Copao (Eulychnia acida)",
+      "portions": "Ficha educativa y degustación al natural",
+      "prepTime": "Informativo / Degustación inmediata",
+      "image": "imagenes/foto_23.jpg",
+      "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
+      "ingredients": [
+        "1 fruto fresco de copao silvestre maduro (aprox. 150 g)",
+        "Pizca opcional de miel de abeja local o azúcar para equilibrar acidez",
+        "Cuchara pequeña de degustación"
+      ],
+      "procedure": [
+        "Lavar el fruto cepillando cuidadosamente los restos de pubescencia espinosa externa.",
+        "Realizar un corte transversal limpio por la mitad con cuchillo afilado de acero inoxidable.",
+        "Observar la pulpa mucilaginosa translúcida repleta de diminutas semillas negras ricas en fibra.",
+        "Degustar directamente con cuchara: percibir el marcado perfil ácido, cítrico y altamente hidratante."
+      ],
+      "allergens": "Libre de alérgenos. Consumo seguro y natural.",
+      "territoryLink": "Cactácea endémica del norte chico de Chile adaptada a la aridez extrema; sus frutos eran consumidos tradicionalmente por pastores para calmar la sed."
+    }
+  ],
+  "faqChatbot": [
+    { "q": "¿Dónde se realiza?", "a": "La propuesta se sitúa en el sector de Cochiguaz, Valle del Elqui. El recinto propuesto es Valle Luz Camping (Río Cochiguaz km 3); el recinto y acceso definitivo están por confirmar." },
+    { "q": "¿Cuánto dura?", "a": "La jornada propuesta va de 10:00 a 21:30: 11 horas y 30 minutos (690 minutos de guion)." },
+    { "q": "¿Cuánto cuesta?", "a": "El valor referencial del informe es $125.000 CLP por persona, todavía no confirmado comercialmente." },
+    { "q": "¿Puedo reservar?", "a": "Por ahora no: es una propuesta académica de INACAP. Puedes dejar tus datos en el formulario demostrativo de consulta de interés." },
+    { "q": "¿Hay opciones alimentarias?", "a": "Se contempla consultar restricciones y alergias antes de participar; la disponibilidad de alternativas específicas debe confirmarse con el recinto." },
+    { "q": "¿Veremos estrellas?", "a": "Depende de las condiciones meteorológicas del cielo. Si la noche presenta nubosidad o viento, se ofrecerá una charla interpretativa bajo techo sin garantizar observación efectiva." },
+    { "q": "¿Cómo gano el recetario?", "a": "Completa la trivia de 8 preguntas (al menos 6 correctas) y la misión de tres desafíos; se habilitará de inmediato la descarga gratuita en PDF." },
+    { "q": "¿Hay descuento?", "a": "Se presenta un 10 % de descuento promocional referencial hipotético, como una simulación académica sin validez comercial mientras el proyecto no opere." }
+  ]
+}

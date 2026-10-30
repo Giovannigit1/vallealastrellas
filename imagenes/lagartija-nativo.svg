@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" role="img" aria-labelledby="lizardTitle lizardDesc">
+  <title id="lizardTitle">Lagartija Nativa (Liolaemus nitidus)</title>
+  <desc id="lizardDesc">Ilustración referencial de una lagartija nativa termorregulando sobre una roca asoleada del valle</desc>
+  <defs>
+    <linearGradient id="rockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C29A78"/>
+      <stop offset="60%" stop-color="#8C6546"/>
+      <stop offset="100%" stop-color="#5E3F27"/>
+    </linearGradient>
+    <linearGradient id="lizardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#738B45"/>
+      <stop offset="50%" stop-color="#416B52"/>
+      <stop offset="100%" stop-color="#2D4D3A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo arena cálida asoleada -->
+  <rect width="400" height="300" rx="16" fill="#F7EBD5"/>
+
+  <!-- Rayos de sol sutiles -->
+  <polygon points="350,0 400,0 400,80" fill="#E9B84B" opacity="0.18"/>
+  <polygon points="280,0 360,0 400,160 400,120" fill="#E9B84B" opacity="0.12"/>
+
+  <!-- Gran roca de granito elquino -->
+  <path d="M40,280 Q70,160 170,140 Q280,120 360,180 Q390,240 370,290 L40,290 Z" fill="url(#rockGrad)"/>
+  <!-- Grietas y textura en la roca -->
+  <path d="M120,180 L160,220 L180,260" stroke="#4A311E" stroke-width="2.5" fill="none" opacity="0.6"/>
+  <path d="M250,155 L280,195 L270,240" stroke="#4A311E" stroke-width="2" fill="none" opacity="0.6"/>
+
+  <!-- Sombra de la lagartija -->
+  <ellipse cx="210" cy="182" rx="75" ry="16" fill="#3D2817" opacity="0.4" transform="rotate(-12, 210, 182)"/>
+
+  <!-- Lagartija Nativa (Liolaemus) -->
+  <!-- Cola larga y afilada -->
+  <path d="M140,190 Q90,215 50,210 Q30,205 20,195 Q35,190 70,195 Q115,190 145,182 Z" fill="url(#lizardGrad)"/>
+
+  <!-- Pata trasera izquierda -->
+  <path d="M145,178 Q130,160 120,165 L110,160 L125,172 Z" fill="#416B52"/>
+  <!-- Pata trasera derecha -->
+  <path d="M165,190 Q160,215 150,220 L140,225 L160,200 Z" fill="#2D4D3A"/>
+
+  <!-- Tronco alargado -->
+  <path d="M140,182 Q190,168 240,162 Q255,160 260,172 Q240,185 180,192 Q150,192 140,182 Z" fill="url(#lizardGrad)"/>
+
+  <!-- Rayas dorsales amarillas/cobre características -->
+  <path d="M150,182 Q195,172 240,166" stroke="#E9B84B" stroke-width="2.5" fill="none"/>
+  <path d="M152,186 Q195,176 235,172" stroke="#EFAF8C" stroke-width="1.5" fill="none"/>
+
+  <!-- Pata delantera izquierda -->
+  <path d="M225,163 Q220,140 210,142 L200,138 L220,155 Z" fill="#416B52"/>
+  <!-- Pata delantera derecha (apoyada firmemente en la roca) -->
+  <path d="M245,172 Q255,192 268,195 L272,200 L250,180 Z" fill="#2D4D3A"/>
+
+  <!-- Cabeza triangular levantada atenta -->
+  <path d="M255,165 Q275,155 295,152 Q302,156 295,165 Q280,175 255,172 Z" fill="url(#lizardGrad)"/>
+  
+  <!-- Ojo lateral brillante -->
+  <circle cx="282" cy="158" r="3.5" fill="#17253D"/>
+  <circle cx="283" cy="157" r="1.2" fill="#E9B84B"/>
+
+  <!-- Tímpano / orificio auditivo -->
+  <ellipse cx="268" cy="164" rx="2" ry="3" fill="#2D4D3A"/>
+
+  <!-- Insignia referencial accesible -->
+  <rect x="15" y="15" width="165" height="26" rx="6" fill="#17253D" opacity="0.85"/>
+  <text x="25" y="32" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold" letter-spacing="0.5">ILUSTRACIÓN REFERENCIAL</text>
+</svg>

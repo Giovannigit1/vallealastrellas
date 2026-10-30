@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" role="img" aria-labelledby="zorroTitle zorroDesc">
+  <title id="zorroTitle">Zorro Culpeo (Lycalopex culpaeus)</title>
+  <desc id="zorroDesc">Ilustración referencial de un zorro culpeo en el entorno árido del Valle del Elqui</desc>
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F7EBD5"/>
+      <stop offset="100%" stop-color="#EFAF8C"/>
+    </linearGradient>
+    <linearGradient id="furGrad" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#D46A38"/>
+      <stop offset="100%" stop-color="#BC6949"/>
+    </linearGradient>
+    <linearGradient id="mountGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A56E5D"/>
+      <stop offset="100%" stop-color="#844D3F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo paisajístico -->
+  <rect width="400" height="300" rx="16" fill="url(#skyGrad)"/>
+  
+  <!-- Montañas de fondo -->
+  <polygon points="0,220 80,140 180,210 260,130 400,230 400,300 0,300" fill="url(#mountGrad)" opacity="0.4"/>
+  <polygon points="40,240 150,165 240,235 340,155 400,205 400,300 0,300" fill="url(#mountGrad)" opacity="0.6"/>
+
+  <!-- Suelo pedregoso -->
+  <path d="M0,230 Q120,220 220,240 T400,235 L400,300 L0,300 Z" fill="#6B4E3D"/>
+  <ellipse cx="90" cy="265" rx="35" ry="12" fill="#543C2E"/>
+  <ellipse cx="320" cy="275" rx="45" ry="14" fill="#543C2E"/>
+  <ellipse cx="210" cy="285" rx="25" ry="8" fill="#422F24"/>
+
+  <!-- Cactus nativo pequeño al costado -->
+  <path d="M50,220 L50,160 Q50,152 58,152 Q66,152 66,160 L66,220 Z" fill="#416B52"/>
+  <path d="M42,185 L50,185 L50,193 L42,193 Q36,193 36,180 L36,172 Q36,168 42,168 L42,180 Z" fill="#416B52"/>
+  <path d="M66,180 L74,180 L74,170 Q74,164 80,164 L80,172 Q80,188 74,188 L66,188 Z" fill="#416B52"/>
+
+  <!-- Cuerpo del Zorro Culpeo -->
+  <!-- Cola espesa con punta negra -->
+  <path d="M120,205 Q90,215 80,245 Q95,260 135,245 Q150,235 155,220 Z" fill="url(#furGrad)"/>
+  <path d="M80,245 Q75,255 90,258 Q102,254 100,246 Z" fill="#17253D"/>
+
+  <!-- Patas traseras -->
+  <path d="M140,210 Q145,245 150,265 L165,265 Q160,240 162,215 Z" fill="#9C4F32"/>
+  <path d="M170,215 Q175,245 180,265 L192,265 Q188,235 185,215 Z" fill="url(#furGrad)"/>
+
+  <!-- Tronco y lomo -->
+  <path d="M140,195 Q180,175 230,180 Q255,185 270,195 Q265,225 220,225 Q170,225 140,195 Z" fill="url(#furGrad)"/>
+
+  <!-- Pecho y vientre claro -->
+  <path d="M225,195 Q245,200 255,215 Q240,225 210,220 Z" fill="#F7EBD5"/>
+
+  <!-- Patas delanteras -->
+  <path d="M235,205 L242,268 L254,268 L250,205 Z" fill="url(#furGrad)"/>
+  <path d="M255,205 L262,268 L274,268 L270,205 Z" fill="#9C4F32"/>
+
+  <!-- Cuello y Cabeza -->
+  <path d="M250,190 Q275,160 295,145 Q310,155 315,165 Q295,185 265,200 Z" fill="url(#furGrad)"/>
+  
+  <!-- Hocico alargado -->
+  <path d="M290,150 L345,170 Q348,174 340,178 L300,180 Z" fill="url(#furGrad)"/>
+  <path d="M305,172 L345,170 Q347,175 340,178 L310,180 Z" fill="#F7EBD5"/>
+  <circle cx="344" cy="172" r="3.5" fill="#17253D"/><!-- Nariz negra -->
+
+  <!-- Quijada y mejilla clara -->
+  <path d="M280,165 Q295,175 310,175 Q295,190 270,190 Z" fill="#F7EBD5"/>
+
+  <!-- Ojo astuto -->
+  <ellipse cx="298" cy="158" rx="4" ry="2.5" fill="#17253D" transform="rotate(-10, 298, 158)"/>
+  <circle cx="297" cy="157" r="1" fill="#FFFFFF"/>
+
+  <!-- Orejas triangulares grandes con interior claro -->
+  <polygon points="275,155 285,115 298,148" fill="#843A24"/>
+  <polygon points="279,152 286,123 294,148" fill="#F7EBD5"/>
+  <polygon points="260,160 268,122 280,154" fill="#6B2E1C"/>
+
+  <!-- Insignia referencial accesible -->
+  <rect x="15" y="15" width="165" height="26" rx="6" fill="#17253D" opacity="0.85"/>
+  <text x="25" y="32" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold" letter-spacing="0.5">ILUSTRACIÓN REFERENCIAL</text>
+</svg>

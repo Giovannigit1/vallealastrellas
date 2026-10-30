@@ -1,83 +1,74 @@
-# Dirección de Diseño UX/UI & Sistema Visual
-## "Del valle a la mesa, de la mesa a las estrellas"
+# Decisiones de Diseño y Dirección de Arte
+## Proyecto: «Del valle a la mesa, de la mesa a las estrellas»
+
+**Fuente de referencia:** `Guia_Completa_Blog_Valle_del_Elqui.docx` (Secciones 2 y 16) e informe técnico `Valle_del_elqui_e2__1_.pdf`.
 
 ---
 
-## 1. Concepto y Atmósfera Sensorial
-El diseño busca transportar al usuario al Valle del Elqui al caer la tarde: la transición mágica entre el dorado cálido del sol rebotando en los cerros de adobe y viñedos, y el azul profundo y cristalino del cielo nocturno más despejado del mundo.
+## 1. Paleta Cromática Canónica
 
-### Pilares de Sensación:
-1. **Calidez de Campo y Tierra:** Materialidad auténtica, madera noble, arcilla, cobre y luz crepuscular.
-2. **Elegancia Cósmica:** La quietud de la noche estrellada, constelaciones nítidas y halos dorados sutiles.
-3. **Hospitalidad Inclusiva:** Accesibilidad de clase mundial, sin barreras cognitivas, visuales ni auditivas.
-4. **Anti-Plantilla:** Rechazo frontal a interfaces corporativas genéricas, frías o saturadas de azul tecnológico.
+La paleta se inspira directamente en los tonos minerales, vegetales, frutales y celestes del Valle del Elqui y Cochiguaz. Se define en variables CSS (`:root`):
 
----
-
-## 2. Paleta Cromática y Tokens Semánticos
-
-| Token | Hex | Nombre | Uso / Semántica |
-| :--- | :--- | :--- | :--- |
-| `color-earth-dark` | `#1F1513` | Tierra y Adobe | Fondo principal nocturno, textos en fondos claros, botones primarios oscuros |
-| `color-gold` | `#D4AF37` | Oro Estelar | Acentos, bordes activos, iconos estelares, insignias de premio, botones CTA |
-| `color-gold-light` | `#F3E5AB` | Resplandor Cósmico | Textos secundarios en modo noche, halos, estados hover |
-| `color-cream` | `#FDFBF7` | Crema Andino | Fondo claro de tarjetas diurnas, textos de alto contraste sobre oscuro |
-| `color-cream-muted`| `#EDE7DC` | Lino Campestre | Bordes suaves, divisores, fondos sutiles de inputs |
-| `color-night-deep` | `#0B132B` | Cielo Astronómico | Degradados del hero hacia la noche, sección astroturismo |
-| `color-night-mid`  | `#1C2541` | Cordillera Nocturna | Tarjetas elevadas sobre fondo nocturno, dropdowns |
-| `color-terracotta` | `#C05A3E` | Sol Poniente | Badges de cupos limitados, alertas cálidas, notas de cata |
-
-### Ratios de Contraste WCAG:
-- Texto blanco crema (`#FDFBF7`) sobre tierra oscura (`#1F1513`): **15.8:1** (Supera ampliamente AAA).
-- Dorado estelar (`#D4AF37`) sobre tierra oscura (`#1F1513`): **7.2:1** (Cumple AAA para elementos gráficos y títulos).
-- Texto oscuro (`#1F1513`) sobre crema andino (`#FDFBF7`): **16.1:1** (Supera ampliamente AAA).
+| Nombre | Valor HEX | Uso Canónico | Contraste y Accesibilidad |
+|---|---|---|---|
+| **Arena clara** | `#F7EBD5` | Fondo general de páginas, tarjetas suaves y secciones diurnas. | Ratio > 7:1 contra Azul noche y Verde cactus oscuro. |
+| **Terracota** | `#BC6949` | Botones primarios, llamados a la acción (CTA) y acentos de titulares. | Cumple AA en titulares y botones con texto blanco `#FFFFFF`. |
+| **Verde cactus** | `#416B52` | Barra de navegación superior, cabeceras, bordes y etiquetas temáticas. | Ratio > 4.8:1 con texto blanco; excelente contraste de lectura. |
+| **Amarillo sol** | `#E9B84B` | Iconos de logros, estrellas del pasaporte, insignias de trivia y detalles. | Usado sobre fondos oscuros o como acento gráfico, nunca texto sobre blanco. |
+| **Papaya** | `#EFAF8C` | Fondos de tarjetas sensoriales, bordes suaves y avisos informativos. | Evoca la pulpa de la fruta regional sin saturar la vista. |
+| **Violeta crepúsculo** | `#685178` | Bloque temático astronómico, tarjetas del atardecer y transiciones. | Conexión visual armónica entre el atardecer y la noche profunda. |
+| **Azul noche** | `#17253D` | Pie de página, bloque de astronomía profunda, modo alto contraste y texto principal. | Proporciona máxima legibilidad (AAA) sobre fondos arena. |
+| **Blanco puro** | `#FFFFFF` | Tarjetas contenedoras diurnas, campos de formulario y texto sobre fondo oscuro. | Limpieza visual y delimitación precisa de componentes. |
 
 ---
 
-## 3. Tipografía y Jerarquía
+## 2. Tipografía y Escala Visual
 
-Utilizamos Google Fonts integradas con `next/font/google` con precarga y display swap:
-
-1. **Serif Expresiva para Títulos:**  
-   - Familia: **Cinzel** o **Playfair Display** (elegante, artesanal, astronómica y clásica).  
-   - Usos: `h1`, `h2`, `h3`, marcas y citas de Gabriela Mistral.  
-   - Escala:
-     - Hero H1: `clamp(2.5rem, 5vw, 4.25rem)` / line-height `1.1`
-     - Section H2: `clamp(1.85rem, 3.5vw, 2.75rem)` / line-height `1.2`
-     - Card H3: `1.35rem` a `1.5rem`
-
-2. **Sans-Serif Humanista para Cuerpo y UI:**  
-   - Familia: **Plus Jakarta Sans** (geométrica suave, alta legibilidad en pantallas pequeñas, excelente rendimiento).  
-   - Usos: Párrafos, formularios, tablas, botones y badges.  
-   - Escala: `0.875rem` (14px notas), `1rem` (16px base), `1.125rem` (18px lead).
+- **Familia tipográfica principal:** **Nunito** (autoalojada localmente en formato WOFF2 en `fuentes/`).
+  - *Justificación:* Gran altura de la x, formas redondeadas y orgánicas que armonizan con la gastronomía artesanal, alta legibilidad en pantallas pequeñas y caracteres diacríticos españoles completos.
+- **Escalas fluidas (mediante `clamp()`):**
+  - **Títulos principales (`h1`):** `clamp(1.75rem, 4vw, 2.75rem)` (28px en móvil a 44px en escritorio).
+  - **Títulos de sección (`h2`):** `clamp(1.4rem, 3vw, 2.1rem)` (22px a 34px).
+  - **Subtítulos y tarjetas (`h3`):** `clamp(1.2rem, 2vw, 1.6rem)` (19px a 26px).
+  - **Texto de lectura (`p`, `li`):** `clamp(1.05rem, 1.2vw, 1.25rem)` (17px a 20px) con interlineado generoso `line-height: 1.65`.
+- **Regla de legibilidad:** Prohibido ubicar párrafos largos directamente sobre fotografías. Todos los textos van dentro de tarjetas con fondo sólido o translúcido de alto contraste.
 
 ---
 
-## 4. Animaciones y Motion Design
-Todas las animaciones están condicionadas por `prefers-reduced-motion`:
-- **Canvas de Estrellas Interactivo:** Campo de partículas luminosas con parpadeo suave y líneas de constelaciones que reaccionan tenuemente al puntero.
-- **Scroll Timeline de 4 Horas:** Un trazo SVG curvo dorado que se dibuja fluidamente con el scroll del usuario entre las 17:00 y las 21:00 hrs.
-- **Micro-interacciones Táctiles:** Elevación sutil de tarjetas de producto con perspectiva 3D (3-5 grados), pulsos en botones de reserva y animaciones de confeti celestial al confirmar.
-- **Transiciones de Estado:** Desvanecimientos con curvas cúbicas naturales (`cubic-bezier(0.16, 1, 0.3, 1)`).
+## 3. Estilo Visual y Componentes
+
+- **Imágenes:** Formato a pantalla ancha o mosaico ordenado, esquinas suavemente redondeadas (`border-radius: 16px` a `24px`), sombras sutiles que generan profundidad sin ruido (`box-shadow: 0 8px 24px rgba(23, 37, 61, 0.08)`).
+- **Ilustraciones:** SVGs vectoriales propios creados exclusivamente para el proyecto:
+  - Sol radiante geométrico para la cocina solar.
+  - Cactus candelabro autóctono del valle.
+  - Constelaciones australes (Cruz del Sur, Orión) para la sección astronómica.
+  - Fichas ilustradas de fauna nativa (Zorro culpeo, Cóndor andino, Lagartija nítida) identificadas con la leyenda: *«Ilustración referencial»*.
+- **Botones e interacciones:**
+  - Áreas táctiles generosas (mínimo 48px x 48px).
+  - Todos los botones cuentan con texto descriptivo visible (nunca iconos aislados sin etiqueta).
+  - Microinteracciones de elevación (`transform: translateY(-2px)`) y brillo en hover, con retroalimentación táctil activa (`transform: translateY(0)`).
 
 ---
 
-## 5. Diseño Inclusivo y Accesibilidad (WCAG 2.1 Nivel AA/AAA)
-- **Barra de Accesibilidad Fija:**
-  - Ajuste de escala tipográfica (A+ / A-) que modifica el tamaño de la raíz y se guarda en `localStorage`.
-  - Botón de lectura por voz (Web Speech API) con síntesis fluida en español (`es-CL`).
-  - Botón de subtítulos visuales (🤟) que revela tarjetas resumen inmediatas para personas con discapacidad auditiva o sobrecarga cognitiva.
-  - Alternador de alto contraste.
+## 4. Animaciones y Movimiento Responsable
+
+- **Criterio de sobriedad:** Animaciones discretas, fluidas y no esenciales para comprender el contenido.
+- **Efectos implementados:**
+  - Desvanecimiento y elevación suave al hacer scroll (`fade-in-up`) utilizando `IntersectionObserver`.
+  - Línea de tiempo animada que revela las estaciones a medida que el usuario se desplaza.
+  - Cielo estrellado sutil mediante CSS en la sección astronómica.
+- **Accesibilidad al movimiento:**
+  - Soporte automático para `@media (prefers-reduced-motion: reduce)`.
+  - Botón accesible manual en la barra fija: «Reducir animaciones», que conmuta la clase `body.reduced-motion` e inhabilita inmediatamente todas las transiciones y efectos cinéticos.
+
+---
+
+## 5. Accesibilidad Universal (WCAG 2.1 AA / AAA)
+
+- **Modo Alto Contraste:** Conmutable desde la barra superior; aplica fondos negros/azules profundos (`#0A1118`) con textos blanco nieve (`#FFFFFF`) y bordes amarillos sol (`#E9B84B`), garantizando ratios superiores a 12:1.
+- **Escalador de Texto (A+ / A−):** Ajusta el tamaño de fuente base entre el 100 % y el 160 % mediante variable CSS, sin romper la diagramación de tarjetas, navegación ni formularios.
+- **Lector de Pantalla y Síntesis de Voz:** Botón general «🔊 Escuchar página» y botones específicos en cada entrada de blog («🔊 Escuchar esta entrada») que invocan la Web Speech API (`SpeechSynthesis`) en español (`es-CL` o `es-ES`), con fallback informativo si el navegador no cuenta con soporte.
 - **Navegación por Teclado:**
-  - Skip link inicial: `Saltar al contenido principal`.
-  - Foco visible reforzado con anillo dorado doble (`outline: 2px solid #D4AF37; outline-offset: 3px`).
-  - Trampa de foco en modales con escape (`Esc`) para cerrar.
-- **Formularios Accesibles:**
-  - Inputs con `<label>` explícito, estados de error enlazados por `aria-describedby` y feedback sonoro/visual.
-
----
-
-## 6. Adaptabilidad Móvil (Mobile First)
-- **360px (Móvil estrecho):** Navegación colapsable en drawer suave, botones táctiles de 48px mínimo, formularios en una sola columna con espaciado cómodo.
-- **768px (Tablet):** Disposición de productos en dos columnas, línea de tiempo con hitos alternados.
-- **1280px+ (Desktop):** Línea de tiempo inmersiva, tarjetas con tilt 3D y vista panorámica del hero con degradado crepuscular completo.
+  - Indicador de foco visible de alto contraste (`outline: 3px solid #BC6949; outline-offset: 3px`).
+  - Enlace de salto inicial (*Skip link*): «Saltar al contenido principal».
+  - Módulos de juegos (Trivia y Misión) 100 % operables mediante teclado (`Enter`, `Espacio`, teclas numéricas), sin requerir arrastre con mouse.

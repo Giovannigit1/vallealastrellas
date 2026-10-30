@@ -1,0 +1,35 @@
+# Discrepancias entre el Informe Oficial y la Guía Maestra del Blog
+
+**Proyecto Académico:** «Del valle a la mesa, de la mesa a las estrellas»  
+**Institución:** INACAP — Administración Gastronómica  
+**Asignatura:** Diseño de experiencias gastroturísticas  
+**Equipo:** Antonia Huerta, Caroline Prado, Paz Bozo  
+**Profesor:** Rubén Tapia  
+**Fecha:** Octubre de 2026  
+
+---
+
+## Criterio de Resolución Jerárquica
+De acuerdo con las instrucciones de la evaluación y las normas académicas:
+> **El informe oficial (`Valle del elqui e2 (1).pdf`) es la máxima autoridad.**  
+> Si el informe y la guía maestra (`Guia_Completa_Blog_Valle_del_Elqui.docx`) discrepan, **prevalece el informe**.  
+> Todas las diferencias identificadas se documentan en este registro para trazabilidad y justificación técnica ante la comisión evaluadora.
+
+---
+
+## Registro de Discrepancias Identificadas
+
+| # | Elemento | Guía Maestra del Blog | Informe Oficial (Autoridad) | Resolución y Aplicación en el Sitio Web |
+|---|---|---|---|---|
+| **1** | **Itinerario y Guion Técnico** | Presenta 8 tarjetas resumen de momentos de la jornada («10:00 Bienvenida», «Mañana Productos locales», «Mañana Cocina solar», «Mediodía Almuerzo», «Tarde Naturaleza», «Tarde Degustaciones y bienestar», «Atardecer Cultura pisquera», «Noche Astronomía»). | Define la tabla técnica exacta de **13 estaciones** con minutajes precisos y suma de **690 minutos** (11 h 30 min):<br>1. 10:00–10:45 (45') Recepción y recorrido<br>2. 10:45–11:30 (45') Tesoros del valle<br>3. 11:30–12:30 (60') Cocina solar<br>4. 12:30–13:30 (60') Almuerzo territorial<br>5. 13:30–15:30 (120') Naturaleza y aguas<br>6. 15:30–16:15 (45') Papaya y copao<br>7. 16:15–17:00 (45') Bienestar (masaje voluntario sujeto a habilitación)<br>8. 17:00–18:00 (60') Descanso y preparación<br>9. 18:00–18:45 (45') Cultura pisquera<br>10. 18:45–19:15 (30') Traslado y fotografía<br>11. 19:15–20:15 (60') Conexión y armonía (sesión sonora sujeta a habilitación)<br>12. 20:15–21:15 (60') Estrellas e interpretación<br>13. 21:15–21:30 (15') Despedida y recuerdo | **Gana el informe**. El sitio web incluye la **tabla técnica completa de las 13 estaciones** con sus horarios exactos, sentidos y recursos. Las 8 tarjetas de la guía se mantienen como una vista previa/resumen visual accesible, indicando expresamente que son un resumen de los horarios técnicos oficiales. |
+| **2** | **Pasaporte Gastronómico** | Menciona sellos asociados a la lectura de entradas y actividades recreativas en general. | Define formalmente el **Pasaporte Gastronómico del Elqui** con **6 hitos exactos**: 1. Papaya, 2. Copao, 3. Queso de cabra, 4. Pisco/uva, 5. Cocina solar, 6. Estrellas.<br>Criterio de logro: **completar al menos 4 sellos** y describir un vínculo producto–territorio.<br>Reglas: sin competencia por rapidez; alternativa sin alcohol siempre garantizada; alternativas accesibles para personas con restricciones. | **Gana el informe**. El pasaporte digital interactivo utiliza exactamente los 6 hitos territoriales, otorga sellos al explorar cada temática, valida el logro con 4 de 6 y ofrece transcripción accesible y alternativa sin consumo alcohólico. |
+| **3** | **Recetario Digital y Piezas Gastronómicas** | En el prototipo previo (`recetario.html`) figuraban recetas genéricas caseras sin gramajes validados ni alérgenos detallados (e.g. ensalada fresca, compota genérica). En la guía Sección 11 se ordenan 5 piezas:<br>1. Dulce de papaya<br>2. Postre de papaya con crema<br>3. Preparación salada con queso de cabra<br>4. Bebida sin alcohol inspirada en uva<br>5. Ficha educativa del copao. | El informe enfatiza la trazabilidad territorial, medición exacta de ingredientes, porciones, alérgenos y advertencias de inocuidad alimentaria y procedencia local. | **Gana el informe y la guía sección 11**. Se estructuran las 5 piezas gastronómicas con ingredientes medidos en gramos/ml, procedimiento culinario paso a paso, porciones declaradas, matriz de alérgenos (leche, sulfitos, etc.), y ficha botánica/sensorial del copao. Se genera tanto un archivo PDF descargable real (`recetario/Recetario-Elqui.pdf`) como una vista web imprimible. |
+| **4** | **Condición de Servicios de Bienestar y Aguas** | La guía sugiere imágenes y momentos de descanso, pozones y bienestar. | El informe establece categóricamente que piscinas, pozones, cascadas, tinajas, pirámides, camas de cuarzo y masajes **NO están confirmados** y están expresamente «sujetos a habilitación», convenios de uso y protocolos sanitarios y de seguridad. | **Gana el informe**. En todas las menciones (itinerario, tarjetas, chatbot, reservas) se etiqueta de forma inequívoca: *«Actividad o espacio sujeto a habilitación y validación del recinto»*. No se prometen como servicios garantizados ni incluidos sin contrato. |
+| **5** | **Contingencias Climáticas (Sol y Estrellas)** | El relato de la guía destaca la cocina solar y el cielo nocturno como hitos de la visita. | El informe impone límites de honestidad rigurosos: **no se puede prometer cocción solar efectiva** (debe existir demostración interpretativa y alternativa de cocción convencional autorizada ante baja radiación) y **no se pueden garantizar estrellas visibles** (debe existir charla interpretativa cubierta con material visual en caso de nubosidad o viento). | **Gana el informe**. El sitio web incluye las advertencias y protocolos de contingencia en las secciones de cocina solar, astronomía, FAQ del chatbot y ficha técnica comercial. |
+| **6** | **Descuento Promocional del 10 %** | La guía propone un mensaje de «10 % de descuento promocional» al completar la trivia y suscribirse. | El informe aclara que es un proyecto académico sin operación comercial ni venta formal de tickets. | **Gana el informe**. El descuento se presenta con la leyenda canónica obligatoria: *«10 % de descuento referencial hipotético (simulación académica para fines de prototipo; no canjeable ni aplicable a una compra comercial)»*. Queda estrictamente prohibido emitir códigos de cupón o pasarelas de pago. |
+| **7** | **Equipo de Proyecto y Contacto** | La guía y el prototipo anterior no detallaban canales privados de notificación. | El informe confirma que el equipo académico está compuesto por Antonia Huerta, Caroline Prado y Paz Bozo (estudiantes de Administración Gastronómica, INACAP). No existen contratos comerciales, ni oficinas físicas ni líneas telefónicas corporativas. | **Gana el informe**. No se inventan teléfonos, WhatsApps ni correos públicos. El contacto se canaliza exclusivamente mediante el formulario de consulta de interés y el enlace geográfico oficial de Google Maps hacia Río Cochiguaz km 3. Las notificaciones internas del formulario se transmiten por variable de entorno privada de servidor (`NOTIFY_EMAIL`). |
+
+---
+
+## Conclusión Técnica
+La aplicación web se construyó respetando en su totalidad la verdad canónica del informe oficial de evaluación, garantizando la honestidad académica exigida por la rúbrica y armonizando la riqueza visual y textual propuesta en la guía editorial del blog.

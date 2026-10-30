@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recetario Oficial · Del valle a la mesa, de la mesa a las estrellas</title>
+  <style>
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      src: url('fuentes/nunito-latin-400-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 700;
+      src: url('fuentes/nunito-latin-700-normal.woff2') format('woff2');
+    }
+    :root {
+      --arena: #F7EBD5;
+      --arena-suave: #FAF4EB;
+      --terracota: #BC6949;
+      --verde-cactus: #416B52;
+      --amarillo-sol: #E9B84B;
+      --papaya: #EFAF8C;
+      --azul-noche: #17253D;
+      --blanco: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+      background-color: var(--arena);
+      color: var(--azul-noche);
+      line-height: 1.6;
+      padding: 30px 20px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--blanco);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(23, 37, 61, 0.08);
+      border: 1px solid rgba(188, 105, 73, 0.15);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+      padding-bottom: 25px;
+      border-bottom: 2px solid var(--arena);
+    }
+    .badge {
+      display: inline-block;
+      background-color: var(--verde-cactus);
+      color: var(--blanco);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      color: var(--terracota);
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 19px;
+      color: var(--azul-noche);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .academic-box {
+      background-color: var(--arena-suave);
+      border-left: 4px solid var(--terracota);
+      padding: 14px 18px;
+      border-radius: 0 10px 10px 0;
+      font-size: 14px;
+      margin-top: 15px;
+      text-align: left;
+    }
+    .actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--verde-cactus);
+      color: var(--blanco);
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+    .btn:hover {
+      background-color: #2F503D;
+      transform: translateY(-2px);
+    }
+    .btn-terracota {
+      background-color: var(--terracota);
+    }
+    .btn-terracota:hover {
+      background-color: #9C4F32;
+    }
+    .recipe-card {
+      background-color: var(--blanco);
+      border: 1px solid #EBE3D7;
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 30px;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 12px rgba(23, 37, 61, 0.04);
+    }
+    .recipe-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      gap: 15px;
+      border-bottom: 1px dashed var(--papaya);
+      padding-bottom: 15px;
+    }
+    .recipe-title {
+      color: var(--terracota);
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .recipe-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--verde-cactus);
+    }
+    .recipe-meta span {
+      background-color: var(--arena);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+    .recipe-body {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .ingredients-box h3, .procedure-box h3, .territory-box h3 {
+      font-size: 16px;
+      color: var(--verde-cactus);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+    li {
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .allergen-tag {
+      display: inline-block;
+      background-color: #FFF2DF;
+      color: #94532B;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 5px;
+      border: 1px solid #FFE0B2;
+    }
+    .territory-box {
+      background-color: var(--arena-suave);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-top: 15px;
+      font-style: italic;
+    }
+    .recipe-credit {
+      font-size: 12px;
+      color: #718096;
+      margin-top: 10px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 2px solid var(--arena);
+      font-size: 13px;
+      color: #556987;
+    }
+    @media print {
+      body { background-color: #fff; padding: 0; }
+      .container { box-shadow: none; border: none; padding: 10px; max-width: 100%; }
+      .actions-bar { display: none; }
+      .recipe-card { page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 20px; }
+      .btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Gastronomía & Territorio · INACAP</div>
+      <h1>Recetario Oficial del Valle del Elqui</h1>
+      <p class="subtitle">«Recetas para llevar el Valle del Elqui a tu mesa: de la mesa a las estrellas»</p>
+      <div class="academic-box">
+        <strong>Proyecto Académico de Evaluación 2:</strong> Diseño de Experiencias Gastroturísticas.<br>
+        <strong>Equipo:</strong> Antonia Huerta · Caroline Prado · Paz Bozo | <strong>Docente:</strong> Rubén Tapia.<br>
+        <em>Estas preparaciones domésticas son propuestas educativas inspiradas en productos regionales; no representan un menú comercial confirmado.</em>
+      </div>
+    </header>
+
+    <div class="actions-bar">
+      <a href="index.html" class="btn">← Volver al Blog</a>
+      <div style="display: flex; gap: 10px;">
+        <button onclick="window.print()" class="btn">🖨️ Imprimir Recetario</button>
+        <a href="recetario/Recetario-Elqui.pdf" download="Recetario-Elqui.pdf" class="btn btn-terracota">⬇️ Descargar PDF Oficial</a>
+      </div>
+    </div>
+
+    <!-- Receta 1: Dulce de papaya -->
+    <article class="recipe-card" id="dulce-papaya">
+      <div class="recipe-header">
+        <div>
+          <h2 class="recipe-title">1. Dulce tradicional de papaya del Elqui</h2>
+          <p class="recipe-credit">Imagen: archivo entregado por el equipo; autor y licencia por confirmar (foto_21.jpg)</p>
+        </div>
+        <div class="recipe-meta">
+          <span>🍽️ 4 porciones</span>
+          <span>⏱️ 45 min</span>
+        </div>
+      </div>
+      <div class="recipe-body">
+        <div class="ingredients-box">
+          <h3>Ingredientes medidos</h3>
+          <ul>
+            <li><strong>500 g</strong> de papaya chilena pelada, despepitada y precocida apta para almíbar.</li>
+            <li><strong>400 ml</strong> de agua purificada.</li>
+            <li><strong>180 g</strong> de azúcar granulada.</li>
+            <li><strong>1 ramita (2 g)</strong> de canela entera.</li>
+            <li><strong>3 gotas</strong> de jugo de limón natural.</li>
+          </ul>
+        </div>
+        <div class="procedure-box">
+          <h3>Procedimiento paso a paso</h3>
+          <ol>
+            <li>Cortar las papayas precocidas en tiras o cubos homogéneos de aproximadamente 3 cm de longitud.</li>
+            <li>En una cacerola, mezclar el agua, el azúcar y la rama de canela. Llevar a hervor suave durante 8 minutos hasta formar un almíbar ligero.</li>
+            <li>Incorporar las papayas y las gotas de limón. Cocinar a fuego bajo durante 20 minutos hasta que la pulpa se torne traslúcida y absorba el néctar.</li>
+            <li>Retirar del fuego, dejar enfriar a temperatura ambiente y refrigerar entre 0 °C y 4 °C antes de servir.</li>
+          </ol>
+        </div>
+        <div class="allergen-tag">
+          ⚠️ <strong>Alérgenos:</strong> Libre de alérgenos comunes obligatorios (sin gluten, sin lácteos).
+        </div>
+        <div class="territory-box">
+          <strong>Vínculo territorial:</strong> La papaya chilena (<em>Vasconcellea pubescens</em>) es el fruto insignia de la Región de Coquimbo. Su proceso de cocción suave en almíbar neutraliza sus enzimas astringentes y libera su aroma floral inconfundible.
+        </div>
+      </div>
+    </article>
+
+    <!-- Receta 2: Postre de papaya con crema -->
+    <article class="recipe-card" id="postre-papaya">
+      <div class="recipe-header">
+        <div>
+          <h2 class="recipe-title">2. Postre de papaya con crema tibia artesanal</h2>
+          <p class="recipe-credit">Imagen: archivo entregado por el equipo; autor y licencia por confirmar (foto_22.jpg)</p>
+        </div>
+        <div class="recipe-meta">
+          <span>🍽️ 4 copas</span>
+          <span>⏱️ 20 min</span>
+        </div>
+      </div>
+      <div class="recipe-body">
+        <div class="ingredients-box">
+          <h3>Ingredientes medidos</h3>
+          <ul>
+            <li><strong>300 g</strong> de dulce de papaya del Elqui en cubos con almíbar ligero.</li>
+            <li><strong>150 ml</strong> de crema de leche fresca pasteurizada (35 % materia grasa).</li>
+            <li><strong>0.5 g</strong> de ralladura fina de cáscara de naranja dulce.</li>
+            <li>Hojas frescas de menta para aromatizar.</li>
+          </ul>
+        </div>
+        <div class="procedure-box">
+          <h3>Procedimiento paso a paso</h3>
+          <ol>
+            <li>Distribuir 75 g de papaya con dos cucharadas de su jugo en la base de copas individuales de cristal.</li>
+            <li>Entibiar la crema a baño María a fuego muy bajo (máximo 60 °C) infusionando la ralladura de naranja, evitando que hierva.</li>
+            <li>Verter suavemente la crema tibia sobre las papayas frías para crear el contraste térmico característico.</li>
+            <li>Decorar con hojas de menta fresca y degustar de inmediato.</li>
+          </ol>
+        </div>
+        <div class="allergen-tag">
+          ⚠️ <strong>Alérgenos:</strong> Contiene leche (lactosa). <em>Alternativa inclusiva:</em> reemplazar por crema vegetal de avena o coco pasteurizada.
+        </div>
+        <div class="territory-box">
+          <strong>Vínculo territorial:</strong> Clásico de la repostería elquina donde la acidez viva de la fruta se suaviza con la untuosidad de la leche campesina.
+        </div>
+      </div>
+    </article>
+
+    <!-- Receta 3: Queso de cabra -->
+    <article class="recipe-card" id="queso-cabra">
+      <div class="recipe-header">
+        <div>
+          <h2 class="recipe-title">3. Preparación salada con queso de cabra y hierbas del valle</h2>
+          <p class="recipe-credit">Imagen: archivo entregado por el equipo; autor y licencia por confirmar (foto_18.jpg)</p>
+        </div>
+        <div class="recipe-meta">
+          <span>🍽️ 4 porciones</span>
+          <span>⏱️ 15 min</span>
+        </div>
+      </div>
+      <div class="recipe-body">
+        <div class="ingredients-box">
+          <h3>Ingredientes medidos</h3>
+          <ul>
+            <li><strong>200 g</strong> de queso de cabra artesanal semimaduro pasteurizado.</li>
+            <li><strong>20 ml</strong> de aceite de oliva extra virgen prensado en frío.</li>
+            <li><strong>1 g</strong> de orégano silvestre seco de precordillera.</li>
+            <li><strong>1 g</strong> de tomillo fresco picado finamente.</li>
+            <li><strong>4 rebanadas (40 g c/u)</strong> de pan campesino rústico.</li>
+          </ul>
+        </div>
+        <div class="procedure-box">
+          <h3>Procedimiento paso a paso</h3>
+          <ol>
+            <li>Cortar el queso de cabra en láminas uniformes de 0.5 cm de grosor o dados medianos.</li>
+            <li>En un cuenco pequeño, emulsionar el aceite de oliva con el orégano seco y el tomillo picado.</li>
+            <li>Tostar las rebanadas de pan campesino en plancha seca hasta que estén crujientes y doradas.</li>
+            <li>Montar el queso sobre el pan caliente y salsear con el aceite aromatizado. Servir tibio.</li>
+          </ol>
+        </div>
+        <div class="allergen-tag">
+          ⚠️ <strong>Alérgenos:</strong> Contiene leche de cabra y gluten (trigo en pan). <em>Alternativa para celíacos:</em> tostas de maíz horneadas.
+        </div>
+        <div class="territory-box">
+          <strong>Vínculo territorial:</strong> La trashumancia caprina en las quebradas de Cochiguaz y Paihuano aporta un perfil botánico salino y herbáceo distintivo debido al pastoreo de flora nativa.
+        </div>
+      </div>
+    </article>
+
+    <!-- Receta 4: Bebida sin alcohol de uva -->
+    <article class="recipe-card" id="bebida-uva">
+      <div class="recipe-header">
+        <div>
+          <h2 class="recipe-title">4. Bebida refrescante de uva aromática sin alcohol</h2>
+          <p class="recipe-credit">Imagen: archivo entregado por el equipo; autor y licencia por confirmar (foto_15.jpg)</p>
+        </div>
+        <div class="recipe-meta">
+          <span>🍽️ 4 vasos (250 ml)</span>
+          <span>⏱️ 10 min</span>
+        </div>
+      </div>
+      <div class="recipe-body">
+        <div class="ingredients-box">
+          <h3>Ingredientes medidos</h3>
+          <ul>
+            <li><strong>400 g</strong> de uva rosada fresca (tipo moscatel de mesa, lavada y despalillada).</li>
+            <li><strong>300 ml</strong> de agua mineral natural con gas fría.</li>
+            <li><strong>20 ml</strong> de jugo de limón de pica recién exprimido.</li>
+            <li>Cubos de hielo artesanal.</li>
+            <li>Hojas frescas de cedrón o poleo para aromatizar.</li>
+          </ul>
+        </div>
+        <div class="procedure-box">
+          <h3>Procedimiento paso a paso</h3>
+          <ol>
+            <li>Triturar las uvas en mortero o licuadora en pulsos cortos para no romper las pepas amargas.</li>
+            <li>Pasar la pulpa por un colador fino de gasa presionando suavemente para extraer el néctar floral.</li>
+            <li>En una jarra, combinar el jugo de uva, el limón de pica y el agua mineral con gas bien helada.</li>
+            <li>Servir en vasos con hielo y aromatizar con hojas de hierbas locales.</li>
+          </ol>
+        </div>
+        <div class="allergen-tag">
+          ⚠️ <strong>Alérgenos:</strong> Libre de alérgenos comunes. Bebida 100 % libre de alcohol, segura para toda la familia y conductores.
+        </div>
+        <div class="territory-box">
+          <strong>Vínculo territorial:</strong> Rinde homenaje a los viñedos soleados del valle, permitiendo apreciar los terpenos aromáticos de la uva sin recurrir a la fermentación ni a bebidas alcohólicas.
+        </div>
+      </div>
+    </article>
+
+    <!-- Receta 5: Ficha educativa del copao -->
+    <article class="recipe-card" id="ficha-copao">
+      <div class="recipe-header">
+        <div>
+          <h2 class="recipe-title">5. Ficha botánica y sensorial del Copao (Eulychnia acida)</h2>
+          <p class="recipe-credit">Imagen: archivo entregado por el equipo; autor y licencia por confirmar (foto_23.jpg)</p>
+        </div>
+        <div class="recipe-meta">
+          <span>🌵 Ficha sensorial</span>
+          <span>⏱️ Degustación</span>
+        </div>
+      </div>
+      <div class="recipe-body">
+        <div class="ingredients-box">
+          <h3>Insumos para degustación al natural</h3>
+          <ul>
+            <li><strong>1 fruto</strong> de copao silvestre maduro (aprox. 150 g).</li>
+            <li>Pizca opcional de miel de abeja local o azúcar para modular la acidez.</li>
+            <li>Cuchara de degustación.</li>
+          </ul>
+        </div>
+        <div class="procedure-box">
+          <h3>Procedimiento de degustación guiada</h3>
+          <ol>
+            <li>Lavar el fruto con cepillado suave para retirar restos de pubescencia espinosa externa.</li>
+            <li>Efectuar un corte transversal limpio por la mitad con cuchillo afilado de acero inoxidable.</li>
+            <li>Observar la pulpa mucilaginosa translúcida con diminutas semillas negras ricas en fibra soluble.</li>
+            <li>Degustar directamente con cuchara: experimentar el marcado perfil ácido, cítrico y astringente, ideal para calmar la sed en el clima semiárido.</li>
+          </ol>
+        </div>
+        <div class="allergen-tag">
+          ⚠️ <strong>Alérgenos:</strong> Libre de alérgenos conocidos. Alimento silvestre autóctono seguro.
+        </div>
+        <div class="territory-box">
+          <strong>Vínculo territorial:</strong> Cactácea columnar endémica del norte semiárido de Chile. Sus frutos han sido un recurso de hidratación ancestral para las comunidades de pastoreo en quebradas secas.
+        </div>
+      </div>
+    </article>
+
+    <footer>
+      <p>«Del valle a la mesa, de la mesa a las estrellas» · INACAP Evaluación 2</p>
+      <p>Antonia Huerta · Caroline Prado · Paz Bozo — Octubre de 2026</p>
+      <p style="margin-top: 8px;"><em>Documento educativo de consulta offline. Prohibida su venta o explotación comercial sin autorización.</em></p>
+    </footer>
+  </div>
+</body>
+</html>

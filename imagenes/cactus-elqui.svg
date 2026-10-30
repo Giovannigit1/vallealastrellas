@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="100%" height="100%" role="img" aria-labelledby="cactusTitle">
+  <title id="cactusTitle">Cactus Candelabro del Valle del Elqui</title>
+  <defs>
+    <linearGradient id="cactusGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2D4D3A"/>
+      <stop offset="40%" stop-color="#416B52"/>
+      <stop offset="100%" stop-color="#243C2E"/>
+    </linearGradient>
+  </defs>
+  <!-- Suelo con piedras -->
+  <ellipse cx="100" cy="225" rx="70" ry="12" fill="#BC6949" opacity="0.3"/>
+  <ellipse cx="60" cy="227" rx="16" ry="6" fill="#8C6546"/>
+  <ellipse cx="140" cy="226" rx="20" ry="7" fill="#8C6546"/>
+
+  <!-- Tallo principal -->
+  <rect x="85" y="40" width="30" height="180" rx="15" fill="url(#cactusGrad)"/>
+  <!-- Líneas de costillas -->
+  <line x1="95" y1="45" x2="95" y2="215" stroke="#738B45" stroke-width="1.8" opacity="0.5"/>
+  <line x1="105" y1="45" x2="105" y2="215" stroke="#738B45" stroke-width="1.8" opacity="0.5"/>
+
+  <!-- Brazo izquierdo -->
+  <path d="M85,140 H50 Q35,140 35,120 V75 Q35,60 48,60 Q60,60 60,75 V115 Q60,122 68,122 H85 Z" fill="url(#cactusGrad)"/>
+  <line x1="48" y1="65" x2="48" y2="120" stroke="#738B45" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Brazo derecho (más alto) -->
+  <path d="M115,120 H148 Q165,120 165,100 V50 Q165,35 152,35 Q140,35 140,50 V95 Q140,102 132,102 H115 Z" fill="url(#cactusGrad)"/>
+  <line x1="152" y1="40" x2="152" y2="100" stroke="#738B45" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Flor de copao en la punta derecha -->
+  <circle cx="152" cy="33" r="8" fill="#E9B84B"/>
+  <circle cx="152" cy="33" r="4" fill="#D46A38"/>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" role="img" aria-labelledby="condorTitle condorDesc">
+  <title id="condorTitle">Cóndor Andino (Vultur gryphus)</title>
+  <desc id="condorDesc">Ilustración referencial de un cóndor andino en vuelo sobre las cumbres del Valle del Elqui</desc>
+  <defs>
+    <linearGradient id="skyCondor" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#416B52"/>
+      <stop offset="50%" stop-color="#F7EBD5"/>
+      <stop offset="100%" stop-color="#BC6949"/>
+    </linearGradient>
+    <linearGradient id="featherGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2B3A4A"/>
+      <stop offset="100%" stop-color="#17253D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo cielo crepuscular andino -->
+  <rect width="400" height="300" rx="16" fill="url(#skyCondor)"/>
+
+  <!-- Cumbres nevadas lejanas -->
+  <polygon points="0,300 70,210 150,260 250,180 340,240 400,200 400,300" fill="#6B4E3D" opacity="0.7"/>
+  <polygon points="60,220 70,210 85,225 100,218 115,235" fill="#FFFFFF" opacity="0.8"/>
+  <polygon points="235,192 250,180 270,198 285,190 300,208" fill="#FFFFFF" opacity="0.8"/>
+  <polygon points="385,210 400,200 400,225" fill="#FFFFFF" opacity="0.8"/>
+
+  <!-- Silueta majestuosa del Cóndor Andino en planeo -->
+  <!-- Ala Izquierda -->
+  <path d="M200,120 Q140,80 40,70 Q30,85 45,95 Q32,105 50,115 Q40,125 60,135 Q55,145 75,150 Q120,145 185,135 Z" fill="url(#featherGrad)"/>
+  <!-- Parche blanco alar característico -->
+  <path d="M120,105 Q90,95 65,95 Q75,115 110,122 Q145,122 150,112 Z" fill="#FFFFFF" opacity="0.95"/>
+
+  <!-- Ala Derecha -->
+  <path d="M200,120 Q260,80 360,70 Q370,85 355,95 Q368,105 350,115 Q360,125 340,135 Q345,145 325,150 Q280,145 215,135 Z" fill="url(#featherGrad)"/>
+  <!-- Parche blanco alar derecho -->
+  <path d="M280,105 Q310,95 335,95 Q325,115 290,122 Q255,122 250,112 Z" fill="#FFFFFF" opacity="0.95"/>
+
+  <!-- Cola recta desplegada -->
+  <polygon points="180,140 220,140 230,195 170,195" fill="#17253D"/>
+
+  <!-- Cuerpo central -->
+  <ellipse cx="200" cy="130" rx="24" ry="18" fill="#17253D"/>
+
+  <!-- Collar blanco plumoso de plumón -->
+  <ellipse cx="200" cy="116" rx="14" ry="7" fill="#FFFFFF"/>
+
+  <!-- Cuello y cabeza desnuda rojiza -->
+  <path d="M194,116 L194,100 Q194,92 200,92 Q206,92 206,100 L206,116 Z" fill="#9C4F32"/>
+  <circle cx="200" cy="94" r="8" fill="#A84330"/>
+  <!-- Pico curvo potente de carroñero -->
+  <path d="M204,94 L214,97 Q215,102 210,105 L204,101 Z" fill="#F7EBD5"/>
+
+  <!-- Insignia referencial accesible -->
+  <rect x="15" y="15" width="165" height="26" rx="6" fill="#17253D" opacity="0.85"/>
+  <text x="25" y="32" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold" letter-spacing="0.5">ILUSTRACIÓN REFERENCIAL</text>
+</svg>
