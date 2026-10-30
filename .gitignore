@@ -37,3 +37,6 @@ next-env.d.ts
 extracted_docx/
 extracted_proto/
 temp_*/
+
+.vercel
+.env*
