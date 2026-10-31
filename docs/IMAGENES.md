@@ -11,10 +11,12 @@ De acuerdo con las directrices de la rúbrica y la Guía Maestra del Blog (Secci
 
 ---
 
-## Tabla de Auditoría de las 23 Fotografías
+## Tabla de Imágenes Oficiales y Fotografías
 
 | Archivo | Contenido Visual | Sección / Uso en el Sitio | Texto Alternativo Descriptivo (`alt`) | Crédito Oficial Declarado | Estado y Riesgo de Permisos |
 |---|---|---|---|---|---|
+| `logo_valle_a_las_estrellas.jpg` / `.webp` | Emblema circular con rosa de los vientos, valle, luna, estrellas y cactus | Cabecera, Portada (Hero), Recetario, Footer y Favicon | «Logo Oficial Del valle a la mesa, de la mesa a las estrellas» | Identidad visual oficial entregada por el equipo | **Apta y oficial.** Emblema del proyecto académico. |
+| `equipo_estudiantes.jpg` / `.webp` | Retrato de las 3 estudiantes en chaquetilla blanca de cocina | Sección Quiénes Somos (Nosotros) | «Antonia Huerta, Caroline Prado y Paz Bozo, estudiantes de Administración Gastronómica en INACAP» | Fotografía oficial entregada por el equipo | **Apta y oficial.** Retrato auténtico de las autoras del proyecto. |
 | `foto_01.jpg` | Escena nocturna con cactus e iluminación | Galería · Filtro Estrellas / Astronomía | «Cactus candelabro iluminado suavemente bajo el cielo nocturno del valle» | Imagen: archivo entregado por el equipo; autor y licencia por confirmar | Apta con crédito de archivo. |
 | `foto_02.jpg` | Persona en exterior, contexto de actividad | Galería · Filtro Paisajes | «Visitante contemplando el paisaje de montañas semiáridas en el Valle del Elqui» | Imagen: archivo entregado por el equipo; autor y licencia por confirmar | Apta con crédito de archivo. |
 | `foto_03.jpg` | Captura de pantalla de contenido turístico | **EXCLUIDA DE USO PÚBLICO** | N/A (no publicada) | N/A | **Alto riesgo.** Captura de pantalla de plataforma externa sin derechos. Retirada de la interfaz. |

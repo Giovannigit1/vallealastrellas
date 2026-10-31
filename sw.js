@@ -71,7 +71,13 @@ const ASSETS_TO_CACHE = [
   'imagenes/foto_20.webp',
   'imagenes/foto_21.webp',
   'imagenes/foto_22.webp',
-  'imagenes/foto_23.webp'
+  'imagenes/foto_23.webp',
+  'imagenes/logo_valle_a_las_estrellas.jpg',
+  'imagenes/logo_valle_a_las_estrellas.webp',
+  'imagenes/logo_valle_a_las_estrellas_thumb.webp',
+  'imagenes/equipo_estudiantes.jpg',
+  'imagenes/equipo_estudiantes.webp',
+  'imagenes/favicon.png'
 ];
 
 self.addEventListener('install', event => {

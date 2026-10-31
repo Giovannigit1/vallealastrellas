@@ -13,10 +13,11 @@
   <meta property="og:url" content="https://vallealastrellas.vercel.app/">
   <meta property="og:title" content="Del valle a la mesa, de la mesa a las estrellas">
   <meta property="og:description" content="Una jornada participativa de verano en Cochiguaz que une gastronomía territorial, taller de cocina solar y astroturismo.">
-  <meta property="og:image" content="imagenes/foto_16.jpg">
+  <meta property="og:image" content="imagenes/logo_valle_a_las_estrellas.jpg">
 
-  <!-- Favicon SVG en línea -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌵</text></svg>">
+  <!-- Favicon Oficial del Proyecto -->
+  <link rel="icon" type="image/png" href="imagenes/favicon.png">
+  <link rel="icon" type="image/webp" href="imagenes/logo_valle_a_las_estrellas_thumb.webp">
 
   <!-- Estilos del Sistema de Diseño Oficial (Vanilla CSS Offline) -->
   <link rel="stylesheet" href="estilos/main.css">
@@ -100,7 +101,12 @@
   <header class="site-header">
     <div class="container">
       <a href="#inicio" class="logo-link" aria-label="Ir al inicio: Del valle a la mesa, de la mesa a las estrellas">
-        <div class="logo-icon" aria-hidden="true">🌵</div>
+        <div class="logo-icon" aria-hidden="true">
+          <picture>
+            <source srcset="imagenes/logo_valle_a_las_estrellas_thumb.webp" type="image/webp">
+            <img src="imagenes/logo_valle_a_las_estrellas.jpg" alt="Logo Del valle a la mesa" class="site-logo-img" width="44" height="44">
+          </picture>
+        </div>
         <div class="logo-text">
           <span class="logo-title">Del valle a la mesa</span>
           <span class="logo-subtitle">de la mesa a las estrellas</span>
@@ -138,6 +144,12 @@
         <div class="hero-overlay"></div>
       </div>
       <div class="container hero-content">
+        <div class="hero-logo-wrapper">
+          <picture>
+            <source srcset="imagenes/logo_valle_a_las_estrellas.webp" type="image/webp">
+            <img src="imagenes/logo_valle_a_las_estrellas.jpg" alt="Emblema Oficial: Del valle a la mesa, de la mesa a las estrellas" class="hero-logo-img" width="140" height="140">
+          </picture>
+        </div>
         <div class="academic-pill">
           <span>🎓 INACAP · Prototipo Académico de Evaluación 2</span>
         </div>
@@ -211,8 +223,11 @@
 
         <div class="about-grid">
           <div class="about-image-card">
-            <img src="imagenes/foto_16.jpg" alt="Paisaje natural del Valle del Elqui que inspira la propuesta gastronómica" class="about-img" loading="lazy">
-            <p class="img-caption">Imagen: archivo entregado por el equipo; autor y licencia por confirmar (foto_16.jpg)</p>
+            <picture>
+              <source srcset="imagenes/equipo_estudiantes.webp" type="image/webp">
+              <img src="imagenes/equipo_estudiantes.jpg" alt="Antonia Huerta, Caroline Prado y Paz Bozo, estudiantes de Administración Gastronómica en INACAP" class="about-img" loading="lazy">
+            </picture>
+            <p class="img-caption">Antonia Huerta, Caroline Prado y Paz Bozo · Estudiantes autoras del proyecto (INACAP)</p>
           </div>
           <div class="about-text">
             <h3>Nuestra mirada formativa</h3>
@@ -228,7 +243,7 @@
           </div>
         </div>
 
-        <!-- Tarjetas con los tres nombres de las estudiantes (sin retratos inventados) -->
+        <!-- Tarjetas formativas de las estudiantes del equipo -->
         <div class="team-cards-grid">
           <article class="team-card">
             <div class="team-avatar-icon" aria-hidden="true">👩‍🍳</div>
@@ -1580,6 +1595,10 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
+          <picture>
+            <source srcset="imagenes/logo_valle_a_las_estrellas_thumb.webp" type="image/webp">
+            <img src="imagenes/logo_valle_a_las_estrellas.jpg" alt="Logo Del valle a la mesa" class="footer-logo-img" width="64" height="64" loading="lazy">
+          </picture>
           <h4>Del valle a la mesa</h4>
           <p>«De la mesa a las estrellas»</p>
           <p>
