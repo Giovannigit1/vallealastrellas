@@ -21,6 +21,7 @@ const inquirySchema = z.object({
   type: z.literal('inquiry'),
   name: z.string().min(2, { message: 'Nombre requerido' }),
   email: z.string().email({ message: 'Correo electrónico inválido' }),
+  phone: z.string().optional().default(''),
   date: z.string().optional().default(''),
   guests: z.string().optional().default(''),
   dietary: z.string().optional().default(''),
@@ -28,10 +29,59 @@ const inquirySchema = z.object({
   consent: z.literal(true, { errorMap: () => ({ message: 'Se requiere consentimiento' }) })
 });
 
+const commentSchema = z.object({
+  type: z.literal('comment'),
+  alias: z.string().min(2, { message: 'Nombre o alias requerido (mínimo 2 caracteres)' }),
+  comment: z.string().min(4, { message: 'El comentario debe contener al menos 4 caracteres' }),
+  email: z.string().email().optional().or(z.literal('')),
+  consent: z.literal(true, { errorMap: () => ({ message: 'Debes autorizar la revisión de tu comentario' }) })
+});
+
 module.exports = async (req, res) => {
-  // Solo permitir método POST
+  // Configurar CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  // GET: Obtener comentarios aprobados para mostrar en la web pública
+  if (req.method === 'GET') {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://lvaveuipaxivyygcsyhb.supabase.co';
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (supabaseUrl && supabaseKey) {
+      try {
+        const { createClient } = require('@supabase/supabase-js');
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        const { data, error } = await supabase
+          .from('reservations')
+          .select('id, name, comments, date, created_at')
+          .eq('discount_code', 'COMMUNITY_COMMENT')
+          .eq('status', 'confirmed')
+          .order('created_at', { ascending: false });
+
+        if (!error && data) {
+          const list = data.map(c => ({
+            alias: c.name,
+            comment: c.comments,
+            date: c.created_at ? new Date(c.created_at).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' }) : (c.date || 'Reciente')
+          }));
+          return res.status(200).json({ success: true, comments: list });
+        }
+      } catch (e) {
+        console.error('[GET comments error]', e.message);
+      }
+    }
+    return res.status(200).json({ success: true, comments: [] });
+  }
+
+  // Solo permitir método POST para formularios
   if (req.method !== 'POST') {
-    res.setHeader('Allow', ['POST']);
+    res.setHeader('Allow', ['GET', 'POST']);
     return res.status(405).json({ success: false, message: 'Método no permitido' });
   }
 
@@ -64,6 +114,12 @@ module.exports = async (req, res) => {
         return res.status(400).json({ success: false, message: parsed.error.issues[0]?.message || 'Datos incompletos' });
       }
       validatedData = parsed.data;
+    } else if (type === 'comment') {
+      const parsed = commentSchema.safeParse(body);
+      if (!parsed.success) {
+        return res.status(400).json({ success: false, message: parsed.error.issues[0]?.message || 'Datos incompletos' });
+      }
+      validatedData = parsed.data;
     } else {
       const parsed = subscriptionSchema.safeParse(body);
       if (!parsed.success) {
@@ -82,7 +138,30 @@ module.exports = async (req, res) => {
         const { createClient } = require('@supabase/supabase-js');
         const supabase = createClient(supabaseUrl, supabaseKey);
 
-        if (type === 'inquiry') {
+        if (type === 'comment') {
+          const comCode = 'COM-' + Date.now().toString(36).toUpperCase();
+          const cleanEmail = validatedData.email || `${validatedData.alias.toLowerCase().replace(/[^a-z0-9]/g, '') || 'comunidad'}@vallealastrellas.cl`;
+          const { error: insertErr } = await supabase.from('reservations').insert({
+            code: comCode,
+            date: new Date().toISOString().split('T')[0],
+            guests: 1,
+            companion_type: 'solo',
+            dietary_needs: ['Comentario Comunidad'],
+            name: validatedData.alias,
+            email: cleanEmail,
+            phone: 'Comentario Web',
+            comments: validatedData.comment,
+            discount_code: 'COMMUNITY_COMMENT',
+            status: 'pending' // Estado pendiente: llega al admin para revisión y moderación
+          });
+
+          if (!insertErr) {
+            savedToSupabase = true;
+            console.log('[Supabase] Comentario guardado con éxito en base de datos:', comCode);
+          } else {
+            console.warn('[Supabase Warning en comentario]', insertErr.message);
+          }
+        } else if (type === 'inquiry') {
           const resCode = 'ELQ-' + Date.now().toString(36).toUpperCase();
           const { error: insertErr } = await supabase.from('reservations').insert({
             code: resCode,
@@ -92,7 +171,7 @@ module.exports = async (req, res) => {
             dietary_needs: validatedData.dietary ? [validatedData.dietary] : [],
             name: validatedData.name,
             email: validatedData.email,
-            phone: '',
+            phone: validatedData.phone || '',
             comments: validatedData.message || '',
             status: 'pending'
           });
@@ -240,19 +319,16 @@ module.exports = async (req, res) => {
     }
 
     // 5. Respuesta exitosa si se guardó en Supabase o se despachó el correo
-    if (savedToSupabase || emailSent) {
-      return res.status(200).json({
-        success: true,
-        message: type === 'inquiry'
-          ? '¡Solicitud recibida! Nos pondremos en contacto contigo a la brevedad para coordinar y confirmar tu experiencia.'
-          : '¡Gracias por suscribirte a nuestro boletín!'
-      });
+    let successMessage = '¡Gracias por suscribirte a nuestro boletín!';
+    if (type === 'inquiry') {
+      successMessage = '¡Solicitud recibida! Nos pondremos en contacto contigo a la brevedad para coordinar y confirmar tu experiencia.';
+    } else if (type === 'comment') {
+      successMessage = '¡Gracias por compartir tu opinión! Tu comentario ha sido recibido y enviado al equipo para su revisión.';
     }
 
-    // Si falló Supabase y no había correo configurado
     return res.status(200).json({
       success: true,
-      message: '¡Solicitud registrada correctamente!'
+      message: successMessage
     });
 
   } catch (globalErr) {

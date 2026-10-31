@@ -746,13 +746,18 @@
     <!-- CONTENIDO 3: COMENTARIOS -->
     <div id="tab-comments" class="tab-content" style="display: none;">
       <div class="content-box">
-        <div class="content-toolbar">
-          <p style="font-size: 14px; color: var(--admin-text-muted); margin: 0;">
-            Comentarios guardados por los visitantes en el sitio web:
-          </p>
-          <button type="button" class="btn-action" id="btn-clear-local-comments" style="color: #F87171;">
-            🗑️ Limpiar comentarios locales de prueba
-          </button>
+        <div class="content-toolbar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <p style="font-size: 14px; color: var(--admin-text-muted); margin: 0;">
+              Comentarios y opiniones recibidas desde el sitio web en Supabase:
+            </p>
+            <small style="color: #94A3B8; font-size: 12px;">Todos los comentarios nuevos llegan a este panel. Solo los que apruebes con <strong>Aprobar y Mostrar en Web</strong> se mostrarán públicamente.</small>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <span id="comments-pending-badge" style="background: rgba(234, 179, 8, 0.15); border: 1px solid rgba(234, 179, 8, 0.4); color: #FACC15; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700;">
+              0 pendientes de revisión
+            </span>
+          </div>
         </div>
 
         <div id="comments-list-admin" style="display: grid; gap: 14px;">
@@ -867,6 +872,22 @@
               email: 'roberto.v@turismo.cl',
               coupon_code: 'VALLE-2910',
               created_at: new Date(Date.now() - 86400000).toISOString()
+            }
+          ],
+          comments: [
+            {
+              code: 'COM-SAMPLE-1',
+              name: 'Camila R.',
+              comments: 'Me encantó la propuesta de cocina solar y rescate de la papaya. Es una gran iniciativa para Cochiguaz.',
+              date: '2026-10-28',
+              status: 'confirmed'
+            },
+            {
+              code: 'COM-SAMPLE-2',
+              name: 'Felipe M.',
+              comments: 'Excelente que consideren opciones sin alcohol para la tradición pisquera y alternativas para celíacos.',
+              date: '2026-10-29',
+              status: 'confirmed'
             }
           ]
         };
@@ -1064,42 +1085,136 @@
         }).join('');
       }
 
-      // COMENTARIOS
+      // COMENTARIOS Y MODERACIÓN
       function renderComments() {
         const container = document.getElementById('comments-list-admin');
         const badge = document.getElementById('badge-comm');
+        const pendingBadge = document.getElementById('comments-pending-badge');
 
-        let saved = [];
-        try {
-          saved = JSON.parse(localStorage.getItem('elqui_comments') || '[]');
-        } catch (e) {}
+        const comments = appData.comments || [];
+        const pendingCount = comments.filter(c => c.status !== 'confirmed').length;
 
-        badge.textContent = saved.length + 2;
+        if (badge) {
+          badge.textContent = pendingCount > 0 ? `${comments.length} (${pendingCount} pend.)` : `${comments.length}`;
+        }
+        if (pendingBadge) {
+          pendingBadge.textContent = `${pendingCount} pendiente${pendingCount === 1 ? '' : 's'} de revisión`;
+        }
 
-        const defaultC = [
-          { alias: 'Camila R.', comment: 'Me encantó la propuesta de cocina solar y rescate de la papaya. Es una gran iniciativa para Cochiguaz.', date: '28 de octubre de 2026' },
-          { alias: 'Felipe M.', comment: 'Excelente que consideren opciones sin alcohol para la tradición pisquera y alternativas para celíacos.', date: '29 de octubre de 2026' }
-        ];
-
-        const all = [...defaultC, ...saved];
-
-        container.innerHTML = all.map((c, idx) => `
-          <div style="background: #111B2C; border: 1px solid var(--admin-border); border-radius: 12px; padding: 16px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <strong style="color: var(--color-verde-cactus);">${escapeHtml(c.alias)}</strong>
-              <small style="color: var(--admin-text-muted);">${escapeHtml(c.date)}</small>
+        if (comments.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state" style="padding: 30px; text-align: center; color: var(--admin-text-muted);">
+              <div style="font-size: 32px; margin-bottom: 8px;">💬</div>
+              <p style="font-size: 15px; margin: 0; color: #E2E8F0;">Aún no se han recibido comentarios de la comunidad.</p>
+              <small style="font-size: 12px; color: #64748B;">Cuando los visitantes envíen opiniones desde el formulario web, aparecerán aquí para moderación.</small>
             </div>
-            <p style="font-size: 14px; color: #E2E8F0; margin: 0; line-height: 1.5;">${escapeHtml(c.comment)}</p>
-          </div>
-        `).join('');
+          `;
+          return;
+        }
+
+        container.innerHTML = comments.map(c => {
+          const isApproved = c.status === 'confirmed';
+          const author = escapeHtml(c.name || 'Visitante');
+          const code = escapeHtml(c.code || c.id || '');
+          const commentText = escapeHtml(c.comments || '');
+          let dateStr = 'Fecha reciente';
+          if (c.created_at) {
+            try {
+              dateStr = new Date(c.created_at).toLocaleDateString('es-CL', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            } catch (e) {
+              dateStr = c.created_at;
+            }
+          } else if (c.date) {
+            dateStr = c.date;
+          }
+
+          return `
+            <div style="background: #111B2C; border: 1px solid var(--admin-border); border-radius: 12px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+                <div>
+                  <strong style="color: var(--color-verde-cactus); font-size: 15px;">${author}</strong>
+                  <span style="font-family: monospace; font-size: 11px; color: var(--admin-text-muted); margin-left: 8px;">(${code})</span>
+                  <div style="font-size: 12px; color: var(--admin-text-muted); margin-top: 2px;">${dateStr}</div>
+                </div>
+                <div>
+                  ${isApproved
+                    ? `<span style="background: rgba(74, 222, 128, 0.15); color: #4ADE80; border: 1px solid rgba(74, 222, 128, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;">✅ Publicado en Web</span>`
+                    : `<span style="background: rgba(234, 179, 8, 0.15); color: #FACC15; border: 1px solid rgba(234, 179, 8, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;">⏳ Pendiente de Aprobación</span>`
+                  }
+                </div>
+              </div>
+              <p style="font-size: 14px; color: #E2E8F0; margin: 0 0 14px 0; line-height: 1.6; background: rgba(0, 0, 0, 0.25); padding: 12px; border-radius: 8px; border-left: 3px solid ${isApproved ? 'var(--color-verde-cactus)' : '#FACC15'};">
+                ${commentText}
+              </p>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;">
+                ${isApproved
+                  ? `<button type="button" class="btn-action" onclick="window.moderateComment('${code}', 'pending')" style="color: #FACC15; border-color: rgba(234, 179, 8, 0.4); font-size: 12px;">👁️ Ocultar del Sitio Web</button>`
+                  : `<button type="button" class="btn-action" onclick="window.moderateComment('${code}', 'confirmed')" style="color: #4ADE80; border-color: rgba(74, 222, 128, 0.4); font-weight: 700; font-size: 12px;">✅ Aprobar y Mostrar en Web</button>`
+                }
+                <button type="button" class="btn-action" onclick="window.deleteComment('${code}')" style="color: #F87171; border-color: rgba(248, 113, 113, 0.4); font-size: 12px;">🗑️ Eliminar</button>
+              </div>
+            </div>
+          `;
+        }).join('');
       }
 
-      document.getElementById('btn-clear-local-comments').addEventListener('click', function () {
-        if (confirm('¿Deseas vaciar los comentarios almacenados en este navegador?')) {
-          localStorage.removeItem('elqui_comments');
-          renderComments();
+      window.moderateComment = async function (code, newStatus) {
+        const item = (appData.comments || []).find(c => c.code === code || c.id === code);
+        if (!item) return;
+
+        const prevStatus = item.status;
+        item.status = newStatus;
+        renderComments();
+
+        try {
+          const res = await fetch('/api/admin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              password: currentPassword,
+              action: 'update_status',
+              code: code,
+              status: newStatus
+            })
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok || !data.success) {
+            item.status = prevStatus;
+            renderComments();
+            alert(data.message || 'No fue posible actualizar el estado del comentario.');
+          }
+        } catch (e) {
+          console.log('Modo local: estado actualizado en memoria:', code, newStatus);
         }
-      });
+      };
+
+      window.deleteComment = async function (code) {
+        if (!confirm('¿Deseas eliminar este comentario permanentemente?')) return;
+
+        const prevList = [...(appData.comments || [])];
+        appData.comments = (appData.comments || []).filter(c => c.code !== code && c.id !== code);
+        renderComments();
+
+        try {
+          const res = await fetch('/api/admin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              password: currentPassword,
+              action: 'delete_reservation',
+              code: code
+            })
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok || !data.success) {
+            appData.comments = prevList;
+            renderComments();
+            alert(data.message || 'No fue posible eliminar el comentario.');
+          }
+        } catch (e) {
+          console.log('Modo local: eliminado en memoria.');
+        }
+      };
 
       // 3. ACTUALIZAR ESTADO DE RESERVA
       window.updateReservationStatus = async function (code, newStatus) {

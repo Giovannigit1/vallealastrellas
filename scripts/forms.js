@@ -132,6 +132,8 @@
 
       const name = document.getElementById('inq-name').value.trim();
       const email = document.getElementById('inq-email').value.trim();
+      const phoneInput = document.getElementById('inq-phone');
+      const phone = phoneInput ? phoneInput.value.trim() : '';
       const date = document.getElementById('inq-date').value;
       const guests = document.getElementById('inq-guests').value;
       const dietary = document.getElementById('inq-dietary').value.trim();
@@ -166,6 +168,7 @@
             type: 'inquiry',
             name: name,
             email: email,
+            phone: phone,
             date: date,
             guests: `${guests} personas (${totalFormatted} CLP)`,
             dietary: dietary,
@@ -194,26 +197,34 @@
     });
   }
 
-  // 3. COMENTARIOS DE LA COMUNIDAD (LOCALSTORAGE DEMOSTRATIVO)
+  // 3. COMENTARIOS DE LA COMUNIDAD (BASE DE DATOS SUPABASE + MODERACIÓN)
   const commentForm = document.getElementById('community-comment-form');
   const commentFeedback = document.getElementById('comment-feedback');
   const commentsList = document.getElementById('community-comments-list');
 
-  // Comentarios iniciales ilustrativos
+  // Comentarios iniciales destacados
   const defaultComments = [
     { alias: 'Camila R.', comment: 'Me encantó la propuesta de cocina solar y rescate de la papaya. Es una gran iniciativa para Cochiguaz.', date: '28 de octubre de 2026' },
     { alias: 'Felipe M.', comment: 'Excelente que consideren opciones sin alcohol para la tradición pisquera y alternativas para celíacos.', date: '29 de octubre de 2026' }
   ];
 
-  function renderComments() {
+  async function renderPublicComments() {
     if (!commentsList) return;
-    let saved = [];
-    try {
-      const stored = localStorage.getItem('elqui_comments');
-      if (stored) saved = JSON.parse(stored);
-    } catch (e) {}
 
-    const allComments = [...defaultComments, ...saved];
+    let dbComments = [];
+    try {
+      const res = await fetch('/api/subscribe', { method: 'GET' });
+      if (res.ok) {
+        const data = await res.json().catch(() => ({}));
+        if (data.success && Array.isArray(data.comments)) {
+          dbComments = data.comments;
+        }
+      }
+    } catch (e) {
+      // Modo offline o sin conexión: se mantendrán los comentarios iniciales
+    }
+
+    const allComments = [...defaultComments, ...dbComments];
     commentsList.innerHTML = '';
 
     allComments.forEach(c => {
@@ -223,42 +234,71 @@
       el.style.marginBottom = '14px';
       el.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-          <strong style="color: var(--color-verde-cactus);">${escapeHtml(c.alias)}</strong>
-          <small style="color: #64748B;">${escapeHtml(c.date)}</small>
+          <strong style="color: var(--color-verde-cactus);">${escapeHtml(c.alias || c.name || 'Visitante')}</strong>
+          <small style="color: #64748B;">${escapeHtml(c.date || 'Reciente')}</small>
         </div>
-        <p style="font-size: 15px; color: var(--color-azul-noche); line-height: 1.5;">${escapeHtml(c.comment)}</p>
+        <p style="font-size: 15px; color: var(--color-azul-noche); line-height: 1.5; margin: 0;">${escapeHtml(c.comment || c.comments || '')}</p>
       `;
       commentsList.appendChild(el);
     });
   }
 
   if (commentForm) {
-    commentForm.addEventListener('submit', function (e) {
+    commentForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       const alias = document.getElementById('comment-alias').value.trim();
       const text = document.getElementById('comment-text').value.trim();
       const consent = document.getElementById('comment-consent').checked;
 
       if (!consent) {
-        showFeedback(commentFeedback, 'Debes autorizar la moderación de tu comentario.', 'error');
+        showFeedback(commentFeedback, 'Debes autorizar la revisión de tu comentario.', 'error');
         return;
       }
 
-      if (alias && text) {
-        const newC = {
-          alias: alias,
-          comment: text,
-          date: 'Hoy (demostración local)'
-        };
-        try {
-          const current = JSON.parse(localStorage.getItem('elqui_comments') || '[]');
-          current.push(newC);
-          localStorage.setItem('elqui_comments', JSON.stringify(current));
-        } catch (e) {}
+      if (!alias || !text) {
+        showFeedback(commentFeedback, 'Por favor completa tu nombre y comentario.', 'error');
+        return;
+      }
 
-        showFeedback(commentFeedback, '¡Gracias por tu comentario! Se ha guardado localmente en este dispositivo bajo aviso de moderación.', 'success');
-        commentForm.reset();
-        renderComments();
+      // Detección offline
+      if (!navigator.onLine) {
+        showFeedback(commentFeedback, 'Sin conexión: tu comentario no se pudo enviar, inténtalo de nuevo cuando vuelva tu señal de internet.', 'error');
+        return;
+      }
+
+      const submitBtn = commentForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando comentario...';
+      }
+
+      try {
+        const response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'comment',
+            alias: alias,
+            comment: text,
+            consent: true
+          })
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (response.ok && data.success) {
+          showFeedback(commentFeedback, '¡Gracias por tu comentario! Ha sido enviado exitosamente al equipo para su revisión y aprobación.', 'success');
+          commentForm.reset();
+        } else {
+          showFeedback(commentFeedback, data.message || 'No fue posible registrar tu comentario en este momento.', 'error');
+        }
+      } catch (err) {
+        showFeedback(commentFeedback, 'Sin conexión: no se pudo enviar el comentario al servidor.', 'error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar comentario al equipo';
+        }
       }
     });
   }
@@ -284,7 +324,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    renderComments();
+    renderPublicComments();
   });
 
 })();
