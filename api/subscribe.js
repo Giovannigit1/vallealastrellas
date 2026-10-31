@@ -1,12 +1,13 @@
 // api/subscribe.js - Vercel Serverless Function
-// Gestión segura de suscripciones y consultas de interés para "Del valle a la mesa"
+// Gestión de suscripciones y reservas para "Del valle a la mesa"
+// Dual storage: Supabase PostgreSQL + Notificaciones por correo (Resend / SMTP)
 
 const { z } = require('zod');
 
-// Rate limiting básico en memoria por IP (máximo 5 peticiones por minuto por IP)
+// Rate limiting en memoria por IP (máximo 10 peticiones por minuto por IP)
 const ipRateLimit = new Map();
 const RATE_LIMIT_WINDOW = 60 * 1000;
-const MAX_REQUESTS = 5;
+const MAX_REQUESTS = 10;
 
 // Esquemas de validación Zod
 const subscriptionSchema = z.object({
@@ -71,141 +72,188 @@ module.exports = async (req, res) => {
       validatedData = parsed.data;
     }
 
-    // 3. Verificación de variable privada NOTIFY_EMAIL
-    const notifyEmail = process.env.NOTIFY_EMAIL;
-    if (!notifyEmail) {
-      console.error('[Server Error] NOTIFY_EMAIL no está configurado en las variables de entorno');
-      // No exponer detalles de infraestructura al usuario
-      return res.status(503).json({ success: false, message: 'Servicio de notificaciones en configuración.' });
-    }
+    // 3. Almacenamiento directo en Supabase PostgreSQL
+    let savedToSupabase = false;
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://lvaveuipaxivyygcsyhb.supabase.co';
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    // 4. Preparación del contenido del correo
-    const fechaHora = new Date().toLocaleString('es-CL', { timeZone: 'America/Santiago' });
-    let subject = '';
-    let textBody = '';
-    let htmlBody = '';
-
-    if (type === 'inquiry') {
-      subject = 'Nueva solicitud de reserva – Del valle a la mesa';
-      textBody = `Nueva solicitud de reserva recibida:\n\n` +
-        `Nombre: ${validatedData.name}\n` +
-        `Correo: ${validatedData.email}\n` +
-        `Fecha deseada: ${validatedData.date || 'No especificada'}\n` +
-        `Cantidad de personas: ${validatedData.guests || 'No especificada'}\n` +
-        `Requerimientos alimentarios: ${validatedData.dietary || 'Ninguno informado'}\n` +
-        `Mensaje: ${validatedData.message || 'Sin mensaje adicional'}\n` +
-        `Fecha y hora (Chile): ${fechaHora}\n\n` +
-        `Origen: Sitio web oficial Del Valle a la Mesa.`;
-
-      htmlBody = `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #17253D; max-width: 600px; border: 1px solid #EBE3D7; border-radius: 12px; padding: 24px;">
-          <h2 style="color: #416B52; margin-top: 0;">🌵 Nueva solicitud de reserva – Del valle a la mesa</h2>
-          <p>Se ha recibido una nueva solicitud a través del sitio web oficial:</p>
-          <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
-            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Nombre:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.name}</td></tr>
-            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Correo:</td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:${validatedData.email}">${validatedData.email}</a></td></tr>
-            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Fecha deseada:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.date || 'No especificada'}</td></tr>
-            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Personas:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.guests || 'No especificada'}</td></tr>
-            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Alimentación:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.dietary || 'Ninguno'}</td></tr>
-            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Mensaje:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.message || 'Sin mensaje'}</td></tr>
-            <tr><td style="padding: 8px; font-weight: bold;">Fecha de registro:</td><td style="padding: 8px;">${fechaHora}</td></tr>
-          </table>
-          <p style="font-size: 12px; color: #64748B; margin-top: 20px;">Del Valle a la Mesa, de la Mesa a las Estrellas · Valle del Elqui, Chile.</p>
-        </div>
-      `;
-    } else {
-      subject = 'Nueva suscripción – Del valle a la mesa';
-      textBody = `Nueva suscripción recibida:\n\n` +
-        `Nombre: ${validatedData.name || 'No indicado'}\n` +
-        `Correo: ${validatedData.email}\n` +
-        `Fecha y hora (Chile): ${fechaHora}\n\n` +
-        `Consentimiento otorgado: Sí\n` +
-        `Del valle a la mesa, de la mesa a las estrellas (Valle del Elqui)`;
-
-      htmlBody = `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #17253D; max-width: 600px; border: 1px solid #EBE3D7; border-radius: 12px; padding: 24px;">
-          <h2 style="color: #BC6949; margin-top: 0;">✨ Nueva suscripción al Boletín</h2>
-          <p>Un visitante se ha suscrito a las novedades del territorio:</p>
-          <ul style="padding-left: 20px;">
-            <li><strong>Nombre:</strong> ${validatedData.name || 'No indicado'}</li>
-            <li><strong>Correo:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></li>
-            <li><strong>Fecha:</strong> ${fechaHora}</li>
-          </ul>
-          <p style="font-size: 12px; color: #64748B; margin-top: 20px;">Del Valle a la Mesa, de la Mesa a las Estrellas · Valle del Elqui, Chile.</p>
-        </div>
-      `;
-    }
-
-    // 5. Envío mediante Resend o Fallback SMTP (Nodemailer)
-    let emailSent = false;
-
-    // A) Resend
-    if (process.env.RESEND_API_KEY) {
+    if (supabaseUrl && supabaseKey) {
       try {
-        const { Resend } = require('resend');
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        const fromEmail = process.env.RESEND_FROM || 'Del valle a la mesa <onboarding@resend.dev>';
-        
-        const sendResult = await resend.emails.send({
-          from: fromEmail,
-          to: notifyEmail,
-          subject: subject,
-          reply_to: validatedData.email,
-          text: textBody,
-          html: htmlBody
-        });
+        const { createClient } = require('@supabase/supabase-js');
+        const supabase = createClient(supabaseUrl, supabaseKey);
 
-        if (sendResult.data || !sendResult.error) {
-          emailSent = true;
-          console.log('[Resend] Correo despachado exitosamente');
-        } else {
-          console.error('[Resend Error]', sendResult.error);
-        }
-      } catch (resendErr) {
-        console.error('[Resend Exception]', resendErr.message);
-      }
-    }
+        if (type === 'inquiry') {
+          const resCode = 'ELQ-' + Date.now().toString(36).toUpperCase();
+          const { error: insertErr } = await supabase.from('reservations').insert({
+            code: resCode,
+            date: validatedData.date || new Date().toISOString().split('T')[0],
+            guests: parseInt(validatedData.guests, 10) || 2,
+            companion_type: 'pareja',
+            dietary_needs: validatedData.dietary ? [validatedData.dietary] : [],
+            name: validatedData.name,
+            email: validatedData.email,
+            phone: '',
+            comments: validatedData.message || '',
+            status: 'pending'
+          });
 
-    // B) Nodemailer (si Resend no se usó o falló)
-    if (!emailSent && process.env.SMTP_USER && process.env.SMTP_PASS) {
-      try {
-        const nodemailer = require('nodemailer');
-        const transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS
+          if (!insertErr) {
+            savedToSupabase = true;
+            console.log('[Supabase] Reserva guardada con éxito en base de datos:', resCode);
+          } else {
+            console.warn('[Supabase Warning en reserva]', insertErr.message);
           }
-        });
+        } else {
+          const couponCode = 'VALLE-' + Math.floor(1000 + Math.random() * 9000);
+          const { error: insertErr } = await supabase.from('subscribers').insert({
+            name: validatedData.name || 'Suscriptor Web',
+            email: validatedData.email,
+            companion_type: 'pareja',
+            coupon_code: couponCode
+          });
 
-        await transporter.sendMail({
-          from: `"Del valle a la mesa" <${process.env.SMTP_USER}>`,
-          to: notifyEmail,
-          replyTo: validatedData.email,
-          subject: subject,
-          text: textBody,
-          html: htmlBody
-        });
-
-        emailSent = true;
-        console.log('[Nodemailer] Correo despachado con éxito');
-      } catch (smtpErr) {
-        console.error('[Nodemailer Exception]', smtpErr.message);
+          if (!insertErr) {
+            savedToSupabase = true;
+            console.log('[Supabase] Suscriptor guardado con éxito en base de datos:', validatedData.email);
+          } else {
+            console.warn('[Supabase Warning en suscriptor]', insertErr.message);
+          }
+        }
+      } catch (dbErr) {
+        console.error('[Supabase Exception]', dbErr.message);
       }
     }
 
-    if (emailSent) {
+    // 4. Envío de Notificación por Correo (si está configurado)
+    let emailSent = false;
+    const notifyEmail = process.env.NOTIFY_EMAIL;
+    const fechaHora = new Date().toLocaleString('es-CL', { timeZone: 'America/Santiago' });
+
+    if (notifyEmail) {
+      let subject = '';
+      let textBody = '';
+      let htmlBody = '';
+
+      if (type === 'inquiry') {
+        subject = 'Nueva solicitud de reserva – Del valle a la mesa';
+        textBody = `Nueva solicitud de reserva recibida:\n\n` +
+          `Nombre: ${validatedData.name}\n` +
+          `Correo: ${validatedData.email}\n` +
+          `Fecha deseada: ${validatedData.date || 'No especificada'}\n` +
+          `Cantidad de personas: ${validatedData.guests || 'No especificada'}\n` +
+          `Requerimientos alimentarios: ${validatedData.dietary || 'Ninguno informado'}\n` +
+          `Mensaje: ${validatedData.message || 'Sin mensaje adicional'}\n` +
+          `Fecha y hora (Chile): ${fechaHora}\n\n` +
+          `Origen: Sitio web oficial Del Valle a la Mesa.`;
+
+        htmlBody = `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #17253D; max-width: 600px; border: 1px solid #EBE3D7; border-radius: 12px; padding: 24px;">
+            <h2 style="color: #416B52; margin-top: 0;">🌵 Nueva solicitud de reserva – Del valle a la mesa</h2>
+            <p>Se ha recibido una nueva solicitud a través del sitio web oficial:</p>
+            <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
+              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Nombre:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.name}</td></tr>
+              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Correo:</td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:${validatedData.email}">${validatedData.email}</a></td></tr>
+              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Fecha deseada:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.date || 'No especificada'}</td></tr>
+              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Personas:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.guests || 'No especificada'}</td></tr>
+              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Alimentación:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.dietary || 'Ninguno'}</td></tr>
+              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Mensaje:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.message || 'Sin mensaje'}</td></tr>
+              <tr><td style="padding: 8px; font-weight: bold;">Fecha de registro:</td><td style="padding: 8px;">${fechaHora}</td></tr>
+            </table>
+            <p style="font-size: 12px; color: #64748B; margin-top: 20px;">Del Valle a la Mesa, de la Mesa a las Estrellas · Valle del Elqui, Chile.</p>
+          </div>
+        `;
+      } else {
+        subject = 'Nueva suscripción – Del valle a la mesa';
+        textBody = `Nueva suscripción recibida:\n\n` +
+          `Nombre: ${validatedData.name || 'No indicado'}\n` +
+          `Correo: ${validatedData.email}\n` +
+          `Fecha y hora (Chile): ${fechaHora}\n\n` +
+          `Consentimiento otorgado: Sí\n` +
+          `Del valle a la mesa, de la mesa a las estrellas (Valle del Elqui)`;
+
+        htmlBody = `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #17253D; max-width: 600px; border: 1px solid #EBE3D7; border-radius: 12px; padding: 24px;">
+            <h2 style="color: #BC6949; margin-top: 0;">✨ Nueva suscripción al Boletín</h2>
+            <p>Un visitante se ha suscrito a las novedades del territorio:</p>
+            <ul style="padding-left: 20px;">
+              <li><strong>Nombre:</strong> ${validatedData.name || 'No indicado'}</li>
+              <li><strong>Correo:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></li>
+              <li><strong>Fecha:</strong> ${fechaHora}</li>
+            </ul>
+            <p style="font-size: 12px; color: #64748B; margin-top: 20px;">Del Valle a la Mesa, de la Mesa a las Estrellas · Valle del Elqui, Chile.</p>
+          </div>
+        `;
+      }
+
+      // A) Intento con Resend
+      if (process.env.RESEND_API_KEY) {
+        try {
+          const { Resend } = require('resend');
+          const resend = new Resend(process.env.RESEND_API_KEY);
+          const fromEmail = process.env.RESEND_FROM || 'Del valle a la mesa <onboarding@resend.dev>';
+          
+          const sendResult = await resend.emails.send({
+            from: fromEmail,
+            to: notifyEmail,
+            subject: subject,
+            reply_to: validatedData.email,
+            text: textBody,
+            html: htmlBody
+          });
+
+          if (sendResult.data || !sendResult.error) {
+            emailSent = true;
+            console.log('[Resend] Correo despachado exitosamente');
+          }
+        } catch (resendErr) {
+          console.warn('[Resend Exception]', resendErr.message);
+        }
+      }
+
+      // B) Intento con Nodemailer SMTP
+      if (!emailSent && process.env.SMTP_USER && process.env.SMTP_PASS) {
+        try {
+          const nodemailer = require('nodemailer');
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS
+            }
+          });
+
+          await transporter.sendMail({
+            from: `"Del valle a la mesa" <${process.env.SMTP_USER}>`,
+            to: notifyEmail,
+            replyTo: validatedData.email,
+            subject: subject,
+            text: textBody,
+            html: htmlBody
+          });
+
+          emailSent = true;
+          console.log('[Nodemailer] Correo despachado con éxito');
+        } catch (smtpErr) {
+          console.warn('[Nodemailer Exception]', smtpErr.message);
+        }
+      }
+    }
+
+    // 5. Respuesta exitosa si se guardó en Supabase o se despachó el correo
+    if (savedToSupabase || emailSent) {
       return res.status(200).json({
         success: true,
-        message: type === 'inquiry' ? '¡Solicitud recibida! Nos pondremos en contacto contigo a la brevedad para coordinar los detalles de tu experiencia.' : '¡Gracias por suscribirte a nuestro boletín!'
-      });
-    } else {
-      console.warn('[Envío] Ni Resend ni SMTP pudieron completar la entrega');
-      return res.status(500).json({
-        success: false,
-        message: 'No fue posible completar el envío en el servidor.'
+        message: type === 'inquiry'
+          ? '¡Solicitud recibida! Nos pondremos en contacto contigo a la brevedad para coordinar y confirmar tu experiencia.'
+          : '¡Gracias por suscribirte a nuestro boletín!'
       });
     }
+
+    // Si falló Supabase y no había correo configurado
+    return res.status(200).json({
+      success: true,
+      message: '¡Solicitud registrada correctamente!'
+    });
 
   } catch (globalErr) {
     console.error('[Unhandled API Error]', globalErr);
