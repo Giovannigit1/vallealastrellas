@@ -78,9 +78,46 @@
     });
   }
 
-  // 2. FORMULARIO DEMOSTRATIVO DE CONSULTA DE INTERÉS (NO CONFIRMA RESERVA)
+  // 2. FORMULARIO OFICIAL DE SOLICITUD DE RESERVA
   const inquiryForm = document.getElementById('inquiry-form');
   const inquiryFeedback = document.getElementById('inquiry-feedback');
+  const guestsSelect = document.getElementById('inq-guests');
+  const pricePerPerson = 125000;
+
+  function updatePriceCalculation() {
+    if (!guestsSelect) return;
+    const count = parseInt(guestsSelect.value, 10) || 1;
+    const total = count * pricePerPerson;
+    const formattedTotal = '$' + total.toLocaleString('es-CL');
+    const summaryEl = document.getElementById('booking-price-summary');
+    const submitBtn = inquiryForm ? inquiryForm.querySelector('button[type="submit"]') : null;
+
+    if (summaryEl) {
+      summaryEl.innerHTML = `
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; color: var(--color-texto-muted);">
+          <span>Valor por persona:</span>
+          <strong>$125.000 CLP</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; color: var(--color-texto-muted);">
+          <span>Cantidad de personas:</span>
+          <strong>${count} ${count === 1 ? 'viajero' : 'viajeros'}</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed rgba(65, 107, 82, 0.3); padding-top: 8px; font-size: 17px; font-weight: 800; color: var(--color-verde-cactus);">
+          <span>Total de la experiencia:</span>
+          <span style="font-size: 20px; color: var(--color-terracota);">${formattedTotal} CLP</span>
+        </div>
+      `;
+    }
+
+    if (submitBtn) {
+      submitBtn.textContent = `Solicitar reserva · ${formattedTotal} CLP`;
+    }
+  }
+
+  if (guestsSelect) {
+    guestsSelect.addEventListener('change', updatePriceCalculation);
+    updatePriceCalculation();
+  }
 
   if (inquiryForm) {
     inquiryForm.addEventListener('submit', async function (e) {
@@ -102,20 +139,23 @@
       const consent = document.getElementById('inq-consent').checked;
 
       if (!consent) {
-        showFeedback(inquiryFeedback, 'Debes aceptar la política de privacidad y condiciones académicas.', 'error');
+        showFeedback(inquiryFeedback, 'Debes aceptar las condiciones para solicitar tu reserva.', 'error');
         return;
       }
 
       // Detección offline
       if (!navigator.onLine) {
-        showFeedback(inquiryFeedback, 'Sin conexión: tu consulta no se pudo enviar, inténtalo de nuevo cuando vuelva internet.', 'error');
+        showFeedback(inquiryFeedback, 'Sin conexión: tu solicitud no se pudo enviar, inténtalo de nuevo cuando vuelva internet.', 'error');
         return;
       }
 
       const submitBtn = inquiryForm.querySelector('button[type="submit"]');
+      const count = parseInt(guests, 10) || 1;
+      const totalFormatted = '$' + (count * pricePerPerson).toLocaleString('es-CL');
+
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando consulta...';
+        submitBtn.textContent = 'Enviando solicitud...';
       }
 
       try {
@@ -127,7 +167,7 @@
             name: name,
             email: email,
             date: date,
-            guests: guests,
+            guests: `${guests} personas (${totalFormatted} CLP)`,
             dietary: dietary,
             message: message,
             consent: true
@@ -137,17 +177,18 @@
         const data = await response.json().catch(() => ({}));
 
         if (response.ok && data.success) {
-          showFeedback(inquiryFeedback, 'Recibimos tu consulta. No es una reserva.', 'success');
+          showFeedback(inquiryFeedback, '¡Solicitud recibida con éxito! Nos pondremos en contacto contigo a la brevedad para coordinar y confirmar tu experiencia.', 'success');
           inquiryForm.reset();
+          updatePriceCalculation();
         } else {
-          showFeedback(inquiryFeedback, data.message || 'No fue posible enviar la consulta en este momento.', 'error');
+          showFeedback(inquiryFeedback, data.message || 'No fue posible enviar la solicitud en este momento.', 'error');
         }
       } catch (err) {
-        showFeedback(inquiryFeedback, 'Sin conexión: tu consulta no se pudo enviar, inténtalo de nuevo cuando vuelva internet.', 'error');
+        showFeedback(inquiryFeedback, 'Sin conexión: tu solicitud no se pudo enviar, inténtalo de nuevo cuando vuelva internet.', 'error');
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Enviar consulta';
+          updatePriceCalculation();
         }
       }
     });

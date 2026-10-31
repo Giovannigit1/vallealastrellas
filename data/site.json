@@ -1,16 +1,21 @@
 {
   "project": {
     "name": "Del valle a la mesa, de la mesa a las estrellas",
-    "tagline": "Descubre el Valle del Elqui a través de sus sabores, paisajes y cielos. Una experiencia que une cocina, cultura, naturaleza y astronomía.",
-    "academicNotice": "Proyecto académico. Disponibilidad no habilitada.",
-    "institution": "INACAP — Administración Gastronómica",
-    "course": "Diseño de experiencias gastroturísticas",
-    "professor": "Rubén Tapia",
+    "tagline": "Una experiencia gastronómica y sensorial exclusiva que incluye un recorrido por los sabores del Valle del Elqui, degustaciones, banquete de cuatro tiempos, maridaje y observación astronómica guiada.",
     "date": "30 de octubre de 2026",
     "team": [
-      { "name": "Antonia Huerta", "role": "Estudiante de Administración Gastronómica" },
-      { "name": "Caroline Prado", "role": "Estudiante de Administración Gastronómica" },
-      { "name": "Paz Bozo", "role": "Estudiante de Administración Gastronómica" }
+      {
+        "name": "Antonia Huerta",
+        "role": "Co-fundadora & Chef de Experiencia"
+      },
+      {
+        "name": "Caroline Prado",
+        "role": "Co-fundadora & Dirección Gastronómica"
+      },
+      {
+        "name": "Paz Bozo",
+        "role": "Co-fundadora & Hospitalidad y Astroturismo"
+      }
     ],
     "mission": "Dar a conocer y valorar el patrimonio gastronómico, cultural y natural del Valle del Elqui mediante una experiencia educativa, participativa y respetuosa con su entorno.",
     "vision": "Inspirar a más personas a descubrir los sabores y tradiciones del valle, promoviendo el turismo responsable y la conexión con su identidad.",
@@ -21,39 +26,203 @@
     "sector": "Cochiguaz",
     "location": "Valle Luz Camping, Río Cochiguaz km 3 (acceso por verificar)",
     "mapUrl": "https://maps.app.goo.gl/xT1y8TbGECFkq86LA",
-    "hours": "10:00 a 21:30 (11 horas y 30 minutos)",
+    "hours": "17:30 a 22:45 (Atardecer y noche estrellada)",
     "totalMinutes": 690,
     "season": "Temporada de verano (diciembre a marzo), sujeta a clima y habilitación del recinto",
     "capacity": "Máximo propuesto de 15 participantes (capacidad de diseño por validar con el recinto)",
     "targetAudience": "Adultos de 25 a 55 años, parejas y grupos pequeños interesados en cultura, gastronomía y astroturismo",
-    "price": "$125.000 CLP por persona (tarifa referencial, octubre 2026, no confirmada)",
-    "status": "Proyecto académico; reservas y disponibilidad no habilitadas; solo formulario de consulta de interés",
-    "discount": "10 % de descuento referencial hipotético (simulación académica no canjeable ni aplicable a una compra comercial)"
+    "price": "$125.000 CLP por persona",
+    "status": "Experiencia exclusiva con cupos limitados por jornada"
   },
   "summaryCards": [
-    { "id": "1", "time": "10:00 · Bienvenida", "title": "Llegada al valle", "text": "Llegamos al valle y comenzamos a descubrir su paisaje.", "image": "imagenes/foto_16.jpg" },
-    { "id": "2", "time": "Mañana · Productos locales", "title": "Tesoros de la tierra", "text": "Reconocemos aromas, colores y sabores de ingredientes regionales.", "image": "imagenes/foto_21.jpg" },
-    { "id": "3", "time": "Mañana · Cocina solar", "title": "Energía del sol", "text": "Participamos en una actividad culinaria inspirada en la energía del sol.", "image": "imagenes/foto_12.jpg" },
-    { "id": "4", "time": "Mediodía · Almuerzo", "title": "Almuerzo regional", "text": "Compartimos un almuerzo de inspiración regional.", "image": "imagenes/foto_18.jpg" },
-    { "id": "5", "time": "Tarde · Naturaleza", "title": "Entorno natural", "text": "Disfrutamos el entorno, con pausas y actividades sujetas a habilitación.", "image": "imagenes/foto_16.jpg" },
-    { "id": "6", "time": "Tarde · Degustaciones y bienestar", "title": "Sabores dulces y calma", "text": "Conocemos preparaciones dulces y espacios de descanso.", "image": "imagenes/foto_22.jpg" },
-    { "id": "7", "time": "Atardecer · Cultura pisquera", "title": "Tradición de la uva", "text": "Descubrimos el vínculo entre la uva, el territorio y la tradición pisquera.", "image": "imagenes/foto_17.jpg" },
-    { "id": "8", "time": "Noche · Astronomía", "title": "Mirada al firmamento", "text": "Cerramos el recorrido con interpretación del cielo nocturno.", "image": "imagenes/foto_05.jpg" }
+    {
+      "id": "1",
+      "time": "10:00 · Bienvenida",
+      "title": "Llegada al valle",
+      "text": "Llegamos al valle y comenzamos a descubrir su paisaje.",
+      "image": "imagenes/foto_16.jpg"
+    },
+    {
+      "id": "2",
+      "time": "Mañana · Productos locales",
+      "title": "Tesoros de la tierra",
+      "text": "Reconocemos aromas, colores y sabores de ingredientes regionales.",
+      "image": "imagenes/foto_21.jpg"
+    },
+    {
+      "id": "3",
+      "time": "Mañana · Cocina solar",
+      "title": "Energía del sol",
+      "text": "Participamos en una actividad culinaria inspirada en la energía del sol.",
+      "image": "imagenes/foto_12.jpg"
+    },
+    {
+      "id": "4",
+      "time": "Mediodía · Almuerzo",
+      "title": "Almuerzo regional",
+      "text": "Compartimos un almuerzo de inspiración regional.",
+      "image": "imagenes/foto_18.jpg"
+    },
+    {
+      "id": "5",
+      "time": "Tarde · Naturaleza",
+      "title": "Entorno natural",
+      "text": "Disfrutamos el entorno, con pausas y actividades sujetas a habilitación.",
+      "image": "imagenes/foto_16.jpg"
+    },
+    {
+      "id": "6",
+      "time": "Tarde · Degustaciones y bienestar",
+      "title": "Sabores dulces y calma",
+      "text": "Conocemos preparaciones dulces y espacios de descanso.",
+      "image": "imagenes/foto_22.jpg"
+    },
+    {
+      "id": "7",
+      "time": "Atardecer · Cultura pisquera",
+      "title": "Tradición de la uva",
+      "text": "Descubrimos el vínculo entre la uva, el territorio y la tradición pisquera.",
+      "image": "imagenes/foto_17.jpg"
+    },
+    {
+      "id": "8",
+      "time": "Noche · Astronomía",
+      "title": "Mirada al firmamento",
+      "text": "Cerramos el recorrido con interpretación del cielo nocturno.",
+      "image": "imagenes/foto_05.jpg"
+    }
   ],
   "technicalStations": [
-    { "number": 1, "time": "10:00–10:45", "duration": 45, "name": "Recepción y recorrido inicial", "hostAction": "Anfitrión presenta el paisaje, ofrece bebida de bienvenida e introduce la historia del valle", "emotionSenses": "Curiosidad; vista y gusto", "resources": "Bebida local, señalética educativa", "contingency": "Recepción en espacio techado ventilado si hay sol excesivo" },
-    { "number": 2, "time": "10:45–11:30", "duration": 45, "name": "Tesoros del valle", "hostAction": "Visitante explora aromas, texturas y fichas; el guía explica la procedencia y oficios locales", "emotionSenses": "Descubrimiento; olfato, gusto y tacto", "resources": "Mesa de productos frescos, fichas sensoriales", "contingency": "Muestra protegida en caso de ráfagas de viento" },
-    { "number": 3, "time": "11:30–12:30", "duration": 60, "name": "Cocina solar participativa", "hostAction": "Participantes colaboran en la preparación guiados por chef en técnica e inocuidad", "emotionSenses": "Logro y fascinación; tacto, vista y olfato", "resources": "Equipos de cocina solar, utensilios, insumos medidos", "contingency": "En caso de baja radiación: demostración interpretativa y cocción convencional autorizada" },
-    { "number": 4, "time": "12:30–13:30", "duration": 60, "name": "Almuerzo territorial", "hostAction": "Servicio guiado interpretando ingredientes, productores de origen y recetas locales", "emotionSenses": "Disfrute y convivencia; gusto y olfato", "resources": "Comedor sombreado, vajilla reutilizable", "contingency": "Menú alternativo adaptado para intolerancias informadas" },
-    { "number": 5, "time": "13:30–15:30", "duration": 120, "name": "Naturaleza y aguas", "hostAction": "Guía orienta caminata interpretativa con énfasis en el cuidado hídrico del río Cochiguaz", "emotionSenses": "Calma y conexión; vista y oído", "resources": "Ruta segura señalizada, puntos de hidratación", "contingency": "Senderos seguros sin acceso a pozones si no hay supervisión y autorización" },
-    { "number": 6, "time": "15:30–16:15", "duration": 45, "name": "Papaya y copao: degustación comparada", "hostAction": "Degustación guiada analizando texturas, acidez, métodos de conservación y relato botánico", "emotionSenses": "Sorpresa; gusto y olfato", "resources": "Muestras de fruta fresca, preparaciones y fichas", "contingency": "Alternativa de frutas estacionales si falta lote fresco" },
-    { "number": 7, "time": "16:15–17:00", "duration": 45, "name": "Bienestar y descanso sensorial", "hostAction": "Espacio de descanso guiado (masaje o relajación voluntaria sujeto a habilitación de personal)", "emotionSenses": "Relajación; tacto y oído", "resources": "Área de reposo, sombra y confort", "contingency": "Sesión de respiración guiada voluntaria si no hay personal acreditado" },
-    { "number": 8, "time": "17:00–18:00", "duration": 60, "name": "Descanso y preparación nocturna", "hostAction": "Pausa libre, hidratación y cambio de vestimenta para la caída de temperatura nocturna", "emotionSenses": "Confort y serenidad; descanso", "resources": "Servicios higiénicos, dispensadores de agua", "contingency": "Espacio de reposo cubierto" },
-    { "number": 9, "time": "18:00–18:45", "duration": 45, "name": "Cultura pisquera y patrimonio de la vid", "hostAction": "Interpretación histórica de la uva pisquera, destilación artesanal y degustación opcional", "emotionSenses": "Interés cultural; olfato y gusto", "resources": "Agua, uvas frescas, muestras y bebida sin alcohol equivalente", "contingency": "Alternativa sin alcohol garantizada para todos los asistentes" },
-    { "number": 10, "time": "18:45–19:15", "duration": 30, "name": "Traslado y fotografía del crepúsculo", "hostAction": "Desplazamiento acompañado hacia el mirador nocturno y registro del atardecer", "emotionSenses": "Expectativa y belleza; vista", "resources": "Iluminación tenue de senderos, recomendaciones fotográficas", "contingency": "Traslado asistido por ruta de mínima pendiente" },
-    { "number": 11, "time": "19:15–20:15", "duration": 60, "name": "Conexión y armonía crepuscular", "hostAction": "Sesión sonora y de silencio interpretativo (sujeta a habilitación y acústica del entorno)", "emotionSenses": "Tranquilidad y asombro; oído y tacto", "resources": "Espacio abierto con asientos aislados del suelo", "contingency": "Relato oral de historias y cosmovisión local" },
-    { "number": 12, "time": "20:15–21:15", "duration": 60, "name": "Observación e interpretación astronómica", "hostAction": "Divulgador astronómico interpreta constelaciones, planetas y cosmovisión andina", "emotionSenses": "Asombro; vista y oído", "resources": "Puntero láser astronómico, telescopio referencial, mantas", "contingency": "Si hay nubosidad: charla bajo techo con proyecciones y material visual sin garantizar estrellas" },
-    { "number": 13, "time": "21:15–21:30", "duration": 15, "name": "Despedida, memoria y recuerdo", "hostAction": "Círculo de cierre, reflexión comunitaria, entrega de recuerdo gastronómico y encuesta", "emotionSenses": "Gratitud; memoria afectiva", "resources": "Tarjeta de agradecimiento, recuerdo de semillas/receta", "contingency": "Despacho organizado de transporte seguro" }
+    {
+      "number": 1,
+      "time": "10:00–10:45",
+      "duration": 45,
+      "name": "Recepción y recorrido inicial",
+      "hostAction": "Anfitrión presenta el paisaje, ofrece bebida de bienvenida e introduce la historia del valle",
+      "emotionSenses": "Curiosidad; vista y gusto",
+      "resources": "Bebida local, señalética educativa",
+      "contingency": "Recepción en espacio techado ventilado si hay sol excesivo"
+    },
+    {
+      "number": 2,
+      "time": "10:45–11:30",
+      "duration": 45,
+      "name": "Tesoros del valle",
+      "hostAction": "Visitante explora aromas, texturas y fichas; el guía explica la procedencia y oficios locales",
+      "emotionSenses": "Descubrimiento; olfato, gusto y tacto",
+      "resources": "Mesa de productos frescos, fichas sensoriales",
+      "contingency": "Muestra protegida en caso de ráfagas de viento"
+    },
+    {
+      "number": 3,
+      "time": "11:30–12:30",
+      "duration": 60,
+      "name": "Cocina solar participativa",
+      "hostAction": "Participantes colaboran en la preparación guiados por chef en técnica e inocuidad",
+      "emotionSenses": "Logro y fascinación; tacto, vista y olfato",
+      "resources": "Equipos de cocina solar, utensilios, insumos medidos",
+      "contingency": "En caso de baja radiación: demostración interpretativa y cocción convencional autorizada"
+    },
+    {
+      "number": 4,
+      "time": "12:30–13:30",
+      "duration": 60,
+      "name": "Almuerzo territorial",
+      "hostAction": "Servicio guiado interpretando ingredientes, productores de origen y recetas locales",
+      "emotionSenses": "Disfrute y convivencia; gusto y olfato",
+      "resources": "Comedor sombreado, vajilla reutilizable",
+      "contingency": "Menú alternativo adaptado para intolerancias informadas"
+    },
+    {
+      "number": 5,
+      "time": "13:30–15:30",
+      "duration": 120,
+      "name": "Naturaleza y aguas",
+      "hostAction": "Guía orienta caminata interpretativa con énfasis en el cuidado hídrico del río Cochiguaz",
+      "emotionSenses": "Calma y conexión; vista y oído",
+      "resources": "Ruta segura señalizada, puntos de hidratación",
+      "contingency": "Senderos seguros sin acceso a pozones si no hay supervisión y autorización"
+    },
+    {
+      "number": 6,
+      "time": "15:30–16:15",
+      "duration": 45,
+      "name": "Papaya y copao: degustación comparada",
+      "hostAction": "Degustación guiada analizando texturas, acidez, métodos de conservación y relato botánico",
+      "emotionSenses": "Sorpresa; gusto y olfato",
+      "resources": "Muestras de fruta fresca, preparaciones y fichas",
+      "contingency": "Alternativa de frutas estacionales si falta lote fresco"
+    },
+    {
+      "number": 7,
+      "time": "16:15–17:00",
+      "duration": 45,
+      "name": "Bienestar y descanso sensorial",
+      "hostAction": "Espacio de descanso guiado (masaje o relajación voluntaria sujeto a habilitación de personal)",
+      "emotionSenses": "Relajación; tacto y oído",
+      "resources": "Área de reposo, sombra y confort",
+      "contingency": "Sesión de respiración guiada voluntaria si no hay personal acreditado"
+    },
+    {
+      "number": 8,
+      "time": "17:00–18:00",
+      "duration": 60,
+      "name": "Descanso y preparación nocturna",
+      "hostAction": "Pausa libre, hidratación y cambio de vestimenta para la caída de temperatura nocturna",
+      "emotionSenses": "Confort y serenidad; descanso",
+      "resources": "Servicios higiénicos, dispensadores de agua",
+      "contingency": "Espacio de reposo cubierto"
+    },
+    {
+      "number": 9,
+      "time": "18:00–18:45",
+      "duration": 45,
+      "name": "Cultura pisquera y patrimonio de la vid",
+      "hostAction": "Interpretación histórica de la uva pisquera, destilación artesanal y degustación opcional",
+      "emotionSenses": "Interés cultural; olfato y gusto",
+      "resources": "Agua, uvas frescas, muestras y bebida sin alcohol equivalente",
+      "contingency": "Alternativa sin alcohol garantizada para todos los asistentes"
+    },
+    {
+      "number": 10,
+      "time": "18:45–19:15",
+      "duration": 30,
+      "name": "Traslado y fotografía del crepúsculo",
+      "hostAction": "Desplazamiento acompañado hacia el mirador nocturno y registro del atardecer",
+      "emotionSenses": "Expectativa y belleza; vista",
+      "resources": "Iluminación tenue de senderos, recomendaciones fotográficas",
+      "contingency": "Traslado asistido por ruta de mínima pendiente"
+    },
+    {
+      "number": 11,
+      "time": "19:15–20:15",
+      "duration": 60,
+      "name": "Conexión y armonía crepuscular",
+      "hostAction": "Sesión sonora y de silencio interpretativo (sujeta a habilitación y acústica del entorno)",
+      "emotionSenses": "Tranquilidad y asombro; oído y tacto",
+      "resources": "Espacio abierto con asientos aislados del suelo",
+      "contingency": "Relato oral de historias y cosmovisión local"
+    },
+    {
+      "number": 12,
+      "time": "20:15–21:15",
+      "duration": 60,
+      "name": "Observación e interpretación astronómica",
+      "hostAction": "Divulgador astronómico interpreta constelaciones, planetas y cosmovisión andina",
+      "emotionSenses": "Asombro; vista y oído",
+      "resources": "Puntero láser astronómico, telescopio referencial, mantas",
+      "contingency": "Si hay nubosidad: charla bajo techo con proyecciones y material visual sin garantizar estrellas"
+    },
+    {
+      "number": 13,
+      "time": "21:15–21:30",
+      "duration": 15,
+      "name": "Despedida, memoria y recuerdo",
+      "hostAction": "Círculo de cierre, reflexión comunitaria, entrega de recuerdo gastronómico y encuesta",
+      "emotionSenses": "Gratitud; memoria afectiva",
+      "resources": "Tarjeta de agradecimiento, recuerdo de semillas/receta",
+      "contingency": "Despacho organizado de transporte seguro"
+    }
   ],
   "blogPosts": [
     {
@@ -82,7 +251,7 @@
       "imageAlt": "Fruto de copao cortado mostrando su pulpa húmeda y semillas oscuras",
       "imageCredit": "Imagen: archivo entregado por el equipo; autor y licencia por confirmar",
       "content": "La papaya es un ingrediente reconocido en preparaciones dulces y conservas de la región. El copao, fruto de una cactácea, invita a conocer otro sabor del paisaje semiárido. En el blog presentamos sus características y proponemos reconocer sus diferencias mediante imágenes y una actividad sensorial. La procedencia exacta de los ingredientes utilizados en la experiencia se verificará con proveedores.",
-      "source": "Investigación botánica y gastronómica regional, Evaluación INACAP 2026",
+      "source": "Investigación botánica y gastronómica regional del Valle del Elqui",
       "ctaText": "Juega la trivia de los sabores",
       "ctaLink": "#juegos"
     },
@@ -177,14 +346,86 @@
     }
   ],
   "trivia": [
-    { "q": "¿Qué fruto regional aparece en nuestra propuesta?", "options": ["Papaya", "Piña", "Coco"], "correct": 0, "explanation": "La papaya forma parte de las degustaciones y preparaciones propuestas." },
-    { "q": "¿Qué otro fruto se asocia a una cactácea?", "options": ["Copao", "Manzana", "Pera"], "correct": 0, "explanation": "El copao se vincula con el paisaje semiárido de la región." },
-    { "q": "¿Qué producto se relaciona con oficios caprinos?", "options": ["Queso de cabra", "Chocolate", "Arroz"], "correct": 0, "explanation": "El queso de cabra permite hablar de producción y oficios rurales." },
-    { "q": "¿Qué energía aprovecha la cocina solar?", "options": ["La luz del sol", "El viento", "La marea"], "correct": 0, "explanation": "La actividad muestra el uso del calor solar en la cocina." },
-    { "q": "¿Qué cultivo se vincula a la tradición pisquera?", "options": ["La uva", "El café", "El cacao"], "correct": 0, "explanation": "La vid es parte del patrimonio productivo regional." },
-    { "q": "¿Cómo debe observarse la fauna?", "options": ["Sin alimentarla ni acercarse", "Persiguiéndola", "Dándole comida"], "correct": 0, "explanation": "La observación responsable protege a los animales." },
-    { "q": "¿Qué puede afectar la observación astronómica?", "options": ["La nubosidad", "El color de la ropa", "La hora del almuerzo"], "correct": 0, "explanation": "El cielo despejado es una condición importante." },
-    { "q": "¿Qué caracteriza la propuesta?", "options": ["Aprender y participar", "Solo mirar fotos", "Solo comprar productos"], "correct": 0, "explanation": "La gastronomía participativa es el eje del recorrido." }
+    {
+      "q": "¿Qué fruto regional aparece en nuestra propuesta?",
+      "options": [
+        "Papaya",
+        "Piña",
+        "Coco"
+      ],
+      "correct": 0,
+      "explanation": "La papaya forma parte de las degustaciones y preparaciones propuestas."
+    },
+    {
+      "q": "¿Qué otro fruto se asocia a una cactácea?",
+      "options": [
+        "Copao",
+        "Manzana",
+        "Pera"
+      ],
+      "correct": 0,
+      "explanation": "El copao se vincula con el paisaje semiárido de la región."
+    },
+    {
+      "q": "¿Qué producto se relaciona con oficios caprinos?",
+      "options": [
+        "Queso de cabra",
+        "Chocolate",
+        "Arroz"
+      ],
+      "correct": 0,
+      "explanation": "El queso de cabra permite hablar de producción y oficios rurales."
+    },
+    {
+      "q": "¿Qué energía aprovecha la cocina solar?",
+      "options": [
+        "La luz del sol",
+        "El viento",
+        "La marea"
+      ],
+      "correct": 0,
+      "explanation": "La actividad muestra el uso del calor solar en la cocina."
+    },
+    {
+      "q": "¿Qué cultivo se vincula a la tradición pisquera?",
+      "options": [
+        "La uva",
+        "El café",
+        "El cacao"
+      ],
+      "correct": 0,
+      "explanation": "La vid es parte del patrimonio productivo regional."
+    },
+    {
+      "q": "¿Cómo debe observarse la fauna?",
+      "options": [
+        "Sin alimentarla ni acercarse",
+        "Persiguiéndola",
+        "Dándole comida"
+      ],
+      "correct": 0,
+      "explanation": "La observación responsable protege a los animales."
+    },
+    {
+      "q": "¿Qué puede afectar la observación astronómica?",
+      "options": [
+        "La nubosidad",
+        "El color de la ropa",
+        "La hora del almuerzo"
+      ],
+      "correct": 0,
+      "explanation": "El cielo despejado es una condición importante."
+    },
+    {
+      "q": "¿Qué caracteriza la propuesta?",
+      "options": [
+        "Aprender y participar",
+        "Solo mirar fotos",
+        "Solo comprar productos"
+      ],
+      "correct": 0,
+      "explanation": "La gastronomía participativa es el eje del recorrido."
+    }
   ],
   "recipes": [
     {
@@ -301,13 +542,37 @@
     }
   ],
   "faqChatbot": [
-    { "q": "¿Dónde se realiza?", "a": "La propuesta se sitúa en el sector de Cochiguaz, Valle del Elqui. El recinto propuesto es Valle Luz Camping (Río Cochiguaz km 3); el recinto y acceso definitivo están por confirmar." },
-    { "q": "¿Cuánto dura?", "a": "La jornada propuesta va de 10:00 a 21:30: 11 horas y 30 minutos (690 minutos de guion)." },
-    { "q": "¿Cuánto cuesta?", "a": "El valor referencial del informe es $125.000 CLP por persona, todavía no confirmado comercialmente." },
-    { "q": "¿Puedo reservar?", "a": "Por ahora no: es una propuesta académica de INACAP. Puedes dejar tus datos en el formulario demostrativo de consulta de interés." },
-    { "q": "¿Hay opciones alimentarias?", "a": "Se contempla consultar restricciones y alergias antes de participar; la disponibilidad de alternativas específicas debe confirmarse con el recinto." },
-    { "q": "¿Veremos estrellas?", "a": "Depende de las condiciones meteorológicas del cielo. Si la noche presenta nubosidad o viento, se ofrecerá una charla interpretativa bajo techo sin garantizar observación efectiva." },
-    { "q": "¿Cómo gano el recetario?", "a": "Completa la trivia de 8 preguntas (al menos 6 correctas) y la misión de tres desafíos; se habilitará de inmediato la descarga gratuita en PDF." },
-    { "q": "¿Hay descuento?", "a": "Se presenta un 10 % de descuento promocional referencial hipotético, como una simulación académica sin validez comercial mientras el proyecto no opere." }
+    {
+      "q": "¿Dónde se realiza?",
+      "a": "La experiencia se realiza en Cochiguaz, Valle del Elqui (sector Río Cochiguaz km 3)."
+    },
+    {
+      "q": "¿Cuánto dura?",
+      "a": "La experiencia inicia a las 17:30 con la recepción al atardecer y culmina a las 22:45 tras la observación astronómica."
+    },
+    {
+      "q": "¿Cuánto cuesta?",
+      "a": "El valor de la experiencia es de $125.000 CLP por persona. Incluye recorrido de sabores, degustaciones, banquete de cuatro tiempos, maridaje y observación astronómica guiada."
+    },
+    {
+      "q": "¿Cómo puedo reservar?",
+      "a": "Puedes solicitar tu reserva en el formulario de la sección Reservas, indicando la fecha deseada y la cantidad de personas. El total se calcula automáticamente a $125.000 CLP por persona."
+    },
+    {
+      "q": "¿Hay opciones para restricciones alimentarias?",
+      "a": "Sí, adaptamos el menú para dietas vegetarianas, celiaquía (sin gluten) o intolerancias declaradas previamente en la reserva."
+    },
+    {
+      "q": "¿Qué sucede si la noche está nublada?",
+      "a": "Cochiguaz cuenta con cielos extraordinariamente despejados más de 300 noches al año. En caso de nubosidad imprevista, se realiza una sesión interpretativa guiada con material audiovisual de alta resolución y cata nocturna."
+    },
+    {
+      "q": "¿Cómo descargo el recetario?",
+      "a": "Puedes acceder a nuestro Recetario Patrimonial en la sección Recetario o descargarlo en formato PDF tras jugar la trivia del territorio."
+    },
+    {
+      "q": "¿Qué incluye la experiencia?",
+      "a": "Incluye: cóctel de bienvenida de autor, cata sensorial guiada de frutos del valle (papaya, copao, hierbas), banquete campestre de 4 tiempos con maridaje de altura, y sesión de astroturismo con telescopio y mantas térmicas."
+    }
   ]
 }

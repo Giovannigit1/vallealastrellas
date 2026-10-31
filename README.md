@@ -1,18 +1,23 @@
 # Del Valle a la Mesa, de la Mesa a las Estrellas
-> **Prototipo Académico de Experiencia Gastroturística y Astroturismo · INACAP**  
-> **Carrera:** Administración Gastronómica | **Asignatura:** Diseño de experiencias gastroturísticas  
-> **Equipo:** Antonia Huerta · Caroline Prado · Paz Bozo | **Docente:** Rubén Tapia  
-> **Fecha:** Octubre de 2026 | **URL en Producción:** [https://vallealastrellas.vercel.app/](https://vallealastrellas.vercel.app/)
+> **Plataforma Oficial de Experiencia Gastroturística & Astroturismo · Valle del Elqui**  
+> **Ubicación:** Cochiguaz, Región de Coquimbo, Chile  
+> **Anfitrionas & Creadoras:** Antonia Huerta · Caroline Prado · Paz Bozo  
+> **Valor de la Experiencia:** $125.000 CLP por persona  
+> **URL en Producción:** [https://vallealastrellas.vercel.app/](https://vallealastrellas.vercel.app/)
 
 ---
 
-## 📌 1. Resumen y Contexto del Proyecto
+## 📌 1. Resumen y Propuesta de Valor
 
-Este proyecto es la reconstrucción integral, accesible y fidedigna del blog turístico para la experiencia **«Del valle a la mesa, de la mesa a las estrellas»**.
+Sitio web oficial de la experiencia boutique **«Del valle a la mesa, de la mesa a las estrellas»**.
 
-Se diseñó y programó siguiendo rigurosamente como fuentes oficiales de verdad:
-1. **Informe Oficial de Evaluación 2 (`Valle del elqui e2 (1).pdf`)**: Máxima autoridad técnica para horarios, minutajes (690 min), 13 estaciones, cupos (hasta 15 personas), precios ($125.000 referencial), pasaporte gastronómico y medidas de contingencia.
-2. **Guía Maestra del Blog (`Guia_Completa_Blog_Valle_del_Elqui.docx`)**: Plan editorial con textos textuales para las 6 entradas del blog, paleta cromática, diseño de juegos, 5 recetas medidas, chatbot y controles de accesibilidad.
+Una experiencia gastronómica y sensorial exclusiva en Cochiguaz que une:
+* Recorrido interpretativo por los sabores del Valle del Elqui.
+* Taller sensorial de papaya, copao y botánica cordillerana.
+* Banquete campestre de cuatro tiempos con maridaje de altura.
+* Bautismo de estrellas y astroturismo guiado bajo uno de los cielos más limpios del planeta.
+* Galería visual de fauna silvestre regional (mamíferos y aves).
+* Cotizador dinámico de reservas en tiempo real ($125.000 CLP por persona).
 
 ---
 
@@ -98,20 +103,23 @@ Archivos disponibles:
 
 ---
 
-## ⏱️ 8. Guion de Demostración en Vivo (3 Minutos)
+## ⏱️ 8. Guion de Demostración del Sitio Web
 
-Para la exposición frente a la comisión evaluadora de INACAP:
+Para la presentación oficial de la experiencia gastroturística:
 
-1. **Minuto 1: Identidad y Relato Territorial (Portada + Quiénes Somos)**
-   - Abrir el sitio web y mostrar la barra de accesibilidad superior (activar síntesis de voz y modo alto contraste para evidenciar inclusión WCAG).
-   - Mostrar la franja con los datos canónicos: 10:00 a 21:30, Cochiguaz, hasta 15 personas.
-   - Presentar al equipo de tres estudiantes (Antonia Huerta, Caroline Prado, Paz Bozo) destacando que la gastronomía es el eje central de la vivencia.
-2. **Minuto 2: El Guion Técnico y las Entradas del Blog (Experiencia + Blog)**
-   - Mostrar las 8 tarjetas resumen de la jornada y desplegar la **tabla técnica de las 13 estaciones (690 minutos exactos)** con sus medidas de contingencia (alternativa de cocción convencional ante falta de sol y charla interpretativa si hay nubes).
-   - Recorrer el Blog con sus 6 entradas editoriales, mostrando el botón «🔊 Escuchar esta entrada» y los créditos responsables.
-   - Mostrar la sección de Fauna con sus ilustraciones SVG vectoriales propias y normas de observación responsable.
-3. **Minuto 3: Gamificación y Recetario Desbloqueable (Juegos + Recetario + Consulta)**
-   - Responder la Trivia (avance 1/8 a 8/8) y mostrar la explicación didáctica inmediata.
+1. **Recorrido Inicial e Identidad (Portada + Quiénes Somos)**
+   - Presentación de la experiencia boutique con valor destacado de $125.000 CLP por persona.
+   - Barra de accesibilidad universal superior (síntesis de voz, aumento de tipografía, contraste e instrucciones de teclado).
+   - Historia y visión de las anfitrionas (Antonia Huerta, Caroline Prado, Paz Bozo).
+2. **Itinerario de Cuatro Etapas y Guion Técnico (Experiencia)**
+   - Desglose de las 4 etapas principales (Recepción al atardecer, Taller sensorial, Banquete de cuatro tiempos, Bautismo de estrellas).
+   - Inclusiones detalladas y despliegue del guion técnico de las 13 estaciones.
+3. **Galería Editorial de Fauna Silvestre (Fauna)**
+   - Revista visual de las 8 especies características del Valle del Elqui y sus estribaciones (4 mamíferos y 4 aves).
+   - Fotografías auténticas de alta resolución con nombres científicos y compromisos de turismo responsable.
+4. **Reserva Inteligente y Dinámica (Reservas)**
+   - Cálculo automático del valor de la experiencia según el número de personas seleccionadas (1: $125.000, 2: $250.000, 3: $375.000, 4: $500.000, etc.).
+   - Envío protegido con honeypot y aviso de confirmación.
    - Mostrar el Pasaporte Gastronómico con sus 6 hitos territoriales sellados y la garantía sin alcohol.
    - Abrir el Recetario Oficial desbloqueado y descargar el archivo PDF real de 557 KB.
    - Abrir el asistente virtual flotante «Elqui» y consultar por la duración o el lugar.

@@ -216,8 +216,8 @@
       </p>
       ${isPassed ? `
         <div style="background-color: #FFF9E6; border: 1px solid var(--color-amarillo-sol); padding: 14px 18px; border-radius: 12px; margin-bottom: 20px; font-size: 14px; text-align: left;">
-          <strong>Promoción didáctica:</strong> Has obtenido un <em>10 % de descuento referencial hipotético</em> para una futura experiencia.<br>
-          <small style="color: #64748B;">Aviso académico: Esta es una simulación para fines de evaluación; no es un beneficio canjeable ni aplicable a una compra comercial.</small>
+          <strong style="color: var(--color-verde-cactus);">⭐ ¡Reconocimiento de Embajador del Valle!</strong><br>
+          Has demostrado un conocimiento sobresaliente de los sabores y la cultura elquina. Se ha desbloqueado la descarga exclusiva del <strong>Recetario Patrimonial Oficial en PDF</strong>.
         </div>
       ` : ''}
     `;

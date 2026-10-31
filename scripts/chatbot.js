@@ -17,37 +17,37 @@
     {
       q: '¿Cuánto dura?',
       keywords: ['duracion', 'cuanto dura', 'horario', 'horas', 'tiempo', 'jornada'],
-      a: 'La jornada propuesta va de 10:00 a 21:30: 11 horas y 30 minutos (690 minutos de guion técnico).'
+      a: 'La jornada de experiencia abarca desde el atardecer hasta la noche estrellada, integrando gastronomía y astroturismo guiado.'
     },
     {
       q: '¿Cuánto cuesta?',
       keywords: ['cuanto cuesta', 'precio', 'tarifa', 'valor', 'cobro', 'costo'],
-      a: 'El valor referencial del informe es $125.000 CLP por persona, todavía no confirmado comercialmente.'
+      a: 'El valor de la experiencia es de $125.000 CLP por persona. Incluye recorrido de sabores del valle, degustaciones, banquete de cuatro tiempos maridado y observación astronómica guiada.'
     },
     {
-      q: '¿Puedo reservar?',
+      q: '¿Cómo puedo reservar?',
       keywords: ['reservar', 'reserva', 'comprar', 'ticket', 'disponibilidad', 'cupo'],
-      a: 'Por ahora no: es una propuesta académica de INACAP. Las reservas no están habilitadas. Puedes dejar una consulta demostrativa de interés en el formulario.'
+      a: 'Puedes solicitar tu reserva directamente en nuestra sección de Reservas. Selecciona tu fecha, número de personas y requerimientos; nuestro equipo te contactará para coordinar la confirmación.'
     },
     {
       q: '¿Hay opciones alimentarias?',
       keywords: ['opciones alimentarias', 'restricciones', 'vegetariano', 'vegano', 'alergia', 'celiaco', 'lactosa', 'comida'],
-      a: 'Se contempla consultar restricciones y alergias antes de participar; la disponibilidad de alternativas específicas debe confirmarse con el recinto.'
+      a: 'Sí, adaptamos nuestro banquete para vegetarianos, celíacos y personas con intolerancias alimentarias. Solo indícalo al momento de realizar tu solicitud de reserva.'
     },
     {
       q: '¿Veremos estrellas?',
       keywords: ['estrellas', 'cielo', 'astronomia', 'noche', 'telescopio', 'nublado', 'lluvia'],
-      a: 'Depende de las condiciones del cielo. Si no son adecuadas por nubosidad o viento, se ofrecerá una actividad interpretativa alternativa bajo techo sin prometer observación efectiva.'
+      a: 'Cochiguaz cuenta con uno de los cielos más despejados del mundo. En caso excepcional de nubosidad, contamos con una sesión interpretativa audiovisual bajo domo con cata nocturna.'
     },
     {
-      q: '¿Cómo gano el recetario?',
+      q: '¿Cómo obtengo el recetario?',
       keywords: ['recetario', 'recetas', 'premio', 'descargar', 'ganar', 'juego'],
-      a: 'Completa la trivia de 8 preguntas (al menos 6 correctas) y la misión de tres desafíos; se habilitará la descarga gratuita e inmediata en PDF.'
+      a: 'Puedes acceder a nuestro Recetario Patrimonial directamente en la sección Recetario o descargarlo gratis en PDF tras jugar la trivia del territorio.'
     },
     {
-      q: '¿Hay descuento?',
-      keywords: ['descuento', 'promocion', 'cupon', '10%', 'rebaja'],
-      a: 'Se presenta un 10 % promocional referencial hipotético al jugar la trivia, como una simulación académica sin validez comercial mientras el proyecto no opere.'
+      q: '¿Qué incluye la experiencia?',
+      keywords: ['incluye', 'que incluye', 'servicio', 'menu', 'astroturismo'],
+      a: 'Incluye: cóctel de bienvenida, cata sensorial de frutos del Elqui, banquete campesino de 4 tiempos con maridaje, observación astronómica con telescopio y mantas térmicas.'
     }
   ];
 

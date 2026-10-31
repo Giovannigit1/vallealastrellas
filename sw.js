@@ -1,10 +1,10 @@
 /**
  * SERVICE WORKER OFFLINE-FIRST
  * Del valle a la mesa, de la mesa a las estrellas
- * Versión de caché: v2-elqui-inacap
+ * Versión de caché: v3-elqui-experiencia
  */
 
-const CACHE_NAME = 'elqui-blog-v2';
+const CACHE_NAME = 'elqui-experience-v3';
 
 const ASSETS_TO_CACHE = [
   './',
@@ -24,9 +24,22 @@ const ASSETS_TO_CACHE = [
   'fuentes/nunito-latin-600-normal.woff2',
   'fuentes/nunito-latin-700-normal.woff2',
   'fuentes/nunito-latin-800-normal.woff2',
-  'imagenes/zorro-culpeo.svg',
-  'imagenes/condor-andino.svg',
-  'imagenes/lagartija-nativo.svg',
+  'imagenes/fauna/zorro-culpeo.jpg',
+  'imagenes/fauna/zorro-culpeo.webp',
+  'imagenes/fauna/vizcacha.jpg',
+  'imagenes/fauna/vizcacha.webp',
+  'imagenes/fauna/guanaco.jpg',
+  'imagenes/fauna/guanaco.webp',
+  'imagenes/fauna/puma.jpg',
+  'imagenes/fauna/puma.webp',
+  'imagenes/fauna/condor-andino.jpg',
+  'imagenes/fauna/condor-andino.webp',
+  'imagenes/fauna/aguila-mora.jpg',
+  'imagenes/fauna/aguila-mora.webp',
+  'imagenes/fauna/loro-tricahue.jpg',
+  'imagenes/fauna/loro-tricahue.webp',
+  'imagenes/fauna/picaflor-cordillerano.jpg',
+  'imagenes/fauna/picaflor-cordillerano.webp',
   'imagenes/sol-cocina.svg',
   'imagenes/cactus-elqui.svg',
   'imagenes/constelaciones.svg',
@@ -110,6 +123,24 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // Para documentos HTML / navegación: Network-First (con fallback a caché si está offline)
+  if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+    event.respondWith(
+      fetch(event.request).then(networkResponse => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache);
+          });
+        }
+        return networkResponse;
+      }).catch(() => {
+        return caches.match(event.request).then(cached => cached || caches.match('index.html'));
+      })
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
       if (cachedResponse) {
@@ -124,11 +155,6 @@ self.addEventListener('fetch', event => {
           cache.put(event.request, responseToCache);
         });
         return networkResponse;
-      }).catch(() => {
-        // Fallback offline para navegación
-        if (event.request.mode === 'navigate') {
-          return caches.match('index.html');
-        }
       });
     })
   );

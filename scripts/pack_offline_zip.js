@@ -25,11 +25,9 @@ rootFiles.forEach(f => {
 
 // Crear LEEME.txt explicativo para el ZIP offline
 const leemeContent = `========================================================================
-BLOG DEL VALLE DEL ELQUI · PROTOTIPO ACADÉMICO OFFLINE V2
-«Del valle a la mesa, de la mesa a las estrellas»
-INACAP · Evaluación 2 Gastroturismo | Octubre 2026
-Equipo: Antonia Huerta · Caroline Prado · Paz Bozo
-Docente: Rubén Tapia
+DEL VALLE A LA MESA, DE LA MESA A LAS ESTRELLAS
+Experiencia Gastronómica & Astroturismo · Cochiguaz, Valle del Elqui
+Anfitrionas: Antonia Huerta · Caroline Prado · Paz Bozo
 ========================================================================
 
 INSTRUCCIONES DE APERTURA SIN INTERNET (OFFLINE):

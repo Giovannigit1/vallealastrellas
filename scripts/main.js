@@ -11,6 +11,7 @@
     window.addEventListener('load', function () {
       navigator.serviceWorker.register('sw.js')
         .then(function (reg) {
+          reg.update();
           console.log('Service Worker registrado con éxito en ámbito:', reg.scope);
         })
         .catch(function (err) {

@@ -43,11 +43,17 @@ De acuerdo con las directrices de la rúbrica y la Guía Maestra del Blog (Secci
 
 ---
 
-## Ilustraciones Vectoriales Propias (SVG Autocontenidos)
+## Fotografías Reales de Fauna Silvestre del Valle del Elqui (Revista de Naturaleza)
 
-Para suplir la carencia de imágenes fotográficas verificadas de fauna silvestre e iconografía, se incorporan ilustraciones vectoriales originales con la leyenda de rigor:
+Incorporadas para la galería visual de fauna representativa regional en formatos WebP y JPG de alta resolución (800x533 px), procedentes de repositorios científicos abiertos (Wikimedia Commons) bajo licencias Creative Commons verificadas:
 
-1. **Zorro culpeo (`zorro-culpeo.svg`):** *«Ilustración referencial de Lycalopex culpaeus, cánido nativo adaptado al matorral semiárido»*.
-2. **Cóndor andino (`condor-andino.svg`):** *«Ilustración referencial de Vultur gryphus en planeo sobre las altas cumbres del valle»*.
-3. **Lagartija nítida (`lagartija-nativo.svg`):** *«Ilustración referencial de Liolaemus nitidus, reptil endémico de zonas rocosas y asoleadas»*.
-4. **Sol geométrico y constelaciones australes:** *«Diseño vectorial propio para el módulo de cocina solar y astronomía»*.
+| Archivo | Especie y Nombre Científico | Categoría | Autor / Fuente | Licencia | Estado |
+|---|---|---|---|---|---|
+| `fauna/zorro-culpeo.webp` / `.jpg` | **Zorro culpeo** (*Lycalopex culpaeus*) | Mamífero | MasterCold9 / Wikimedia Commons | CC BY-SA 4.0 | Apta · Fotografía auténtica en hábitat cordillerano |
+| `fauna/vizcacha.webp` / `.jpg` | **Vizcacha** (*Lagidium viscacia*) | Mamífero | Diego Delso / Wikimedia Commons | CC BY-SA 4.0 | Apta · Fotografía auténtica en roquerío andino |
+| `fauna/guanaco.webp` / `.jpg` | **Guanaco** (*Lama guanicoe*) | Mamífero | Charles J. Sharp / Wikimedia Commons | CC BY-SA 4.0 | Apta · Fotografía auténtica de ejemplar silvestre |
+| `fauna/puma.webp` / `.jpg` | **Puma** (*Puma concolor*) | Mamífero | Charles J. Sharp / Wikimedia Commons | CC BY-SA 4.0 | Apta · Fotografía auténtica de depredador andino |
+| `fauna/condor-andino.webp` / `.jpg` | **Cóndor andino** (*Vultur gryphus*) | Ave | Charles J. Sharp / Wikimedia Commons | CC BY-SA 4.0 | Apta · Fotografía auténtica de gran envergadura |
+| `fauna/aguila-mora.webp` / `.jpg` | **Águila mora** (*Geranoaetus melanoleucus*) | Ave | Charles J. Sharp / Wikimedia Commons | CC BY-SA 4.0 | Apta · Fotografía auténtica de rapaz andina |
+| `fauna/loro-tricahue.webp` / `.jpg` | **Loro tricahue** (*Cyanoliseus patagonus*) | Ave | Lip Kee Yap (Limarí, Chile) / Wikimedia Commons | CC BY 2.0 | Apta · Fotografía auténtica de población regional de Coquimbo |
+| `fauna/picaflor-cordillerano.webp` / `.jpg` | **Picaflor cordillerano** (*Oreotrochilus leucopleurus*) | Ave | dfaulders / Wikimedia Commons | CC BY 2.0 | Apta · Fotografía auténtica en ambiente de altura |

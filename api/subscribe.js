@@ -86,8 +86,8 @@ module.exports = async (req, res) => {
     let htmlBody = '';
 
     if (type === 'inquiry') {
-      subject = 'Nueva consulta de interés – Del valle a la mesa';
-      textBody = `Nueva consulta de interés recibida:\n\n` +
+      subject = 'Nueva solicitud de reserva – Del valle a la mesa';
+      textBody = `Nueva solicitud de reserva recibida:\n\n` +
         `Nombre: ${validatedData.name}\n` +
         `Correo: ${validatedData.email}\n` +
         `Fecha deseada: ${validatedData.date || 'No especificada'}\n` +
@@ -95,12 +95,12 @@ module.exports = async (req, res) => {
         `Requerimientos alimentarios: ${validatedData.dietary || 'Ninguno informado'}\n` +
         `Mensaje: ${validatedData.message || 'Sin mensaje adicional'}\n` +
         `Fecha y hora (Chile): ${fechaHora}\n\n` +
-        `Nota: Esta es una consulta sobre la propuesta académica, no una reserva.`;
+        `Origen: Sitio web oficial Del Valle a la Mesa.`;
 
       htmlBody = `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #17253D; max-width: 600px; border: 1px solid #EBE3D7; border-radius: 12px; padding: 24px;">
-          <h2 style="color: #416B52; margin-top: 0;">🌵 Nueva consulta de interés – Del valle a la mesa</h2>
-          <p>Se ha recibido una nueva consulta a través del prototipo web:</p>
+          <h2 style="color: #416B52; margin-top: 0;">🌵 Nueva solicitud de reserva – Del valle a la mesa</h2>
+          <p>Se ha recibido una nueva solicitud a través del sitio web oficial:</p>
           <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
             <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Nombre:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.name}</td></tr>
             <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Correo:</td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:${validatedData.email}">${validatedData.email}</a></td></tr>
@@ -110,7 +110,7 @@ module.exports = async (req, res) => {
             <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Mensaje:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${validatedData.message || 'Sin mensaje'}</td></tr>
             <tr><td style="padding: 8px; font-weight: bold;">Fecha de registro:</td><td style="padding: 8px;">${fechaHora}</td></tr>
           </table>
-          <p style="font-size: 12px; color: #64748B; margin-top: 20px;">Proyecto Académico INACAP · Antonia Huerta, Caroline Prado, Paz Bozo.</p>
+          <p style="font-size: 12px; color: #64748B; margin-top: 20px;">Del Valle a la Mesa, de la Mesa a las Estrellas · Valle del Elqui, Chile.</p>
         </div>
       `;
     } else {
@@ -120,18 +120,18 @@ module.exports = async (req, res) => {
         `Correo: ${validatedData.email}\n` +
         `Fecha y hora (Chile): ${fechaHora}\n\n` +
         `Consentimiento otorgado: Sí\n` +
-        `Proyecto Académico: Del valle a la mesa, de la mesa a las estrellas (INACAP)`;
+        `Del valle a la mesa, de la mesa a las estrellas (Valle del Elqui)`;
 
       htmlBody = `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #17253D; max-width: 600px; border: 1px solid #EBE3D7; border-radius: 12px; padding: 24px;">
-          <h2 style="color: #BC6949; margin-top: 0;">✨ Nueva suscripción al Blog</h2>
+          <h2 style="color: #BC6949; margin-top: 0;">✨ Nueva suscripción al Boletín</h2>
           <p>Un visitante se ha suscrito a las novedades del territorio:</p>
           <ul style="padding-left: 20px;">
             <li><strong>Nombre:</strong> ${validatedData.name || 'No indicado'}</li>
             <li><strong>Correo:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></li>
             <li><strong>Fecha:</strong> ${fechaHora}</li>
           </ul>
-          <p style="font-size: 12px; color: #64748B; margin-top: 20px;">Proyecto Académico INACAP · Evaluación 2 Gastroturismo.</p>
+          <p style="font-size: 12px; color: #64748B; margin-top: 20px;">Del Valle a la Mesa, de la Mesa a las Estrellas · Valle del Elqui, Chile.</p>
         </div>
       `;
     }
@@ -197,7 +197,7 @@ module.exports = async (req, res) => {
     if (emailSent) {
       return res.status(200).json({
         success: true,
-        message: type === 'inquiry' ? 'Recibimos tu consulta. No es una reserva.' : '¡Gracias por acompañarnos!'
+        message: type === 'inquiry' ? '¡Solicitud recibida! Nos pondremos en contacto contigo a la brevedad para coordinar los detalles de tu experiencia.' : '¡Gracias por suscribirte a nuestro boletín!'
       });
     } else {
       console.warn('[Envío] Ni Resend ni SMTP pudieron completar la entrega');
