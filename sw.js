@@ -9,6 +9,7 @@ const CACHE_NAME = 'elqui-experience-v3';
 const ASSETS_TO_CACHE = [
   './',
   'index.html',
+  'admin.html',
   'recetario.html',
   'recetario/index.html',
   'recetario/Recetario-Elqui.pdf',

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración | Del valle a la mesa</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="imagenes/favicon.png">
+  <link rel="stylesheet" href="estilos/main.css">
+  <style>
+    :root {
+      --admin-bg: #0D1624;
+      --admin-card: #152238;
+      --admin-border: #233554;
+      --admin-accent: #E2B258;
+      --admin-text: #F1F5F9;
+      --admin-text-muted: #94A3B8;
+    }
+    body {
+      background-color: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .admin-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    /* Login Modal */
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 17, 30, 0.95);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+    .login-box {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .login-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .login-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--color-amarillo-sol);
+      margin-bottom: 8px;
+    }
+    .login-desc {
+      color: var(--admin-text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .login-input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--admin-border);
+      background: #0B1320;
+      color: #fff;
+      font-size: 16px;
+      box-sizing: border-box;
+      margin-bottom: 18px;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    .login-input:focus {
+      outline: none;
+      border-color: var(--color-amarillo-sol);
+    }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--color-amarillo-sol);
+      color: var(--color-azul-noche);
+      font-weight: 800;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .login-btn:hover {
+      background: #E5A93C;
+      transform: translateY(-2px);
+    }
+    .login-error {
+      color: #EF4444;
+      font-size: 14px;
+      margin-top: 14px;
+      display: none;
+    }
+
+    /* Dashboard Header */
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--admin-border);
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .admin-brand img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--color-amarillo-sol);
+    }
+    .admin-brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--color-amarillo-sol);
+      margin: 0;
+    }
+    .admin-brand-sub {
+      font-size: 13px;
+      color: var(--admin-text-muted);
+      margin: 2px 0 0;
+    }
+    .admin-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn-action {
+      background: #1C2B44;
+      border: 1px solid var(--admin-border);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-action:hover {
+      background: #253856;
+      border-color: var(--color-amarillo-sol);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .stat-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 16px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--color-amarillo-sol);
+    }
+    .stat-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--admin-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .stat-sub {
+      font-size: 12px;
+      color: #10B981;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Tabs */
+    .admin-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--admin-border);
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--admin-text-muted);
+      padding: 12px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover {
+      color: #fff;
+    }
+    .tab-btn.active {
+      color: var(--color-amarillo-sol);
+      border-bottom-color: var(--color-amarillo-sol);
+    }
+    .tab-badge {
+      background: #1C2B44;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* Content Cards / Tables */
+    .content-box {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 18px;
+      padding: 24px;
+    }
+    .content-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .search-input {
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: #0B1320;
+      border: 1px solid var(--admin-border);
+      color: #fff;
+      font-size: 14px;
+      min-width: 260px;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-amarillo-sol);
+    }
+
+    /* Responsive Table */
+    .admin-table-wrap {
+      overflow-x: auto;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+    .admin-table th {
+      padding: 12px 14px;
+      background: #111B2C;
+      color: var(--admin-text-muted);
+      font-weight: 700;
+      border-bottom: 1px solid var(--admin-border);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+    .admin-table td {
+      padding: 14px;
+      border-bottom: 1px solid rgba(35, 53, 84, 0.6);
+      vertical-align: middle;
+    }
+    .admin-table tr:hover td {
+      background: rgba(35, 53, 84, 0.3);
+    }
+    .status-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .status-pending {
+      background: rgba(245, 158, 11, 0.2);
+      color: #FBBF24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+    .status-confirmed {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .status-contacted {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60A5FA;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .dietary-tag {
+      display: inline-block;
+      background: rgba(226, 75, 75, 0.15);
+      color: #F87171;
+      border: 1px solid rgba(226, 75, 75, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      margin: 2px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--admin-text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MODAL DE ACCESO PROTEGIDO -->
+  <div id="login-modal" class="login-overlay">
+    <div class="login-box">
+      <div class="login-icon">🔒</div>
+      <h1 class="login-title">Panel de Administración</h1>
+      <p class="login-desc">Ingresa la clave maestra para gestionar reservas, comensales y suscriptores del Valle del Elqui.</p>
+      <form id="login-form">
+        <input type="password" id="admin-pass" class="login-input" placeholder="Ingresa contraseña" autocomplete="current-password" autofocus required>
+        <button type="submit" class="login-btn">Entrar al Panel</button>
+        <div id="login-error" class="login-error">Contraseña incorrecta. Inténtalo de nuevo.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- PANEL PRINCIPAL -->
+  <div class="admin-container" id="admin-dashboard" style="display: none;">
+    
+    <!-- CABECERA -->
+    <header class="admin-header">
+      <div class="admin-brand">
+        <img src="imagenes/logo_valle_a_las_estrellas_thumb.webp" alt="Logo Del valle a la mesa">
+        <div>
+          <h1 class="admin-brand-title">Del valle a la mesa · Administración</h1>
+          <p class="admin-brand-sub">🟢 Base de datos conectada en tiempo real (Supabase PostgreSQL)</p>
+        </div>
+      </div>
+      <div class="admin-actions">
+        <button type="button" class="btn-action" id="btn-refresh" title="Recargar los datos más recientes">
+          🔄 Actualizar datos
+        </button>
+        <a href="index.html" class="btn-action" target="_blank" rel="noopener">
+          🌐 Ver sitio web
+        </a>
+        <button type="button" class="btn-action" id="btn-logout" style="color: #F87171;">
+          🚪 Salir
+        </button>
+      </div>
+    </header>
+
+    <!-- TARJETAS DE MÉTRICAS RÁPIDAS -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Total de Solicitudes</div>
+        <div class="stat-value" id="stat-total-res">0</div>
+        <div class="stat-sub">📅 Registradas en base de datos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Comensales Totales</div>
+        <div class="stat-value" id="stat-total-guests">0</div>
+        <div class="stat-sub">👥 Pasajeros confirmados / en espera</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Ingresos Proyectados</div>
+        <div class="stat-value" id="stat-total-revenue">$0</div>
+        <div class="stat-sub">💎 $125.000 CLP por persona</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Suscriptores al Boletín</div>
+        <div class="stat-value" id="stat-total-subs">0</div>
+        <div class="stat-sub">✉️ Correos para campañas</div>
+      </div>
+    </section>
+
+    <!-- PESTAÑAS -->
+    <nav class="admin-tabs">
+      <button type="button" class="tab-btn active" data-tab="tab-reservations">
+        📋 Solicitudes de Reserva <span class="tab-badge" id="badge-res">0</span>
+      </button>
+      <button type="button" class="tab-btn" data-tab="tab-subscribers">
+        ✉️ Suscriptores del Boletín <span class="tab-badge" id="badge-subs">0</span>
+      </button>
+      <button type="button" class="tab-btn" data-tab="tab-comments">
+        💬 Comentarios de la Comunidad <span class="tab-badge" id="badge-comm">0</span>
+      </button>
+    </nav>
+
+    <!-- CONTENIDO 1: RESERVAS -->
+    <div id="tab-reservations" class="tab-content">
+      <div class="content-box">
+        <div class="content-toolbar">
+          <input type="text" id="search-reservations" class="search-input" placeholder="🔍 Buscar por nombre, correo o fecha...">
+          <div style="display: flex; gap: 10px;">
+            <select id="filter-status" class="search-input" style="min-width: 140px;">
+              <option value="all">Todos los estados</option>
+              <option value="pending">Pendientes</option>
+              <option value="confirmed">Confirmadas</option>
+              <option value="contacted">Contactadas</option>
+            </select>
+            <button type="button" class="btn-action" id="btn-export-res">
+              📥 Descargar CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Código / Fecha Exp.</th>
+                <th>Cliente</th>
+                <th>Personas</th>
+                <th>Total ($125.000 c/u)</th>
+                <th>Alimentación / Notas</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="reservations-tbody">
+              <!-- Renderizado dinámico -->
+            </tbody>
+          </table>
+        </div>
+        <div id="res-empty" class="empty-state" style="display: none;">
+          No hay reservas que coincidan con la búsqueda.
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENIDO 2: SUSCRIPTORES -->
+    <div id="tab-subscribers" class="tab-content" style="display: none;">
+      <div class="content-box">
+        <div class="content-toolbar">
+          <input type="text" id="search-subscribers" class="search-input" placeholder="🔍 Buscar por nombre o correo...">
+          <button type="button" class="btn-action" id="btn-export-subs">
+            📥 Descargar CSV
+          </button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Correo Electrónico</th>
+                <th>Fecha de Registro</th>
+                <th>Cupón Generado</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="subscribers-tbody">
+              <!-- Renderizado dinámico -->
+            </tbody>
+          </table>
+        </div>
+        <div id="subs-empty" class="empty-state" style="display: none;">
+          No hay suscriptores que coincidan con la búsqueda.
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENIDO 3: COMENTARIOS -->
+    <div id="tab-comments" class="tab-content" style="display: none;">
+      <div class="content-box">
+        <div class="content-toolbar">
+          <p style="font-size: 14px; color: var(--admin-text-muted); margin: 0;">
+            Comentarios guardados por los visitantes en el sitio web:
+          </p>
+          <button type="button" class="btn-action" id="btn-clear-local-comments" style="color: #F87171;">
+            🗑️ Limpiar comentarios locales de prueba
+          </button>
+        </div>
+
+        <div id="comments-list-admin" style="display: grid; gap: 14px;">
+          <!-- Renderizado dinámico -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const PRICE_PER_PERSON = 125000;
+      let appData = { reservations: [], subscribers: [] };
+      let currentPassword = sessionStorage.getItem('elqui_admin_auth') || '';
+
+      const loginModal = document.getElementById('login-modal');
+      const loginForm = document.getElementById('login-form');
+      const adminPass = document.getElementById('admin-pass');
+      const loginError = document.getElementById('login-error');
+      const dashboard = document.getElementById('admin-dashboard');
+
+      // 1. GESTIÓN DE ACCESO
+      if (currentPassword) {
+        verifyAndLoad(currentPassword);
+      }
+
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const pass = adminPass.value.trim();
+        verifyAndLoad(pass);
+      });
+
+      async function verifyAndLoad(pass) {
+        loginError.style.display = 'none';
+        try {
+          const res = await fetch('/api/admin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: pass, action: 'get_data' })
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            currentPassword = pass;
+            sessionStorage.setItem('elqui_admin_auth', pass);
+            loginModal.style.display = 'none';
+            dashboard.style.display = 'block';
+            appData = data;
+            renderAll();
+          } else {
+            loginError.textContent = data.message || 'Contraseña incorrecta';
+            loginError.style.display = 'block';
+            sessionStorage.removeItem('elqui_admin_auth');
+          }
+        } catch (err) {
+          loginError.textContent = 'Error de conexión con el servidor administrativo.';
+          loginError.style.display = 'block';
+        }
+      }
+
+      document.getElementById('btn-logout').addEventListener('click', function () {
+        sessionStorage.removeItem('elqui_admin_auth');
+        window.location.reload();
+      });
+
+      document.getElementById('btn-refresh').addEventListener('click', function () {
+        verifyAndLoad(currentPassword);
+      });
+
+      // 2. RENDERIZADO DE MÉTRICAS Y DATOS
+      function renderAll() {
+        renderMetrics();
+        renderReservations();
+        renderSubscribers();
+        renderComments();
+      }
+
+      function renderMetrics() {
+        const reservations = appData.reservations || [];
+        const subscribers = appData.subscribers || [];
+
+        let totalGuests = 0;
+        reservations.forEach(r => {
+          totalGuests += (parseInt(r.guests, 10) || 1);
+        });
+
+        const totalRevenue = totalGuests * PRICE_PER_PERSON;
+
+        document.getElementById('stat-total-res').textContent = reservations.length;
+        document.getElementById('stat-total-guests').textContent = totalGuests;
+        document.getElementById('stat-total-revenue').textContent = '$' + totalRevenue.toLocaleString('es-CL');
+        document.getElementById('stat-total-subs').textContent = subscribers.length;
+
+        document.getElementById('badge-res').textContent = reservations.length;
+        document.getElementById('badge-subs').textContent = subscribers.length;
+      }
+
+      // TABLA DE RESERVAS
+      function renderReservations() {
+        const tbody = document.getElementById('reservations-tbody');
+        const search = (document.getElementById('search-reservations').value || '').toLowerCase();
+        const filter = document.getElementById('filter-status').value;
+        const emptyState = document.getElementById('res-empty');
+
+        let list = appData.reservations || [];
+
+        // Filtro de búsqueda
+        if (search) {
+          list = list.filter(r => 
+            (r.name && r.name.toLowerCase().includes(search)) ||
+            (r.email && r.email.toLowerCase().includes(search)) ||
+            (r.date && r.date.toLowerCase().includes(search)) ||
+            (r.code && r.code.toLowerCase().includes(search))
+          );
+        }
+
+        // Filtro de estado
+        if (filter !== 'all') {
+          list = list.filter(r => (r.status || 'pending') === filter);
+        }
+
+        if (list.length === 0) {
+          tbody.innerHTML = '';
+          emptyState.style.display = 'block';
+          return;
+        }
+
+        emptyState.style.display = 'none';
+        tbody.innerHTML = list.map(r => {
+          const guests = parseInt(r.guests, 10) || 1;
+          const total = guests * PRICE_PER_PERSON;
+          const status = r.status || 'pending';
+          const statusClass = status === 'confirmed' ? 'status-confirmed' : (status === 'contacted' ? 'status-contacted' : 'status-pending');
+          const statusLabel = status === 'confirmed' ? 'Confirmada' : (status === 'contacted' ? 'Contactado' : 'Pendiente');
+
+          let dietaryHtml = '';
+          if (Array.isArray(r.dietary_needs) && r.dietary_needs.length > 0) {
+            dietaryHtml = r.dietary_needs.map(d => `<span class="dietary-tag">${escapeHtml(d)}</span>`).join(' ');
+          }
+
+          const commentsText = r.comments ? `<div style="font-size: 13px; color: var(--admin-text-muted); margin-top: 4px;">💬 "${escapeHtml(r.comments)}"</div>` : '';
+
+          return `
+            <tr>
+              <td>
+                <strong style="color: var(--color-amarillo-sol);">${escapeHtml(r.code || 'S/C')}</strong><br>
+                <small style="color: var(--admin-text-muted);">📅 ${escapeHtml(r.date || 'Sin fecha')}</small>
+              </td>
+              <td>
+                <strong>${escapeHtml(r.name)}</strong><br>
+                <a href="mailto:${escapeHtml(r.email)}" style="color: #60A5FA; font-size: 13px; text-decoration: underline;">${escapeHtml(r.email)}</a>
+                ${r.phone ? `<br><small style="color: var(--admin-text-muted); font-size: 12px;">📞 ${escapeHtml(r.phone)}</small>` : ''}
+              </td>
+              <td><strong>${guests} ${guests === 1 ? 'persona' : 'personas'}</strong></td>
+              <td><strong style="color: var(--color-amarillo-sol); font-size: 15px;">$${total.toLocaleString('es-CL')} CLP</strong></td>
+              <td>
+                ${dietaryHtml || '<span style="color: var(--admin-text-muted); font-size: 12px;">Estándar</span>'}
+                ${commentsText}
+              </td>
+              <td>
+                <select class="search-input" style="padding: 4px 8px; font-size: 12px; min-width: 120px;" onchange="updateReservationStatus('${escapeHtml(r.code || r.id)}', this.value)">
+                  <option value="pending" ${status === 'pending' ? 'selected' : ''}>⏳ Pendiente</option>
+                  <option value="contacted" ${status === 'contacted' ? 'selected' : ''}>📞 Contactado</option>
+                  <option value="confirmed" ${status === 'confirmed' ? 'selected' : ''}>✅ Confirmada</option>
+                </select>
+              </td>
+              <td>
+                <a href="mailto:${escapeHtml(r.email)}?subject=Confirmaci%C3%B3n%20de%20tu%20Experiencia%20Del%20Valle%20a%20la%20Mesa&body=Hola%20${encodeURIComponent(r.name)},%0D%0A%0D%0AHemos%20recibido%20tu%20solicitud%20para%20la%20experiencia%20del%20d%C3%ADa%20${encodeURIComponent(r.date)}%20para%20${guests}%20personas.%0D%0A%0D%0AUn%20saludo%20cordial,%0D%0AEquipo%20Del%20Valle%20a%20la%20Mesa" class="btn-action" style="font-size: 12px; padding: 4px 10px;">
+                  ✉️ Responder
+                </a>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // TABLA DE SUSCRIPTORES
+      function renderSubscribers() {
+        const tbody = document.getElementById('subscribers-tbody');
+        const search = (document.getElementById('search-subscribers').value || '').toLowerCase();
+        const emptyState = document.getElementById('subs-empty');
+
+        let list = appData.subscribers || [];
+
+        if (search) {
+          list = list.filter(s => 
+            (s.name && s.name.toLowerCase().includes(search)) ||
+            (s.email && s.email.toLowerCase().includes(search))
+          );
+        }
+
+        if (list.length === 0) {
+          tbody.innerHTML = '';
+          emptyState.style.display = 'block';
+          return;
+        }
+
+        emptyState.style.display = 'none';
+        tbody.innerHTML = list.map(s => {
+          const date = s.created_at ? new Date(s.created_at).toLocaleDateString('es-CL') : 'Reciente';
+          return `
+            <tr>
+              <td><strong>${escapeHtml(s.name || 'Visitante')}</strong></td>
+              <td><a href="mailto:${escapeHtml(s.email)}" style="color: #60A5FA; text-decoration: underline;">${escapeHtml(s.email)}</a></td>
+              <td style="color: var(--admin-text-muted);">${date}</td>
+              <td><span style="background: rgba(226, 178, 88, 0.2); color: var(--color-amarillo-sol); padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 12px;">${escapeHtml(s.coupon_code || 'VALLE')}</span></td>
+              <td>
+                <a href="mailto:${escapeHtml(s.email)}" class="btn-action" style="font-size: 12px; padding: 4px 10px;">
+                  ✉️ Enviar correo
+                </a>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // COMENTARIOS
+      function renderComments() {
+        const container = document.getElementById('comments-list-admin');
+        const badge = document.getElementById('badge-comm');
+
+        let saved = [];
+        try {
+          saved = JSON.parse(localStorage.getItem('elqui_comments') || '[]');
+        } catch (e) {}
+
+        badge.textContent = saved.length + 2;
+
+        const defaultC = [
+          { alias: 'Camila R.', comment: 'Me encantó la propuesta de cocina solar y rescate de la papaya. Es una gran iniciativa para Cochiguaz.', date: '28 de octubre de 2026' },
+          { alias: 'Felipe M.', comment: 'Excelente que consideren opciones sin alcohol para la tradición pisquera y alternativas para celíacos.', date: '29 de octubre de 2026' }
+        ];
+
+        const all = [...defaultC, ...saved];
+
+        container.innerHTML = all.map((c, idx) => `
+          <div style="background: #111B2C; border: 1px solid var(--admin-border); border-radius: 12px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="color: var(--color-verde-cactus);">${escapeHtml(c.alias)}</strong>
+              <small style="color: var(--admin-text-muted);">${escapeHtml(c.date)}</small>
+            </div>
+            <p style="font-size: 14px; color: #E2E8F0; margin: 0; line-height: 1.5;">${escapeHtml(c.comment)}</p>
+          </div>
+        `).join('');
+      }
+
+      document.getElementById('btn-clear-local-comments').addEventListener('click', function () {
+        if (confirm('¿Deseas vaciar los comentarios almacenados en este navegador?')) {
+          localStorage.removeItem('elqui_comments');
+          renderComments();
+        }
+      });
+
+      // 3. ACTUALIZAR ESTADO DE RESERVA
+      window.updateReservationStatus = async function (code, newStatus) {
+        try {
+          const res = await fetch('/api/admin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              password: currentPassword,
+              action: 'update_status',
+              code: code,
+              status: newStatus
+            })
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            // Actualizar memoria local
+            const item = (appData.reservations || []).find(r => r.code === code || r.id === code);
+            if (item) item.status = newStatus;
+            console.log('Estado actualizado en Supabase:', code, newStatus);
+          } else {
+            alert('No se pudo actualizar el estado: ' + (data.message || 'Error'));
+          }
+        } catch (e) {
+          alert('Error de conexión al actualizar estado.');
+        }
+      };
+
+      // 4. BÚSQUEDAS Y EVENTOS
+      document.getElementById('search-reservations').addEventListener('input', renderReservations);
+      document.getElementById('filter-status').addEventListener('change', renderReservations);
+      document.getElementById('search-subscribers').addEventListener('input', renderSubscribers);
+
+      // Pestañas
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+          this.classList.add('active');
+          const tabId = this.getAttribute('data-tab');
+          document.getElementById(tabId).style.display = 'block';
+        });
+      });
+
+      // EXPORTAR A CSV
+      document.getElementById('btn-export-res').addEventListener('click', function () {
+        const list = appData.reservations || [];
+        if (list.length === 0) return alert('No hay reservas para exportar');
+        let csv = 'Código,Fecha,Nombre,Correo,Personas,Total_CLP,Alimentación,Comentarios,Estado\n';
+        list.forEach(r => {
+          const guests = parseInt(r.guests, 10) || 1;
+          const total = guests * PRICE_PER_PERSON;
+          const dietary = Array.isArray(r.dietary_needs) ? r.dietary_needs.join(' | ') : '';
+          csv += `"${r.code || ''}","${r.date || ''}","${r.name || ''}","${r.email || ''}",${guests},${total},"${dietary}","${r.comments || ''}","${r.status || 'pending'}"\n`;
+        });
+        downloadCsv(csv, 'reservas_vallealastrellas.csv');
+      });
+
+      document.getElementById('btn-export-subs').addEventListener('click', function () {
+        const list = appData.subscribers || [];
+        if (list.length === 0) return alert('No hay suscriptores para exportar');
+        let csv = 'Nombre,Correo,Cupón,Fecha\n';
+        list.forEach(s => {
+          csv += `"${s.name || ''}","${s.email || ''}","${s.coupon_code || ''}","${s.created_at || ''}"\n`;
+        });
+        downloadCsv(csv, 'suscriptores_vallealastrellas.csv');
+      });
+
+      function downloadCsv(content, filename) {
+        const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>'"]/g, tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag));
+      }
+
+    })();
+  </script>
+
+</body>
+</html>

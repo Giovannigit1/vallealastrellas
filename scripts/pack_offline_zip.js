@@ -18,7 +18,7 @@ if (fs.existsSync(zipFile)) {
 fs.mkdirSync(tempDir, { recursive: true });
 
 // Copiar archivos raíz
-const rootFiles = ['index.html', 'recetario.html', 'sw.js'];
+const rootFiles = ['index.html', 'admin.html', 'recetario.html', 'sw.js'];
 rootFiles.forEach(f => {
   fs.copyFileSync(path.join(rootDir, f), path.join(tempDir, f));
 });
